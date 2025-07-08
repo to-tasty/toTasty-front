@@ -13,10 +13,10 @@
 pages/
 └── HomePage/
     └── index.tsx     # 홈페이지 UI 컴포넌트
-    └── PostListPage/
-        └── index.tsx     # 게시글 목록 페이지 UI 컴포넌트
-    └── PostDetailPage/
-        └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
+└── PostListPage/
+    └── index.tsx     # 게시글 목록 페이지 UI 컴포넌트
+└── PostDetailPage/
+    └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
 ```
 
 
