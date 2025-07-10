@@ -1,3 +1,9 @@
+import TastingCard from '@/app/shared/ui/TastingCard';
+
 export default function TestPage() {
-  return <div>This Page is test Page.</div>;
+  return (
+    <div className="m-50">
+      <TastingCard />
+    </div>
+  );
 }
