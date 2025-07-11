@@ -12,7 +12,7 @@ export default function TastingCard({ isActive = true }: TastingCardProps) {
       <div
         className={`relative w-full h-[140px] rounded-lg overflow-hidden ${isActive ? 'border-1' : ''}`}
       >
-        <Image src="/images/coffeeBean.png" alt="스타벅스 에티오피아 원두" fill objectFit="cover" />
+        <Image src="/images/testImage.png" alt="스타벅스 에티오피아 원두" fill objectFit="cover" />
       </div>
       <p
         className="mt-2 text-sm font-medium text-center break-words line-clamp-2 overflow-hidden text-ellipsis"
