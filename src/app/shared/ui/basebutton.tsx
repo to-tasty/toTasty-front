@@ -22,13 +22,13 @@ const variantStyles: Record<Variant, string> = {
   base: 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600 hover:border-orange-600',
   darker: 'bg-orange-700 text-white border-orange-700 hover:bg-orange-800 hover:border-orange-800',
   darkest: 'bg-orange-800 text-white border-orange-800 hover:bg-orange-900 hover:border-orange-900',
-  disabled: 'bg-gray-400 text-white cursor-not-allowed border-gray-400',
+  disabled: 'bg-gray-400 text-white border-gray-400',
   baseWhite: 'bg-white text-orange-500 border-orange-500 hover:bg-gray-100 hover:border-orange-600',
   darkerWhite:
     'bg-white text-orange-700 border-orange-700 hover:bg-gray-100 hover:border-orange-700',
   darkestWhite:
     'bg-white text-orange-800 border-orange-800 hover:bg-gray-100 hover:border-orange-800',
-  disabledWhite: 'bg-white text-gray-400 border-gray-400 hover:bg-gray-100 hover:border-gray-400',
+  disabledWhite: 'bg-white text-gray-400 border-gray-400',
 };
 
 const sizeStyles: Record<Size, string> = {
@@ -45,7 +45,7 @@ export function BaseButton({
   ...props
 }: ButtonProps) {
   const style = clsx(
-    'flex items-center justify-center border rounded-xl py-3 transition-colors duration-150 cursor-pointer font-semibold',
+    'flex items-center justify-center border rounded-xl py-3 transition-colors duration-150 font-semibold',
     variantStyles[disabled ? 'disabled' : variant],
     sizeStyles[size],
     className,
