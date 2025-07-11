@@ -10,7 +10,7 @@ export default function Chip({ label, selected = false, onClick, className = '' 
     <button
       type="button"
       onClick={onClick}
-      className={`px-4 h-8 rounded-full text-sm font-medium transition-colors
+      className={`px-4 h-8 rounded-full text-sm font-medium transition-colors w-10
         ${selected ? 'bg-[#0A1320] text-white' : 'bg-[#E3E6EB] text-[#0A1320]'}
         ${className}`}
     >
