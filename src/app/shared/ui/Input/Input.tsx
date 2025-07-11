@@ -7,7 +7,7 @@ interface InputFieldProps {
   error?: string;
 }
 
-export function InputField({
+export default function InputField({
   type,
   value,
   onChange,
