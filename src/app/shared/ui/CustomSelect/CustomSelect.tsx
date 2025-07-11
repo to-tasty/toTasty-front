@@ -2,17 +2,17 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 // 컴포넌트가 받을 props 타입 정의
-type Option = {
+interface Option {
   value: string;
   label: string;
-};
+}
 
-type CustomSelectProps = {
+interface CustomSelectProps {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-};
+}
 
 export default function SelectBox({ options, value, onChange, placeholder }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
