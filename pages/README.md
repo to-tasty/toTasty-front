@@ -13,13 +13,15 @@
 pages/
 └── home/
     └── index.tsx     # 홈페이지 UI 컴포넌트
-└── post/list/
-    └── index.tsx     # 게시글 목록 페이지 UI 컴포넌트
-└── post/detail/
-    └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
+
+└── post/
+    └── list/     # 게시글 목록 페이지 UI 컴포넌트
+        └── index.tsx     # 게시글 목록 페이지 UI 컴포넌트
+    └── detail/
+        └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
+
 └── play-list/
     └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
-
 ```
 
 ## ✍️ 작성 규칙
