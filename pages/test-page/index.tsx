@@ -1,4 +1,4 @@
-import TastingCard from '@/app/shared/ui/TastingCard';
+import TastingCard from '@/shared/ui/Tasting/TastingCard';
 
 export default function TestPage() {
   return (
