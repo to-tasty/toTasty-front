@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     | 'outlinedBold'
     | 'outlinedStrong'
     | 'outlinedDisabled';
-  size?: 'lg' | 'md';
+  size?: 'lg' | 'sm';
 }
 
 const variantStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
@@ -20,30 +20,28 @@ const variantStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
     'bg-orange-700 text-white border-orange-700 hover:bg-orange-800 hover:border-orange-800',
   solidStrong:
     'bg-orange-800 text-white border-orange-800 hover:bg-orange-900 hover:border-orange-900',
-  solidDisabled: 'bg-gray-400 text-white border-gray-400',
-  outlined: 'bg-white text-orange-500 border-orange-500 hover:bg-gray-100 hover:border-orange-600',
-  outlinedBold:
-    'bg-white text-orange-700 border-orange-700 hover:bg-gray-100 hover:border-orange-700',
-  outlinedStrong:
-    'bg-white text-orange-800 border-orange-800 hover:bg-gray-100 hover:border-orange-800',
-  outlinedDisabled: 'bg-white text-gray-400 border-gray-400',
+  solidDisabled: 'bg-gray-400 text-white border-gray-400 cursor-default active:',
+  outlined: 'bg-white text-orange-500 border-orange-500 hover:border-orange-600',
+  outlinedBold: 'bg-white text-orange-700 border-orange-700 hover:border-orange-700',
+  outlinedStrong: 'bg-white text-orange-800 border-orange-800 hover:border-orange-800',
+  outlinedDisabled: 'bg-white text-gray-400 border-gray-400 cursor-default',
 };
 
 const sizeStyles: Record<NonNullable<ButtonProps['size']>, string> = {
-  lg: 'w-full',
-  md: 'px-10',
+  lg: 'w-full text-base',
+  sm: 'px-10 text-sm',
 };
 
 export default function BaseButton({
   children,
   variant = 'solid',
-  size = 'md',
+  size = 'sm',
   disabled = false,
   className,
   ...props
 }: ButtonProps) {
   const style = clsx(
-    'flex items-center justify-center border rounded-xl py-3 transition-colors duration-150 font-semibold',
+    'flex items-center justify-center border rounded-xl py-2.5 transition-colors duration-150 font-semibold cursor-pointer',
     variantStyles[disabled ? 'solidDisabled' : variant],
     sizeStyles[size],
     className,
