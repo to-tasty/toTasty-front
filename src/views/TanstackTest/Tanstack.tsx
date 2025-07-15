@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTanstackQuery } from '@/features/TanstackTest/api/fetchTanstack';
+import { useTanstackQuery } from '@/features/TanstackTest/hooks/useTanstackQuery';
 
 export function TanstackView(): string | React.JSX.Element {
   const { isPending, error, data, isFetching } = useTanstackQuery();
