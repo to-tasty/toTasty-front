@@ -1,5 +1,6 @@
 import { TestPost } from '@/features/AxiosTest/model/types';
 import { postApi, putApi } from '@/shared/api/axiosApis';
+import { AxiosRequestHeaders } from 'axios';
 
 export async function putTest(): Promise<TestPost | null> {
   const post: TestPost = {
@@ -9,7 +10,7 @@ export async function putTest(): Promise<TestPost | null> {
     id: 1,
   };
 
-  const headers = {
+  const headers: object = {
     'Content-Type': 'application/json; charset=utf-8',
   };
 

@@ -4,6 +4,6 @@ interface TastingInfo {
   dringImgUrl: string;
 }
 
-export interface TastingList {
+export default interface TastingList {
   tastingList: TastingInfo[];
 }

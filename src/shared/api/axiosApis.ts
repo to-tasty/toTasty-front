@@ -1,8 +1,10 @@
+import { headers } from 'next/headers';
 import axiosInstance from './axiosInstance';
-import { AxiosResponse } from 'axios';
+import { AxiosRequestHeaders, AxiosResponse } from 'axios';
 
 export async function getApi<T>(
   url: string,
+  headers: object = {},
   apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
 ): Promise<T | null> {
   if (apiUrl === undefined) {
@@ -10,11 +12,10 @@ export async function getApi<T>(
   }
 
   const response: AxiosResponse<T> | null = await axiosInstance(apiUrl)
-    .get<T>(url)
+    .get<T>(url, { headers })
     .then((res) => res)
     .catch((error) => {
       throw new Error('GET RestAPI Error : ', error);
-      return null;
     });
   return response ? response.data : null;
 }
