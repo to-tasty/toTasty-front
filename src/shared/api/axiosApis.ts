@@ -6,60 +6,89 @@ export async function getApi<T>(
   apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
 ): Promise<T | null> {
   if (apiUrl === undefined) {
-    console.error('API URL is not exist.');
     throw new Error('API URL is not exist.');
   }
 
-  try {
-    const response: AxiosResponse<T> = await axiosInstance(apiUrl).get<T>(url);
-    return response.data;
-  } catch (error) {
-    console.error('GET RestAPI Error: ', error);
-    return null;
-  }
+  const response: AxiosResponse<T> | null = await axiosInstance(apiUrl)
+    .get<T>(url)
+    .then((res) => res)
+    .catch((error) => {
+      throw new Error('GET RestAPI Error : ', error);
+      return null;
+    });
+  return response ? response.data : null;
 }
 
-// export const getApi = async (url: string) => {
-//   const response = await axiosInstance
-//     .get(url)
-//     .then((res) => res)
-//     .catch((error) => {
-//       console.error('get api error : ', error);
-//       return null;
-//     });
-//   return response ? response.data : null;
-// };
+export async function postApi<T>(
+  url: string,
+  param: object,
+  headers: object = {},
+  apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
+): Promise<T | null> {
+  if (apiUrl === undefined) {
+    throw new Error('API URL is not exist.');
+  }
 
-// export const postApi = async (url: string, param: object, headers: object = {}) => {
-//   const config = { headers };
-//   const response = await axiosInstance
-//     .post(url, param, config)
-//     .then((res) => res)
-//     .catch((error) => {
-//       console.error('post api error : ', error);
-//       return null;
-//     });
-//   return response ? response.data : null;
-// };
+  const response = await axiosInstance(apiUrl)
+    .post<T>(url, param, { headers })
+    .then((res) => res)
+    .catch((error) => {
+      throw new Error('POST RestAPI Error : ', error);
+    });
+  return response ? response.data : null;
+}
 
-// export const patchApi = async (url: string, param: object) => {
-//   const response = await axiosInstance
-//     .patch(url, param)
-//     .then((res) => res)
-//     .catch((error) => {
-//       console.error('patch api error : ', error);
-//       return null;
-//     });
-//   return response ? response.data : null;
-// };
+export async function putApi<T>(
+  url: string,
+  param: object,
+  headers: object = {},
+  apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
+): Promise<T | null> {
+  if (apiUrl === undefined) {
+    throw new Error('API URL is not exist.');
+  }
 
-// export const deleteApi = async (url: string) => {
-//   const response = await axiosInstance
-//     .delete(url)
-//     .then((res) => res)
-//     .catch((error) => {
-//       console.error('post api error : ', error);
-//       return null;
-//     });
-//   return response ? response.data : null;
-// };
+  const response = await axiosInstance(apiUrl)
+    .put<T>(url, param, { headers })
+    .then((res) => res)
+    .catch((error) => {
+      throw new Error('PUT RestAPI Error : ', error);
+    });
+  return response ? response.data : null;
+}
+
+export async function patchApi<T>(
+  url: string,
+  param: object,
+  headers: object = {},
+  apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
+): Promise<T | null> {
+  if (apiUrl === undefined) {
+    throw new Error('API URL is not exist.');
+  }
+
+  const response = await axiosInstance(apiUrl)
+    .patch<T>(url, param, { headers })
+    .then((res) => res)
+    .catch((error) => {
+      throw new Error('PATCH RestAPI Error : ', error);
+    });
+  return response ? response.data : null;
+}
+
+export async function deleteApi<T>(
+  url: string,
+  apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
+): Promise<T | null> {
+  if (apiUrl === undefined) {
+    throw new Error('API URL is not exist.');
+  }
+
+  const response: AxiosResponse<T> | null = await axiosInstance(apiUrl)
+    .delete<T>(url)
+    .then((res) => res)
+    .catch((error) => {
+      throw new Error('DELETE RestAPI Error : ', error);
+    });
+  return response ? response.data : null;
+}
