@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
-import { createTestPost } from '../../api/createTestPost';
+import { postTest } from '../../api/postTest';
 
 export function usePostTestMutation(): UseMutationResult<any, Error, void, unknown> {
-  return useMutation({ mutationFn: createTestPost });
+  return useMutation({ mutationFn: postTest });
 }

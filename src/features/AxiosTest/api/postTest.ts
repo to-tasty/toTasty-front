@@ -1,12 +1,11 @@
 import { TestPost } from '@/features/AxiosTest/model/types';
 import { postApi } from '@/shared/api/axiosApis';
 
-export async function createTestPost(): Promise<TestPost | null> {
+export async function postTest(): Promise<TestPost | null> {
   const post: TestPost = {
     title: '테스트제목',
     body: '테스트내용',
     userId: 1,
-    id: null,
   };
 
   const headers = {
