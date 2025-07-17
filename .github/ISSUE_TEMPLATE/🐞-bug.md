@@ -1,14 +1,11 @@
 ---
-name: "\U0001F41E BUG"
-about: Bug 발생 시 작성해주세요.
-title: "[bug]"
-labels: ''
+name: "🐞 BUGFIX"
+about: Bug 발견 및 해결 시 작성해주세요.
+title: "[bugfix] "
+labels: 'bugfix 🐞'
 assignees: ''
 
 ---
-
-# 제목
-
 ## 버그 발생 사항
 
 -
