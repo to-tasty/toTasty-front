@@ -1,5 +1,5 @@
-import LoginButton from '@/features/navigations/ui/LoginButton';
-import NavigationTabs from '@/features/navigations/ui/NavigationTabs';
+import LoginButton from '@/features/navigation/ui/LoginButton';
+import NavigationTabs from '@/features/navigation/ui/NavigationTabs';
 import UserDropdown from './UserDropdown';
 
 export { LoginButton, NavigationTabs, UserDropdown };

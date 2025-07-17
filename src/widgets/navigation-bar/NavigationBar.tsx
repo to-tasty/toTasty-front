@@ -2,7 +2,7 @@
 
 import { NavigationMenu, DropdownMenu, Logo, DropdownMenuTrigger } from '@/shared/ui';
 import { UserIcon } from '@/entities/user/ui';
-import { LoginButton, NavigationTabs, UserDropdown } from '@/features/navigations/ui';
+import { LoginButton, NavigationTabs, UserDropdown } from '@/features/navigation/ui';
 import { useUserStore } from '@/shared/lib/hooks/useUserStore';
 import { useShallow } from 'zustand/shallow';
 
