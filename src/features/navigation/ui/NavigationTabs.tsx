@@ -9,7 +9,7 @@ import {
   NavigationMenuItem,
 } from '@/shared/ui/NavigationMenu';
 
-export default function NavTabs() {
+export default function NavigationTabs() {
   const pathname = usePathname();
   const navigationMenuItems = [
     // TODO : href url 변경
