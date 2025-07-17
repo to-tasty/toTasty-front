@@ -6,11 +6,10 @@ import router from 'next/router';
 export default function UserDropdown() {
   // TODO : 마이페이지 url 수정
   const { logOut } = useUserStore();
-  function logout() {
+  const logout = () => {
     logOut();
     router.push('/');
-  }
-
+  };
   return (
     <DropdownMenuContent className="w-30">
       <DropdownMenuGroup>

@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-// 테스트용 카운트 스토어 코드
 
 interface AuthState {
   user: {

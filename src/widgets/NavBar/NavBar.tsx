@@ -24,7 +24,9 @@ export default function NavBar() {
         {isLoggedIn ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <UserIcon />
+              <div>
+                <UserIcon />
+              </div>
             </DropdownMenuTrigger>
             <UserDropdown />
           </DropdownMenu>
