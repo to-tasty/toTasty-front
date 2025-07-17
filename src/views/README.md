@@ -11,12 +11,12 @@
 
 ```bash
 views /
-└── Home/
+└── home/
     └── Home.tsx     # 홈페이지 UI 컴포넌트
-└── Post/
-    └── List/
+└── post/
+    └── list/
         └── List.tsx     # 게시글 목록 페이지 UI 컴포넌트s
-    └── Detail/
+    └── detail/
         └── Detail.tsx     # 게시글 상세 페이지 UI 컴포넌트
 ```
 
