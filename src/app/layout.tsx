@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import NavBar from '@/widgets/NavBar/NavBar';
+import NavBar from '@/widgets/navBar/NavBar';
 import { QueryProvider } from './providers/QueryProvider';
 
 const pretendard = localFont({

@@ -10,7 +10,7 @@ export default function Logo() {
         alt="logo"
         width={120}
         height={33}
-        priority
+        draggable={false}
       />
     </Link>
   );
