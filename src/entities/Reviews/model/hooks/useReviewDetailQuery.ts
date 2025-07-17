@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import getReviewDetail from '@/entities/Reviews/Detail/api/getReviewDetail';
-import ReviewDetailInfo from '../types';
+import getReviewDetail from '@/entities/Reviews/api/getReviewDetail';
+import { ReviewDetailInfo } from '../types';
 
 export function useReviewListQuery(
   reviewId: number,
