@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useUserStore } from '@/entities/user';
-import { loginWithKakao } from '../api/loginWithKakao';
+import { loginWithKakao } from '@/features/login-with-kakao/api/loginWithKakao';
 
 export function useLoginWithKakaoMutation() {
   const { logIn } = useUserStore((state) => state);
