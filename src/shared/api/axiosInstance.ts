@@ -13,5 +13,6 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
 
   return axios.create({
     baseURL: apiUrl,
+    withCredentials: true,
   });
 }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 function kakaoRedirect() {
-  window.location.href = `${apiUrl}/auth/login/redirect`;
+  window.location.href = `${apiUrl}/api/v1/auth/login/redirect`;
 }
 export default function SocialLoginButton() {
   return (
