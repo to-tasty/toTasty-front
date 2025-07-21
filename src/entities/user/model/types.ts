@@ -3,6 +3,7 @@ export interface User {
   nickname: string;
   profileImgUrl: string;
   interest: string[];
+  memberId: number;
 }
 
 export interface UserState {
