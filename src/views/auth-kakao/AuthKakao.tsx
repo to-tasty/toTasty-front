@@ -20,9 +20,5 @@ export default function AuthKakao() {
     });
   }, [kakaoAuthCode, mutate, router]);
 
-  return (
-    <div>
-      <p className="text-center mt-20">카카오 로그인 처리 중...</p>
-    </div>
-  );
+  return <p className="text-center mt-20">카카오 로그인 처리 중...</p>;
 }
