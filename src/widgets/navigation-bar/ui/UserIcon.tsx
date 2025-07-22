@@ -8,7 +8,7 @@ export default function UserIcon() {
 
   return (
     <Button variant="secondary" size="icon" className="relative overflow-hidden rounded-full">
-      <Image src={user.profileImgUrl} alt={`${user.nickname}의 프로필`} fill />
+      <Image src={user.profileImg} alt={`${user.nickname}의 프로필`} fill />
     </Button>
   );
 }
