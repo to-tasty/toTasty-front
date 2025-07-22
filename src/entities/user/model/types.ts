@@ -4,6 +4,7 @@ export interface User {
   profileImgUrl: string;
   interest: string[];
   memberId: number;
+  accessToken: string;
 }
 
 export interface UserState {
@@ -11,4 +12,7 @@ export interface UserState {
   isLoggedIn: boolean;
   logIn: (user: User) => void;
   logOut: () => void;
+  accessToken: string;
+  setAccessToken: (token: string) => void;
+  clearAccessToken: () => void;
 }

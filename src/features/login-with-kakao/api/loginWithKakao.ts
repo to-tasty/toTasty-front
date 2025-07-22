@@ -1,10 +1,10 @@
 import { getApi } from '@/shared/api/axiosApis';
-import { User } from '@/entities/user';
+import { LoginResponse } from './types';
 
-export async function loginWithKakao(code: string): Promise<User | null> {
+export async function loginWithKakao(code: string): Promise<LoginResponse | null> {
   const headers = {
     'Content-Type': 'application/json',
   };
 
-  return getApi<User>('/api/v1/auth/login', { code }, headers);
+  return getApi<LoginResponse>('/api/v1/auth/login', { code }, headers);
 }
