@@ -5,7 +5,7 @@ export default async function useRefreshAccessToken() {
   try {
     const api = axiosInstance(process.env.NEXT_PUBLIC_API_URL);
 
-    const res = await api.post('/api/v1/auth/token/reissue', null, {
+    const res = await api.post('/api/v1/auth/token/reissue/dev', null, {
       withCredentials: true,
     });
 
