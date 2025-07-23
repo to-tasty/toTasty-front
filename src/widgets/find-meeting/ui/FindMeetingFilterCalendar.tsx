@@ -20,6 +20,7 @@ export default function FindMeetingFilterCalendar() {
           <Button
             id="filterCalendar"
             variant={selectedCalendar ? 'findFilterClicked' : 'outline'}
+            className={selectedCalendar ? 'text-white' : 'text-gray-090 outline-gray-010'}
             size="findFilterSize"
           >
             날짜 전체
@@ -35,26 +36,32 @@ export default function FindMeetingFilterCalendar() {
             </div>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-          <Calendar
-            mode="single"
-            defaultMonth={date}
-            selected={date}
-            today={date}
-            formatters={{
-              formatWeekdayName: (day: Date) => {
-                return format(day, 'eee', { locale: enUS });
-              },
-            }}
-            classNames={{
-              week: 'flex justify-between mt-2',
-              day: 'flex justify-between mt-2',
-              selected:
-                'bg-transparent text-purple-600 hover:bg-transparent hover:text-purple-600 focus:bg-transparent focus:text-purple-600',
-            }}
-          />
-
-          <div className="flex mt-3 justify-center items-center">
+        <PopoverContent
+          className="flex flex-col w-[336px] h-[326px] overflow-hidden p-0 justify-between items-center"
+          align="start"
+        >
+          <div className="flex w-[250px] h-[226px] justify-center">
+            <Calendar
+              mode="single"
+              defaultMonth={date}
+              selected={date}
+              today={date}
+              formatters={{
+                formatWeekdayName: (day: Date) => {
+                  return format(day, 'eee', { locale: enUS });
+                },
+              }}
+              classNames={{
+                week: 'flex w-full rdp-week',
+                months: 'mt-4 relative',
+                weekday: 'flex-1 text-gray-090 font-bold text-sm',
+                today: 'text-primary text-sm font-bold',
+                day: 'mx-px text-gray-080 text-sm font-medium select-none rdp-day',
+              }}
+              className="rdp-week"
+            />
+          </div>
+          <div className="flex mt-3 mb-6 items-center">
             <Button variant="calendarBtn1" className="mr-3">
               초기화
             </Button>

@@ -24,3 +24,8 @@ export interface MeetingCardInfo {
   status: string; // 모임상태 open(모집중), closed(마감), canceled(취소)
   drinkType: string; // 음료 타입
 }
+
+export interface Region {
+  regionCode: number;
+  sido: string;
+}

@@ -27,6 +27,7 @@ export default function FindMeetingFilters() {
           key={prop.id}
           id={prop.id}
           variant={selectedFilterId === prop.id ? 'findFilterClicked' : 'outline'}
+          className={selectedFilterId === prop.id ? 'text-white' : 'text-gray-090 outline-gray-010'}
           size="findFilterSize"
           onClick={() => handleBtnClick(prop.id)}
         >

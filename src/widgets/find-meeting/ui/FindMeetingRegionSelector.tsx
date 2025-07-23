@@ -21,10 +21,11 @@ export default function FindMeetingRegionSelector() {
         <Button
           id="filterRegion"
           variant={isOpen ? 'findFilterClicked' : 'outline'}
+          className={isOpen ? 'text-white' : 'text-gray-090 outline-gray-010'}
           size="findFilterSize"
         >
           지역 전체
-          <div className="flex w-6 h-6 items-center justify-center ml-2.5">
+          <div className="flex items-center justify-center">
             <Image
               src={isOpen ? '/assets/icons/polygon-2.svg' : '/assets/icons/polygon-1.svg'}
               alt="dropdown Icon"
