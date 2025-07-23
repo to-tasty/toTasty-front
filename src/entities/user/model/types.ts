@@ -16,3 +16,8 @@ export interface UserState {
   setAccessToken: (token: string) => void;
   clearAccessToken: () => void;
 }
+
+export interface ReissueResponse {
+  accessToken: string;
+  user: User;
+}
