@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useLoginWithKakaoMutation } from '@/features/login-with-kakao/model/hook/useLoginWithKakaoMutation';
+import { useLoginWithKakaoMutation } from '@/features/login-with-kakao/model/hooks/useLoginWithKakaoMutation';
 
 export default function AuthKakao() {
   const searchParams = useSearchParams();

@@ -6,5 +6,5 @@ export async function loginWithKakao(code: string): Promise<LoginResponse | null
     'Content-Type': 'application/json',
   };
 
-  return getApi<LoginResponse>('/api/v1/auth/login/dev', { code }, headers, ''); // apiUrl value에 '' 추가
+  return getApi<LoginResponse>('/api/v1/auth/login', { code }, headers);
 }
