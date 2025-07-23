@@ -1,7 +1,7 @@
 export interface User {
   email: string;
   nickname: string;
-  profileImg: string;
+  profileImgUrl: string;
   interest: string[];
   memberId: number;
   accessToken: string;
