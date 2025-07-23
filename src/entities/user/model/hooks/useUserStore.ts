@@ -21,7 +21,6 @@ const useUserStore = create<UserState>()(
       partialize: (state) => ({
         user: state.user,
         isLoggedIn: state.isLoggedIn,
-        accessToken: state.accessToken,
       }),
     },
   ),
