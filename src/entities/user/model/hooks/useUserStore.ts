@@ -1,14 +1,30 @@
-import { create } from 'zustand';
-import { User, UserState } from '../types';
+'use client';
 
-const useUserStore = create<UserState>((set) => ({
-  user: null,
-  isLoggedIn: false,
-  logIn: (user) => set({ isLoggedIn: true, user: user as User }),
-  logOut: () => set({ isLoggedIn: false, user: null }),
-  accessToken: '',
-  setAccessToken: (token: string) => set({ accessToken: token }),
-  clearAccessToken: () => set({ accessToken: '' }),
-}));
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import type { User, UserState } from '../types';
+
+const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      user: null,
+      isLoggedIn: false,
+      accessToken: '',
+      logIn: (user: User) => set({ user, isLoggedIn: true }),
+      logOut: () => set({ user: null, isLoggedIn: false, accessToken: '' }),
+      setAccessToken: (token: string) => set({ accessToken: token }),
+      clearAccessToken: () => set({ accessToken: '' }),
+    }),
+    {
+      name: 'user-storage',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        user: state.user,
+        isLoggedIn: state.isLoggedIn,
+        accessToken: state.accessToken,
+      }),
+    },
+  ),
+);
 
 export default useUserStore;
