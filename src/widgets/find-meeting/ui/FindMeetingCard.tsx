@@ -20,7 +20,7 @@ export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
   return (
     <div
       key={meetingInfo.meetingId.toString() || 'card'}
-      className="relative w-[228px] h-[290px] border-1 border-[#E3E7EB] rounded-sm overflow-hidden"
+      className="relative w-[228px] h-[290px] border-1 border-gray-020 rounded-sm overflow-hidden"
     >
       <div className="relative w-[228px] h-[163px]">
         <Image
