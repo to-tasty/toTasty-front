@@ -11,7 +11,7 @@ export default function LoginPage() {
         <p className="text-sm font-medium">
           ToTasty!가 처음이신가요?
           <span className="text-[#7467FF] underline cursor-pointer pl-1">카카오로 회원가입</span>
-          {/* 로그인 페이지에서 로고가 생기기 전 심심해보여서 추가 */}
+          {/* 로그인 페이지에서 로고가 생기기 전까지만 추가 */}
         </p>
       </div>
     </main>

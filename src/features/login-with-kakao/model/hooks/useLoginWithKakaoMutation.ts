@@ -10,7 +10,6 @@ export function useLoginWithKakaoMutation() {
     onSuccess: (data) => {
       if (!data) return;
       const { accessToken, ...user } = data;
-      console.log('🎉 로그인 onSuccess data:', data);
       setAccessToken(accessToken);
       logIn(user as unknown as User);
     },
