@@ -15,6 +15,8 @@ export interface UserState {
   accessToken: string;
   setAccessToken: (token: string) => void;
   clearAccessToken: () => void;
+  isHydrated: boolean;
+  setHydrated: (value: boolean) => void;
 }
 
 export interface ReissueResponse {
