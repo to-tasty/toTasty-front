@@ -22,3 +22,5 @@ export {
 } from './NavigationMenu';
 
 export { Calendar, CalendarDayButton } from './Calendar';
+export { default as Input } from './Input';
+export { default as Label } from './Label';

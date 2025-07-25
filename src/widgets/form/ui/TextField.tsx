@@ -1,9 +1,8 @@
+import { Input, Label } from '@/shared';
 import { useFieldContext } from '../model/hooks/formContext';
-import Label from './Label';
-import Input from './Input';
 import FieldError from './FieldError';
 
-function TextField({ label, inputType }: { label: string; inputType: string }) {
+export default function TextField({ label, inputType }: { label: string; inputType: string }) {
   const field = useFieldContext<string>();
   return (
     <>
@@ -20,4 +19,3 @@ function TextField({ label, inputType }: { label: string; inputType: string }) {
     </>
   );
 }
-export default TextField;
