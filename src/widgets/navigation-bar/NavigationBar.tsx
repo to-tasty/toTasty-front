@@ -6,9 +6,10 @@ import { useShallow } from 'zustand/shallow';
 import { NavigationTabs, LoginButton, UserDropdown, UserIcon } from './ui';
 
 export default function NavigationBar() {
-  const { isLoggedIn } = useUserStore(
+  const { isHydrated, isLoggedIn } = useUserStore(
     useShallow((state) => ({
       // 선택자 함수로 필요한 속성만 구독, useShallow를 사용해 불필요한 리렌더링 방지
+      isHydrated: state.isHydrated,
       isLoggedIn: state.isLoggedIn,
     })),
   );
@@ -20,18 +21,19 @@ export default function NavigationBar() {
           <Logo />
           <NavigationTabs />
         </NavigationMenu>
-        {isLoggedIn ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div>
-                <UserIcon />
-              </div>
-            </DropdownMenuTrigger>
-            <UserDropdown />
-          </DropdownMenu>
-        ) : (
-          <LoginButton />
-        )}
+        {isHydrated &&
+          (isLoggedIn ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div>
+                  <UserIcon />
+                </div>
+              </DropdownMenuTrigger>
+              <UserDropdown />
+            </DropdownMenu>
+          ) : (
+            <LoginButton />
+          ))}
       </div>
     </div>
   );
