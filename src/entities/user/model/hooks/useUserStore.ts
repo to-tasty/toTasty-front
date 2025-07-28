@@ -13,6 +13,8 @@ const useUserStore = create<UserState>()(
       isHydrated: false,
       logIn: (user: User) => set({ user, isLoggedIn: true }),
       logOut: () => set({ user: null, isLoggedIn: false, accessToken: '' }),
+      updateProfile: (partial) =>
+        set((state) => (state.user ? { user: { ...state.user, ...partial } } : state)),
       setAccessToken: (token: string) => set({ accessToken: token }),
       clearAccessToken: () => set({ accessToken: '' }),
       setHydrated: (value: boolean) => set({ isHydrated: value }),
