@@ -2,7 +2,7 @@ export interface User {
   email: string;
   nickname: string;
   profileImgUrl: string;
-  interest: string[];
+  interests: string[];
   memberId: number;
   accessToken: string;
 }
@@ -10,12 +10,13 @@ export interface User {
 export interface UserState {
   user: User | null;
   isLoggedIn: boolean;
+  accessToken: string;
+  isHydrated: boolean;
   logIn: (user: User) => void;
   logOut: () => void;
-  accessToken: string;
+  updateProfile: (partial: Partial<User>) => void;
   setAccessToken: (token: string) => void;
   clearAccessToken: () => void;
-  isHydrated: boolean;
   setHydrated: (value: boolean) => void;
 }
 
