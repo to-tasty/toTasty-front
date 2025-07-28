@@ -10,8 +10,8 @@ export interface PostMeetingFormData {
     detail: string;
   };
   participationFee: number;
-  startAt: Date | null;
-  joinEndAt: Date | null;
+  startAt: string; // 임시
+  joinEndAt: string; // 임시
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;

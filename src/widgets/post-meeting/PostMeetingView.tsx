@@ -2,6 +2,14 @@ import { Button } from '@/shared/ui';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { useAppForm } from '@/widgets/form';
 import postMeetingOptions from './model/postMeetingOptions';
+import {
+  meetingTitleSchema,
+  participationFeeSchema,
+  maxParticipantsSchema,
+  minParticipantsSchema,
+  drinkTypeSchema,
+  descriptionSchema,
+} from './model/validationSchema';
 
 export default function PostMeetingView() {
   const form = useAppForm({
@@ -28,7 +36,12 @@ export default function PostMeetingView() {
         form.handleSubmit();
       }}
     >
-      <form.AppField name="meetingTitle">
+      <form.AppField
+        name="meetingTitle"
+        validators={{
+          onBlur: meetingTitleSchema,
+        }}
+      >
         {(field) => (
           <field.TextField
             label="Meeting Title"
@@ -37,7 +50,12 @@ export default function PostMeetingView() {
           />
         )}
       </form.AppField>
-      <form.AppField name="participationFee">
+      <form.AppField
+        name="participationFee"
+        validators={{
+          onBlur: participationFeeSchema,
+        }}
+      >
         {(field) => (
           <field.NumberField label="Participation Fee" placeholder="참가비를 입력하세요" />
         )}
@@ -48,25 +66,45 @@ export default function PostMeetingView() {
       <form.AppField name="joinEndAt">
         {(field) => <field.TextField label="Join End At" inputType="datetime-local" />}
       </form.AppField>
-      <form.AppField name="maxParticipants">
+      <form.AppField
+        name="maxParticipants"
+        validators={{
+          onBlur: maxParticipantsSchema,
+        }}
+      >
         {(field) => <field.NumberField label="Max Participants" placeholder="최대 참가자 수" />}
       </form.AppField>
-      <form.AppField name="minParticipants">
+      <form.AppField
+        name="minParticipants"
+        validators={{
+          onBlur: minParticipantsSchema,
+        }}
+      >
         {(field) => <field.NumberField label="Min Participants" placeholder="최소 참가자 수" />}
       </form.AppField>
       <form.AppField name="thumbnailUrl">
         {(field) => <field.TextField label="Thumbnail URL" inputType="file" />}
       </form.AppField>
-      <form.AppField name="drinkType">
+      <form.AppField
+        name="drinkType"
+        validators={{
+          onBlur: drinkTypeSchema,
+        }}
+      >
         {(field) => (
           <field.SelectField
             label="Drink Type"
             options={drinkTypeOptions}
-            placeholder="주류 종류를 선택하세요"
+            placeholder="음료 종류를 선택하세요"
           />
         )}
       </form.AppField>
-      <form.AppField name="description">
+      <form.AppField
+        name="description"
+        validators={{
+          onBlur: descriptionSchema,
+        }}
+      >
         {(field) => (
           <field.TextareaField label="Description" placeholder="모임 설명을 입력하세요" />
         )}

@@ -11,17 +11,23 @@ const defaultValues: PostMeetingFormData = {
     detail: '',
   },
   participationFee: 0,
-  startAt: null,
-  joinEndAt: null,
+  startAt: '',
+  joinEndAt: '',
   maxParticipants: 0,
   minParticipants: 0,
   currentParticipants: 1,
   thumbnailUrl: '',
-  drinkType: DrinkType.wine,
+  drinkType: '' as DrinkType,
   tastingList: [],
   description: '',
 };
 
-const postMeetingOptions = formOptions({ defaultValues });
+export const postMeetingOptions = formOptions({
+  defaultValues,
+  // 우선 validators를 주석 처리하고 개별 필드 validation부터 테스트
+  // validators: {
+  //   onSubmit: postMeetingValidator,
+  // },
+});
 
 export default postMeetingOptions;
