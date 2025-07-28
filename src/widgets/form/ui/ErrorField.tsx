@@ -1,6 +1,6 @@
 import { type AnyFieldApi } from '@tanstack/react-form';
 
-export default function FieldError({
+export default function ErrorField({
   fieldStateMeta,
 }: {
   fieldStateMeta: AnyFieldApi['state']['meta'];

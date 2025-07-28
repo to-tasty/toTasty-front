@@ -1,13 +1,6 @@
-import { type AnyFieldApi } from '@tanstack/react-form';
 import Label from '@/shared/ui/Label';
-import FieldError from './FieldError';
-
-interface FormFieldProps {
-  field: AnyFieldApi;
-  label: string;
-  children: React.ReactNode;
-  description?: string;
-}
+import ErrorField from './ErrorField';
+import { FormFieldProps } from '../model/types';
 
 export default function FormField({ field, label, children, description }: FormFieldProps) {
   const fieldId = `field-${field.name}`;
@@ -17,7 +10,7 @@ export default function FormField({ field, label, children, description }: FormF
       <Label htmlFor={fieldId}>{label}</Label>
       <div className="relative">{children}</div>
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
-      <FieldError fieldStateMeta={field.state.meta} />
+      <ErrorField fieldStateMeta={field.state.meta} />
     </div>
   );
 }

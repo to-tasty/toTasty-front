@@ -1,14 +1,14 @@
 import { Button } from '@/shared/ui';
-import useAppForm from './model/hooks/useAppForm';
-import formOpts from './model/formOpts';
+import { useAppForm } from '@/widgets/form';
+import postMeetingOptions from '../model/postMeetingOptions';
 
-export default function Form() {
+export default function PostMeetingView() {
   const form = useAppForm({
-    ...formOpts,
+    ...postMeetingOptions,
     validators: {},
     onSubmit: ({ value }) => {
       /* eslint-disable-next-line */
-      console.log(JSON.stringify(value, null, 4));
+      console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
     },
   });
 
@@ -37,10 +37,7 @@ export default function Form() {
       <form.AppField name="password">
         {(field) => <field.TextField label="Password" inputType="password" />}
       </form.AppField>
-      <form.AppField name="acceptTerms">
-        {(field) => <field.CheckField label="I accept all terms and conditions" />}
-      </form.AppField>
-      <Button type="submit">Submit</Button>
+      <Button type="submit">모임 생성</Button>
     </form>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
-import usePostMeetingMutation from '@/features/meeting/model/hook/usePostMeetingMutation';
-import Form from '@/widgets/form/Form';
+import { usePostMeetingMutation, PostMeetingView } from '@/features/meeting';
 
 export default function MeetingPostPage() {
   const { isPending, isError, error } = usePostMeetingMutation();
@@ -16,7 +15,7 @@ export default function MeetingPostPage() {
       {isError && <div>에러: {error}</div>}
 
       <div className="max-w-[1000px] mx-auto">
-        <Form />
+        <PostMeetingView />
       </div>
     </>
   );

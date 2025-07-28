@@ -6,7 +6,6 @@ interface RegisterData {
   email: string;
   username: string;
   password: string;
-  acceptTerms: boolean;
 }
 
 const defaultValues: RegisterData = {
@@ -15,9 +14,8 @@ const defaultValues: RegisterData = {
   email: '',
   username: '',
   password: '',
-  acceptTerms: false,
 };
 
-const formOpts = formOptions({ defaultValues });
+const postMeetingOptions = formOptions({ defaultValues });
 
-export default formOpts;
+export default postMeetingOptions;
