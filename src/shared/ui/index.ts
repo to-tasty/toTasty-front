@@ -24,3 +24,15 @@ export {
 export { Calendar, CalendarDayButton } from './Calendar';
 export { default as Input } from './Input';
 export { default as Label } from './Label';
+export {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from './Select';
