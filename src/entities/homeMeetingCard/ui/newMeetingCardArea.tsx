@@ -13,7 +13,7 @@ export default function NewMeetingCardArea() {
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
-      <CarouselPrevious className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-all duration-400 hover:-left-12" />
+      <CarouselPrevious className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md" />
 
       <CarouselContent className="flex gap-[30px] ">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
@@ -25,7 +25,7 @@ export default function NewMeetingCardArea() {
         ))}
       </CarouselContent>
 
-      <CarouselNext className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-all duration-400 hover:-right-12" />
+      <CarouselNext className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md" />
     </Carousel>
   );
 }
