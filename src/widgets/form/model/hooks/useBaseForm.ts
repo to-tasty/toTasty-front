@@ -1,12 +1,12 @@
 import { useForm } from '@tanstack/react-form';
 
-interface UseBaseFormConfig<T extends Record<string, any>> {
+interface UseBaseFormConfig<T extends Record<string, unknown>> {
   defaultValues: T;
   onSubmit: (values: T) => void | Promise<void>;
-  validators?: Record<string, any>;
+  validators?: Record<string, unknown>;
 }
 
-export function useBaseForm<T extends Record<string, any>>({
+export function useBaseForm<T extends Record<string, unknown>>({
   defaultValues,
   onSubmit,
   validators = {},
