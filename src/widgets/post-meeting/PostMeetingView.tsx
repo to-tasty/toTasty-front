@@ -29,13 +29,18 @@ export default function PostMeetingView() {
       }}
     >
       <form.AppField name="meetingTitle">
-        {(field) => <field.TextField label="Meeting Title" inputType="text" />}
-      </form.AppField>
-      <form.AppField name="meetingAuthor">
-        {(field) => <field.TextField label="Meeting Author" inputType="text" />}
+        {(field) => (
+          <field.TextField
+            label="Meeting Title"
+            inputType="text"
+            placeholder="모임 제목을 입력하세요"
+          />
+        )}
       </form.AppField>
       <form.AppField name="participationFee">
-        {(field) => <field.NumberField label="Participation Fee" />}
+        {(field) => (
+          <field.NumberField label="Participation Fee" placeholder="참가비를 입력하세요" />
+        )}
       </form.AppField>
       <form.AppField name="startAt">
         {(field) => <field.TextField label="Start At" inputType="datetime-local" />}
@@ -44,19 +49,27 @@ export default function PostMeetingView() {
         {(field) => <field.TextField label="Join End At" inputType="datetime-local" />}
       </form.AppField>
       <form.AppField name="maxParticipants">
-        {(field) => <field.NumberField label="Max Participants" />}
+        {(field) => <field.NumberField label="Max Participants" placeholder="최대 참가자 수" />}
       </form.AppField>
       <form.AppField name="minParticipants">
-        {(field) => <field.NumberField label="Min Participants" />}
+        {(field) => <field.NumberField label="Min Participants" placeholder="최소 참가자 수" />}
       </form.AppField>
       <form.AppField name="thumbnailUrl">
         {(field) => <field.TextField label="Thumbnail URL" inputType="file" />}
       </form.AppField>
       <form.AppField name="drinkType">
-        {(field) => <field.SelectField label="Drink Type" options={drinkTypeOptions} />}
+        {(field) => (
+          <field.SelectField
+            label="Drink Type"
+            options={drinkTypeOptions}
+            placeholder="주류 종류를 선택하세요"
+          />
+        )}
       </form.AppField>
       <form.AppField name="description">
-        {(field) => <field.TextareaField label="Description" />}
+        {(field) => (
+          <field.TextareaField label="Description" placeholder="모임 설명을 입력하세요" />
+        )}
       </form.AppField>
       <Button type="submit">모임 생성</Button>
     </form>
