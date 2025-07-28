@@ -1,6 +1,7 @@
 'use client';
 
-import { usePostMeetingMutation, PostMeetingView } from '@/features/meeting';
+import { usePostMeetingMutation } from '@/features/meeting';
+import { PostMeetingView } from '@/widgets';
 
 export default function MeetingPostPage() {
   const { isPending, isError, error } = usePostMeetingMutation();

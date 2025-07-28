@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/widgets/form';
-import postMeetingOptions from '../model/postMeetingOptions';
+import postMeetingOptions from './model/postMeetingOptions';
 
 export default function PostMeetingView() {
   const form = useAppForm({
