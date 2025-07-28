@@ -1,6 +1,6 @@
+import { Label } from '@/shared/ui';
 import { useFieldContext } from '../model/hooks/formContext';
 import FieldError from './FieldError';
-import Label from './Label';
 
 export default function CheckField({ label }: { label: string }) {
   const field = useFieldContext<boolean>();
@@ -18,7 +18,7 @@ export default function CheckField({ label }: { label: string }) {
       <Label htmlFor={field.name} className="inline-block ml-2">
         {label}
       </Label>
-      <FieldError field={field} />
+      <FieldError fieldStateMeta={field.state.meta} />
     </>
   );
 }

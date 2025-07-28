@@ -1,12 +1,16 @@
 import { type AnyFieldApi } from '@tanstack/react-form';
 
-export default function FieldError({ field }: { field: AnyFieldApi }) {
+export default function FieldError({
+  fieldStateMeta,
+}: {
+  fieldStateMeta: AnyFieldApi['state']['meta'];
+}) {
   return (
     <span className="block mb-5">
-      {!field.state.meta.isValid && (
-        <em className="text-red-600 text-xs">
-          {field.state.meta.errors.map((err) => err.message).join(', ')}
-        </em>
+      {!fieldStateMeta.isValid && (
+        <p className="text-red-600 text-xs">
+          {fieldStateMeta.errors.map((err) => err.message).join(', ')}
+        </p>
       )}
     </span>
   );

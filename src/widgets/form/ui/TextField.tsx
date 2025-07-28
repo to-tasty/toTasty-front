@@ -1,21 +1,21 @@
-import { Input, Label } from '@/shared';
+import Input from '@/shared/ui/Input';
 import { useFieldContext } from '../model/hooks/formContext';
-import FieldError from './FieldError';
+import FormField from './FormField';
 
 export default function TextField({ label, inputType }: { label: string; inputType: string }) {
   const field = useFieldContext<string>();
+  const fieldId = `field-${field.name}`;
+
   return (
-    <>
-      <Label htmlFor={field.name}>{label}</Label>
+    <FormField field={field} label={label}>
       <Input
-        id={field.name}
+        id={fieldId}
         type={inputType}
         name={field.name}
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(e.target.value)}
       />
-      <FieldError field={field} />
-    </>
+    </FormField>
   );
 }
