@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -60,11 +59,10 @@ function Carousel({
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const onSelect = React.useCallback((api: CarouselApi) => {
-    if (!api) return;
-    setCanScrollPrev(api.canScrollPrev());
-    setCanScrollNext(api.canScrollNext());
+  const onSelect = React.useCallback((newApi: CarouselApi) => {
+    if (!newApi) return;
+    setCanScrollPrev(newApi.canScrollPrev());
+    setCanScrollNext(newApi.canScrollNext());
   }, []);
 
   const scrollPrev = React.useCallback(() => {
@@ -94,31 +92,32 @@ function Carousel({
   }, [api, setApi]);
 
   React.useEffect(() => {
-    if (!api) return;
+    if (!api) return () => {};
     onSelect(api);
     api.on('reInit', onSelect);
     api.on('select', onSelect);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       api?.off('select', onSelect);
     };
   }, [api, onSelect]);
 
+  const contextValue = React.useMemo(
+    () => ({
+      carouselRef,
+      api,
+      opts,
+      orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+      scrollPrev,
+      scrollNext,
+      canScrollPrev,
+      canScrollNext,
+    }),
+    [carouselRef, api, opts, orientation, scrollPrev, scrollNext, canScrollPrev, canScrollNext],
+  );
+
   return (
-    <CarouselContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{
-        carouselRef,
-        api,
-        opts,
-        orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
-        scrollPrev,
-        scrollNext,
-        canScrollPrev,
-        canScrollNext,
-      }}
-    >
+    <CarouselContext.Provider value={contextValue}>
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}
