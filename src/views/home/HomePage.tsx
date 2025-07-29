@@ -28,17 +28,20 @@ export default function HomePage() {
         <NewMeetingCardArea />
       </div>
       <div>
-        <h1 className="font-semibold text-xl pb-[20px]">인기모임</h1>
+        <h1 className="font-semibold text-xl pb-[20px] mt-8">인기모임</h1>
         <NewMeetingCardArea />
       </div>
       <div className="relative">
-        <div className={`${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}>
+        <div
+          className={`flex flex-col gap-16 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
+        >
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">내가 좋아할 모임</h1>
             <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-white text-gray-040">
               아직 내가 좋아할 모임이 없어요.
             </div>
-
+          </div>
+          <div>
             <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
             <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-white text-gray-040">
               아직 위시리스트가 없어요.
