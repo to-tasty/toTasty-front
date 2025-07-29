@@ -21,4 +21,12 @@ export {
   navigationMenuTriggerStyle,
 } from './NavigationMenu';
 
+export {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './Carousel';
+
 export { Calendar, CalendarDayButton } from './Calendar';
