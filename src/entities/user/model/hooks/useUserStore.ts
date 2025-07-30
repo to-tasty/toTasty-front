@@ -10,10 +10,14 @@ const useUserStore = create<UserState>()(
       user: null,
       isLoggedIn: false,
       accessToken: '',
+      isHydrated: false,
       logIn: (user: User) => set({ user, isLoggedIn: true }),
       logOut: () => set({ user: null, isLoggedIn: false, accessToken: '' }),
+      updateProfile: (partial) =>
+        set((state) => (state.user ? { user: { ...state.user, ...partial } } : state)),
       setAccessToken: (token: string) => set({ accessToken: token }),
       clearAccessToken: () => set({ accessToken: '' }),
+      setHydrated: (value: boolean) => set({ isHydrated: value }),
     }),
     {
       name: 'user-storage',
@@ -22,6 +26,11 @@ const useUserStore = create<UserState>()(
         user: state.user,
         isLoggedIn: state.isLoggedIn,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.setHydrated(true);
+        }
+      },
     },
   ),
 );
