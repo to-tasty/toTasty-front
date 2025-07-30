@@ -1,7 +1,7 @@
 export enum DrinkType {
-  coffee = 'coffee',
-  whisky = 'whisky',
-  wine = 'wine',
+  coffee = 'COFFEE',
+  whisky = 'WHISKY',
+  wine = 'WINE',
 }
 
 export interface MeetingParticipant {
@@ -29,9 +29,9 @@ export interface MeetingList {
   isWished: boolean;
   thumbnailUrl: string;
   status: 'open' | 'closed' | 'cancelled';
-  isReviewed: boolean;
+  isReviewed?: boolean;
   drinkType: DrinkType;
-  participation: MeetingParticipant[];
+  participation?: MeetingParticipant[];
 }
 
 export interface MeetingFilters {
