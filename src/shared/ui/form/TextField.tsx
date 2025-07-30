@@ -1,5 +1,5 @@
 import { Input } from '@/shared/ui';
-import { useFieldValue } from '../model/hooks/useFieldValue';
+import { useFieldValue } from '../../lib/form';
 import FormField from './FormField';
 
 interface TextFieldProps {

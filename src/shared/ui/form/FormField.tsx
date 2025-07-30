@@ -1,6 +1,6 @@
-import Label from '@/shared/ui/Label';
+import Label from '../Label';
 import ErrorField from './ErrorField';
-import { FormFieldProps } from '../model/types';
+import { FormFieldProps } from '../../lib/form/model/types';
 
 export default function FormField({ field, label, children, description }: FormFieldProps) {
   const fieldId = `field-${field.name}`;

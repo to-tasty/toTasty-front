@@ -1,5 +1,5 @@
-import Input from '@/shared/ui/Input';
-import { useFieldValue } from '../model/hooks/useFieldValue';
+import Input from '../Input';
+import { useFieldValue } from '../../lib/form';
 import FormField from './FormField';
 
 interface NumberFieldProps {

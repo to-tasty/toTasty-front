@@ -1,5 +1,5 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui';
-import { useFieldValue } from '../model/hooks/useFieldValue';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
+import { useFieldValue } from '../../lib/form';
 import FormField from './FormField';
 
 interface SelectOption {

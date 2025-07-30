@@ -1,7 +1,7 @@
 import { UseFieldValueOptions } from '../types';
 import { useFieldContext } from './useFormContext';
 
-export function useFieldValue<T extends string | number | boolean | null | undefined>({
+export default function useFieldValue<T extends string | number | boolean | null | undefined>({
   componentName,
   fieldName,
 }: UseFieldValueOptions): {
