@@ -3,23 +3,10 @@
 import { NewMeetingCardArea } from '@/entities/homeMeetingCard/index';
 import { Button } from '@/shared';
 import Link from 'next/link';
-
-import { useEffect, useState } from 'react';
+import { useUserStore } from '@/entities/user';
 
 export default function HomePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('user-storage');
-      if (stored) {
-        const parsed = JSON.parse(stored).state;
-        setIsLoggedIn(parsed.isLoggedIn);
-      }
-    } catch (error) {
-      throw new Error('Failed to parse user storage data');
-    }
-  }, []);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
 
   return (
     <main className="flex items-center justify-center flex-col gap-4 py-[40px]">
