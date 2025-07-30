@@ -1,5 +1,5 @@
 import Input from '@/shared/ui/Input';
-import { useFieldContext } from '../model/hooks/useFormContext';
+import { useFieldValue } from '../model/hooks/useFieldValue';
 import FormField from './FormField';
 
 interface NumberFieldProps {
@@ -11,7 +11,7 @@ interface NumberFieldProps {
 }
 
 export default function NumberField({ label, placeholder, min, max, step = 1 }: NumberFieldProps) {
-  const field = useFieldContext<number>();
+  const { value, field } = useFieldValue<number>({ fieldType: 'number' });
   const fieldId = `field-${field.name}`;
 
   return (
@@ -20,7 +20,7 @@ export default function NumberField({ label, placeholder, min, max, step = 1 }: 
         id={fieldId}
         name={field.name}
         type="number"
-        value={field.state.value || ''}
+        value={value}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(Number(e.target.value) || 0)}
         placeholder={placeholder}

@@ -1,4 +1,4 @@
-import { useFieldContext } from '../model/hooks/useFormContext';
+import { useFieldValue } from '../model/hooks/useFieldValue';
 import FormField from './FormField';
 
 interface TextareaFieldProps {
@@ -8,7 +8,7 @@ interface TextareaFieldProps {
 }
 
 export default function TextareaField({ label, placeholder, rows = 4 }: TextareaFieldProps) {
-  const field = useFieldContext<string>();
+  const { value, field } = useFieldValue<string>({ fieldType: 'string' });
   const fieldId = `field-${field.name}`;
 
   return (
@@ -16,7 +16,7 @@ export default function TextareaField({ label, placeholder, rows = 4 }: Textarea
       <textarea
         id={fieldId}
         name={field.name}
-        value={field.state.value}
+        value={value}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(e.target.value)}
         placeholder={placeholder}

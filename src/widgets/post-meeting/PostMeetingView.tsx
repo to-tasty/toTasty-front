@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { useAppForm } from '@/widgets/form';
-import postMeetingOptions from './model/postMeetingOptions';
+import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
   participationFeeSchema,

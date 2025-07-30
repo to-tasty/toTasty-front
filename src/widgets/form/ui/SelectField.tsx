@@ -1,5 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui';
-import { useFieldContext } from '../model/hooks/useFormContext';
+import { useFieldValue } from '../model/hooks/useFieldValue';
 import FormField from './FormField';
 
 interface SelectOption {
@@ -14,11 +14,11 @@ interface SelectFieldProps {
 }
 
 export default function SelectField({ label, options, placeholder }: SelectFieldProps) {
-  const field = useFieldContext<string>();
+  const { value, field } = useFieldValue<string>({ fieldType: 'string' });
 
   return (
     <FormField field={field} label={label}>
-      <Select value={field.state.value} onValueChange={(value) => field.handleChange(value)}>
+      <Select value={value} onValueChange={(newValue) => field.handleChange(newValue)}>
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
