@@ -44,9 +44,7 @@ export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
         {meetingInfo.meetingTitle}
       </div>
       <div className="flex justify-end mt-0.5 px-2">
-        <span className="text-xs font-normal text-primary-040">
-          {meetingInfo.currentParticipants}
-        </span>
+        <span className="text-xs font-normal text-primary">{meetingInfo.currentParticipants}</span>
         <span className="text-xs font-normal text-muted">/</span>
         <span className="text-xs font-normal text-muted">{meetingInfo.maxParticipants}명</span>
       </div>
