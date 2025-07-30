@@ -1,11 +1,11 @@
+import { MeetingList } from '@/entities/meetings/index';
 import FindMeetingCard from './FindMeetingCard';
-import { MeetingCardInfo } from '../model/types';
 
-interface MeetingCardList {
-  meetingCardList: MeetingCardInfo[] | null;
+interface MeetingInfoList {
+  meetingCardList: MeetingList[] | null | undefined;
 }
 
-export default function FindMeetingCardRow({ meetingCardList }: MeetingCardList) {
+export default function FindMeetingCardRow({ meetingCardList }: MeetingInfoList) {
   const displayList = meetingCardList || [];
 
   return (
