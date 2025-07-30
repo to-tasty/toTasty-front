@@ -34,3 +34,8 @@ export interface DateTimeFieldProps extends BaseFormFieldProps {
   showTime?: boolean;
   placeholder?: string;
 }
+
+export interface UseFieldValueOptions {
+  componentName: 'TextField' | 'NumberField' | 'SelectField' | 'TextareaField';
+  fieldName?: string;
+}

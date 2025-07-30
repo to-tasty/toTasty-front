@@ -14,7 +14,7 @@ interface SelectFieldProps {
 }
 
 export default function SelectField({ label, options, placeholder }: SelectFieldProps) {
-  const { value, field } = useFieldValue<string>({ fieldType: 'string' });
+  const { value, field } = useFieldValue<string>({ componentName: 'SelectField' });
 
   return (
     <FormField field={field} label={label}>

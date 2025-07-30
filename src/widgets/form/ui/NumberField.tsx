@@ -11,7 +11,7 @@ interface NumberFieldProps {
 }
 
 export default function NumberField({ label, placeholder, min, max, step = 1 }: NumberFieldProps) {
-  const { value, field } = useFieldValue<number>({ fieldType: 'number' });
+  const { value, field } = useFieldValue<number>({ componentName: 'NumberField' });
   const fieldId = `field-${field.name}`;
 
   return (

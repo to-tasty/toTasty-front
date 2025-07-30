@@ -8,7 +8,7 @@ interface TextareaFieldProps {
 }
 
 export default function TextareaField({ label, placeholder, rows = 4 }: TextareaFieldProps) {
-  const { value, field } = useFieldValue<string>({ fieldType: 'string' });
+  const { value, field } = useFieldValue<string>({ componentName: 'TextareaField' });
   const fieldId = `field-${field.name}`;
 
   return (

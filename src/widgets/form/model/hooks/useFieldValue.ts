@@ -1,14 +1,8 @@
+import { UseFieldValueOptions } from '../types';
 import { useFieldContext } from './useFormContext';
 
-type FieldValueType = string | number | boolean | null | undefined;
-
-interface UseFieldValueOptions {
-  fieldType: 'string' | 'number' | 'boolean';
-  fieldName?: string;
-}
-
-export function useFieldValue<T extends FieldValueType>({
-  fieldType,
+export function useFieldValue<T extends string | number | boolean | null | undefined>({
+  componentName,
   fieldName,
 }: UseFieldValueOptions): {
   value: string;
@@ -23,15 +17,17 @@ export function useFieldValue<T extends FieldValueType>({
   if (rawValue === undefined) {
     if (process.env.NODE_ENV === 'development') {
       /* eslint-disable-next-line no-console */
-      console.warn(`name이 "${name}"인  ${fieldType}Field 깂이 undefined 입니다. 확인해주세요.`);
+      console.warn(
+        `name이 "${name}"인  ${componentName}Field 값이 undefined 입니다. 확인해주세요.`,
+      );
     }
     processedValue = '';
   } else if (rawValue === null) {
     processedValue = '';
-  } else if (fieldType === 'number' && Number.isNaN(rawValue)) {
+  } else if (componentName === 'NumberField' && Number.isNaN(rawValue)) {
     if (process.env.NODE_ENV === 'development') {
       /* eslint-disable-next-line no-console */
-      console.warn(`name이 "${name}"인 NumberField 값이 NaN입니다. 확인해주세요.`);
+      console.warn(`name이 "${name}"인  ${componentName}Field 값이 NaN 입니다. 확인해주세요.`);
     }
     processedValue = '';
   } else {

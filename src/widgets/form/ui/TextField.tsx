@@ -9,7 +9,7 @@ interface TextFieldProps {
 }
 
 export default function TextField({ label, inputType, placeholder }: TextFieldProps) {
-  const { value, field } = useFieldValue<string>({ fieldType: 'string' });
+  const { value, field } = useFieldValue<string>({ componentName: 'TextField' });
   const fieldId = `field-${field.name}`;
 
   return (
