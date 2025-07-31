@@ -1,5 +1,5 @@
 import { Button } from '@/shared/ui';
-import { useAppForm } from '@/shared/lib/form';
+import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
