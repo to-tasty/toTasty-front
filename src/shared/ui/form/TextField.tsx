@@ -1,19 +1,19 @@
 import { Input } from '@/shared/ui';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import FormField from './FormField';
+import { TextFieldProps } from '../../lib/form/model/types';
 
-interface TextFieldProps {
-  label: string;
-  inputType: string;
-  placeholder?: string;
-}
-
-export default function TextField({ label, inputType, placeholder }: TextFieldProps) {
+export default function TextField({
+  label,
+  inputType = 'text',
+  placeholder,
+  className = '',
+}: TextFieldProps) {
   const { value, field } = useFieldValue<string>({ componentName: 'TextField' });
   const fieldId = `field-${field.name}`;
 
   return (
-    <FormField field={field} label={label}>
+    <FormField field={field} label={label} className={className}>
       <Input
         id={fieldId}
         type={inputType}

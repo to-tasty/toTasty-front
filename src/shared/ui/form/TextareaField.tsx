@@ -1,18 +1,18 @@
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import FormField from './FormField';
+import { TextareaFieldProps } from '../../lib/form/model/types';
 
-interface TextareaFieldProps {
-  label: string;
-  placeholder?: string;
-  rows?: number;
-}
-
-export default function TextareaField({ label, placeholder, rows = 4 }: TextareaFieldProps) {
+export default function TextareaField({
+  label,
+  placeholder,
+  rows = 4,
+  className = '',
+}: TextareaFieldProps) {
   const { value, field } = useFieldValue<string>({ componentName: 'TextareaField' });
   const fieldId = `field-${field.name}`;
 
   return (
-    <FormField field={field} label={label}>
+    <FormField field={field} label={label} className={className}>
       <textarea
         id={fieldId}
         name={field.name}
