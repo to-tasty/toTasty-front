@@ -1,7 +1,7 @@
 import { getApi } from '@/shared';
-import { MeetingList } from '@/entities/meetings/model/types';
+import { Wishlist } from '../model/types';
 
-export default async function getWishlist(): Promise<MeetingList[] | null> {
-  const res = await getApi<{ content: MeetingList[] }>('/api/v1/wishlist');
+export default async function getWishlist(): Promise<Wishlist[] | null> {
+  const res = await getApi<{ content: Wishlist[] }>('/api/v1/wishlist');
   return res ? res.content : null;
 }
