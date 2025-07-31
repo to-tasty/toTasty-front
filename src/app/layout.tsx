@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pretendard.variable} font-pretendard antialiased dark`}>
+      <body className={`${pretendard.variable} font-pretendard antialiased`}>
         <QueryProvider>
           <NavigationBar />
           {children}
