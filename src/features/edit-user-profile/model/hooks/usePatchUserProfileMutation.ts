@@ -1,7 +1,8 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
-import patchUserProfile from '../../api/patchUserProfile';
 import { useUserStore } from '@/entities/user';
+import patchUserProfile from '../../api/patchUserProfile';
 import UpdatedUserProfile from '../types';
+
 export default function usePatchUserProfileMutation(): UseMutationResult<
   UpdatedUserProfile | null,
   Error,

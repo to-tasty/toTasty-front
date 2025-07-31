@@ -1,11 +1,11 @@
+import { MeetingList } from '@/entities/meetings/index';
 import FindMeetingCard from './FindMeetingCard';
-import { MeetingCardInfo } from '../model/types';
 
-interface MeetingCardList {
-  meetingCardList: MeetingCardInfo[] | null;
+interface MeetingInfoList {
+  meetingCardList: MeetingList[] | null | undefined;
 }
 
-export default function FindMeetingCardRow({ meetingCardList }: MeetingCardList) {
+export default function FindMeetingCardRow({ meetingCardList }: MeetingInfoList) {
   const displayList = meetingCardList || [];
 
   return (
@@ -20,10 +20,10 @@ export default function FindMeetingCardRow({ meetingCardList }: MeetingCardList)
           ))
         ) : (
           <div>
-            <p className="flex text-gray-500 text-sm font-medium items-center justify-center">
+            <p className="flex text-muted-foreground text-sm font-medium items-center justify-center">
               아직 모임이 없어요.
             </p>
-            <p className="flex text-gray-500 text-sm font-medium items-center justify-center">
+            <p className="flex text-muted-foreground text-sm font-medium items-center justify-center">
               지금 바로 모임을 만들어보세요.
             </p>
           </div>
