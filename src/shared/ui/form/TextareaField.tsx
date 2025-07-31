@@ -1,4 +1,4 @@
-import { useFieldValue } from '../../lib/form';
+import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import FormField from './FormField';
 
 interface TextareaFieldProps {
