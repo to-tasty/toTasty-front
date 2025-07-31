@@ -24,13 +24,13 @@ export default function HomePage() {
         >
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">내가 좋아할 모임</h1>
-            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-white text-gray-040">
+            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
               아직 내가 좋아할 모임이 없어요.
             </div>
           </div>
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
-            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-white text-gray-040">
+            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
               아직 위시리스트가 없어요.
               <br />
               지금 바로 모임을 찜해보세요.
@@ -40,10 +40,10 @@ export default function HomePage() {
       </div>
       {!isLoggedIn && (
         <div className="absolute top-330 z-10  bg-opacity-50 flex gap-4 flex-col items-center justify-center">
-          <span className="text-gray-080 text-2xl">로그인 후에 이용가능 합니다.</span>
+          <span className="text-foreground text-2xl">로그인 후에 이용가능 합니다.</span>
 
           <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
-            <Link href="/login" className="font-semibold text-white">
+            <Link href="/login" className="font-semibold text-background">
               로그인하기
             </Link>
           </Button>
