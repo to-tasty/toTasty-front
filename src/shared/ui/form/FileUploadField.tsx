@@ -51,7 +51,7 @@ export default function FileUploadField({
           tabIndex={0}
           onClick={() => document.getElementById(fieldId)?.click()}
           aria-label="파일 찾기 버튼"
-          className="border-primary text-primary cursor-pointer"
+          className="cursor-pointer"
         >
           파일 찾기
         </Button>
