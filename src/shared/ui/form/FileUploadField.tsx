@@ -47,7 +47,7 @@ export default function FileUploadField({
         </div>
         <Button
           type="button"
-          variant="outline"
+          variant="outlinePrimary"
           tabIndex={0}
           onClick={() => document.getElementById(fieldId)?.click()}
           aria-label="파일 찾기 버튼"
