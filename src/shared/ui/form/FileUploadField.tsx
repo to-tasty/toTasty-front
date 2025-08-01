@@ -14,7 +14,7 @@ export default function FileUploadField({
   placeholder,
   ...props
 }: FileUploadFieldProps) {
-  const { value, field } = useFieldValue<File | null>({
+  const { value, displayValue, field } = useFieldValue<File | null>({
     componentName: 'FileUploadField',
   });
   const fieldId = `field-${field.name}`;
@@ -43,7 +43,7 @@ export default function FileUploadField({
           className="border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs opacity-50 md:text-sm bg-input text-secondary-foreground"
           aria-label="현재 선택된 파일 정보"
         >
-          {value ? value.name : placeholder || '이미지를 첨부해주세요'}
+          {value ? displayValue : placeholder || '이미지를 첨부해주세요'}
         </div>
         <Button
           type="button"

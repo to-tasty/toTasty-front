@@ -9,9 +9,9 @@ export default function NumberField({
   min,
   max,
   step = 1,
-  className = '',
+  className,
 }: NumberFieldProps) {
-  const { value, field } = useFieldValue<number>({ componentName: 'NumberField' });
+  const { displayValue, field } = useFieldValue<number>({ componentName: 'NumberField' });
   const fieldId = `field-${field.name}`;
 
   return (
@@ -20,7 +20,7 @@ export default function NumberField({
         id={fieldId}
         name={field.name}
         type="number"
-        value={value}
+        value={displayValue}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(Number(e.target.value) || 0)}
         placeholder={placeholder}

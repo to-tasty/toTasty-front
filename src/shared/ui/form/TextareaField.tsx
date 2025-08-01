@@ -6,9 +6,9 @@ export default function TextareaField({
   label,
   placeholder,
   rows = 4,
-  className = '',
+  className,
 }: TextareaFieldProps) {
-  const { value, field } = useFieldValue<string>({ componentName: 'TextareaField' });
+  const { displayValue, field } = useFieldValue<string>({ componentName: 'TextareaField' });
   const fieldId = `field-${field.name}`;
 
   return (
@@ -16,7 +16,7 @@ export default function TextareaField({
       <textarea
         id={fieldId}
         name={field.name}
-        value={value}
+        value={displayValue}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(e.target.value)}
         placeholder={placeholder}
