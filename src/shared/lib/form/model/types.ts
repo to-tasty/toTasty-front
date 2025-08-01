@@ -45,6 +45,12 @@ export interface FileUploadFieldProps extends BaseFormFieldProps {
 }
 
 export interface UseFieldValueOptions {
-  componentName: 'TextField' | 'NumberField' | 'SelectField' | 'TextareaField' | 'FileUploadField';
+  componentName:
+    | 'TextField'
+    | 'NumberField'
+    | 'SelectField'
+    | 'TextareaField'
+    | 'FileUploadField'
+    | 'DateTimeField';
   fieldName?: string;
 }

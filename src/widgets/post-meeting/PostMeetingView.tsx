@@ -1,7 +1,6 @@
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
-import { Calendar } from '@/shared/ui/Calendar';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
@@ -100,15 +99,19 @@ export default function PostMeetingView() {
       <div className="flex gap-4">
         <form.AppField name="startAt">
           {(field) => (
-            <field.TextField label="모임 날짜" inputType="datetime-local" className="flex-1" />
+            <field.DateTimeField
+              label="모임 날짜"
+              placeholder="모임 날짜와 시간을 선택하세요"
+              className="flex-1"
+            />
           )}
         </form.AppField>
 
         <form.AppField name="joinEndAt">
           {(field) => (
-            <field.TextField
+            <field.DateTimeField
               label="모임 모집 마감일"
-              inputType="datetime-local"
+              placeholder="마감 날짜와 시간을 선택하세요"
               className="flex-1"
             />
           )}
@@ -190,7 +193,7 @@ export default function PostMeetingView() {
 
       {/* 제출 버튼 */}
       <div className="flex justify-center mt-4 gap-3">
-        <Button type="button" size="lg" variant="outline" className="border-primary">
+        <Button type="button" size="lg" variant="outlinePrimary">
           작성 취소
         </Button>
         <Button type="submit" size="lg" className="px-8">
