@@ -1,58 +1,114 @@
 import Image from 'next/image';
 import { Progress } from '@/shared/ui/Progress';
 import { MeetingList } from '@/entities/meetings/index';
+import clsx from 'clsx';
 
 interface MeetingCardInfoProps {
   meetingInfo: MeetingList;
+  size?: 'big' | 'small';
 }
 
-export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
+export default function FindMeetingCard({ meetingInfo, size = 'small' }: MeetingCardInfoProps) {
+  const flexItemCenter = 'flex items-center';
+  const flexCenter = flexItemCenter + ' justify-center';
+  const flexEnd = 'flex justify-end';
+  const textMuted = 'text-xs text-muted';
+  const colRow = 'col-start-1 row-start-1';
+
+  // size prop에 따른 동적 클래스 정의
+  const isBig = size === 'big';
+
+  const cardWidth = isBig ? 'w-[263px]' : 'w-[228px]';
+  const cardHeight = isBig ? 'h-[333px]' : 'h-[290px]';
+
+  const imageDivWidth = isBig ? 'w-[263px]' : 'w-[228px]';
+  const imageDivHeight = isBig ? 'h-[190px]' : 'h-[163px]';
+  const imageWidth = isBig ? 263 : 228;
+  const imageHeight = isBig ? 190 : 163;
+  const imageSrc = isBig ? '/assets/icons/heart2.svg' : '/assets/icons/heart.svg';
+  const imageHeartWidth = isBig ? 24 : 18.83;
+  const imageHeartHeight = isBig ? 24 : 17.13;
+
+  const heartIconDivWidthHeight = isBig ? 'w-[48px] h-[48px]' : 'w-[40px] h-[40px]';
+
+  const tastingListButtonWidth = isBig ? 'w-[61px]' : 'w-[60px]';
+  const tastingListButtonHeight = isBig ? 'h-[22px]' : 'h-[20px]';
+  const tastingListButtonMarginRight = isBig ? 'mr-[3px]' : 'mr-1';
+  const tastingListTextSize = isBig ? 'text-sm font-bold mr-3' : 'text-xs font-bold mr-2';
+
   return (
     <div
       key={meetingInfo.meetingId.toString() || 'card'}
-      className="relative w-[228px] h-[290px] border-1 border-gray-020 rounded-sm overflow-hidden"
+      className={clsx(cardWidth, cardHeight, 'border border-gray-020 rounded-sm overflow-hidden')}
     >
-      <div className="relative w-[228px] h-[163px]">
+      <div className={clsx('grid overflow-hidden', imageDivWidth, imageDivHeight)}>
         <Image
           src="/assets/image/card-test-1.png"
           alt="Meeting Card Test Image"
-          width={228}
-          height={163}
-          className="w-full h-auto object-cover"
+          width={imageWidth}
+          height={imageHeight}
+          className={clsx(colRow, 'w-full h-auto')}
         />
-        <div className="absolute w-[50px] h-[20px] bg-foreground bg-opacity-70 flex items-center justify-center left-3 bottom-[9px] rounded-[4px]">
+        <div
+          className={clsx(
+            flexCenter,
+            colRow,
+            'w-[50px] h-[20px] ml-3 bg-foreground rounded-[4px] self-end mb-[9px]',
+          )}
+        >
           <span className="text-background text-xs font-bold">개설확정</span>
         </div>
-        <div className="absolute w-[20.5px] h-[20.5px] flex items-center justify-center right-3.5 top-3.5">
-          <Image src="/assets/icons/heart.svg" alt="wish meeting" width={18.83} height={17.13} />
+        <div
+          className={clsx(
+            flexCenter,
+            colRow,
+            heartIconDivWidthHeight,
+            'justify-self-end mr-1 mt-1',
+          )}
+        >
+          <Image
+            src={imageSrc}
+            alt="wish meeting"
+            width={imageHeartWidth}
+            height={imageHeartHeight}
+          />
         </div>
       </div>
-
-      <div className="flex ml-3 mt-3 items-center justify-between">
-        <span className="text-xs font-normal">
+      <div className={clsx(flexItemCenter, 'justify-between ml-3', isBig ? 'mt-3' : 'mt-2.5')}>
+        <span className="text-xs">
           {meetingInfo.location.address.replace(meetingInfo.location.sido, '')}
         </span>
-        <div className="flex items-center">
-          <div className="flex w-[60px] h-[20px] border rounded-xs mr-1 justify-center items-center">
+        <div className={clsx(flexItemCenter)}>
+          <div
+            className={clsx(
+              flexCenter,
+              tastingListButtonWidth,
+              tastingListButtonHeight,
+              'border rounded-xs',
+              tastingListButtonMarginRight,
+            )}
+          >
             <span className="text-xs font-medium text-muted-foreground">시음리스트</span>
           </div>
-          <span className="text-xs font-bold mr-2">5개</span>
+          <span className={tastingListTextSize}>5개</span>
           {/* TODO: 시음리스트 API에 필드 추가 해서 받아와야함 */}
         </div>
       </div>
-      <div className="flex mt-[1px] ml-3 text-sm font-bold items-center">
+      <div className={clsx(flexItemCenter, 'mt-[1px] ml-3 text-sm font-bold')}>
         {meetingInfo.meetingTitle}
       </div>
-      <div className="flex justify-end mt-0.5 px-2">
-        <span className="text-xs font-normal text-primary">{meetingInfo.currentParticipants}</span>
-        <span className="text-xs font-normal text-muted">/</span>
-        <span className="text-xs font-normal text-muted">{meetingInfo.maxParticipants}명</span>
+      <div className={clsx(flexEnd, 'mt-0.5', isBig ? 'px-3' : 'px-2')}>
+        <span className="text-xs text-primary">{meetingInfo.currentParticipants}</span>
+        <span className={clsx(textMuted)}>/</span>
+        <span className={clsx(textMuted)}>{meetingInfo.maxParticipants}명</span>
       </div>
-      <div className="flex items-center pl-[12px] pr-[8px] mt-1">
+      <div className={clsx(flexItemCenter, 'mt-1 px-3')}>
         <Progress value={(meetingInfo.currentParticipants / meetingInfo.maxParticipants) * 100} />
       </div>
-      <span className="text-muted ml-3 mt-1 text-xs font-normal">{meetingInfo.startAt} 출발</span>
-      <div className="flex text-foreground text-sm font-bold justify-end px-2">
+      <span className={clsx(textMuted, 'ml-3', isBig ? 'mt-1.5' : 'mt-1')}>
+        {meetingInfo.startAt} 출발
+      </span>
+      <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>
         {meetingInfo.participationFee.toLocaleString('ko-KR')}원
       </div>
     </div>
