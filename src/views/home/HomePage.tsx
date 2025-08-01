@@ -1,6 +1,7 @@
 'use client';
 
 import { NewMeetingCardArea } from '@/entities/homeMeetingCard/index';
+import WishlistCardArea from '@/entities/homeMeetingCard/ui/wishlistCardArea';
 import { Button } from '@/shared';
 import Link from 'next/link';
 import { useUserStore } from '@/entities/user';
@@ -30,11 +31,7 @@ export default function HomePage() {
           </div>
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
-            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
-              아직 위시리스트가 없어요.
-              <br />
-              지금 바로 모임을 찜해보세요.
-            </div>
+            <WishlistCardArea />
           </div>
         </div>
       </div>
