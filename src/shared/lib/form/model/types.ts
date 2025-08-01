@@ -1,7 +1,7 @@
 import { type AnyFieldApi } from '@tanstack/react-form';
 
 export interface BaseFormFieldProps {
-  label: string;
+  label?: string;
   description?: string;
   disabled?: boolean;
   required?: boolean;
@@ -11,10 +11,12 @@ export interface BaseFormFieldProps {
 
 export interface FormFieldProps {
   field: AnyFieldApi;
-  label: string;
+  label?: string;
   children: React.ReactNode;
   description?: string;
   className?: string;
+  disabled?: boolean;
+  required?: boolean;
 }
 
 export interface TextFieldProps extends BaseFormFieldProps {
@@ -38,7 +40,11 @@ export interface DateTimeFieldProps extends BaseFormFieldProps {
   showTime?: boolean;
 }
 
+export interface FileUploadFieldProps extends BaseFormFieldProps {
+  accept?: string;
+}
+
 export interface UseFieldValueOptions {
-  componentName: 'TextField' | 'NumberField' | 'SelectField' | 'TextareaField';
+  componentName: 'TextField' | 'NumberField' | 'SelectField' | 'TextareaField' | 'FileUploadField';
   fieldName?: string;
 }
