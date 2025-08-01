@@ -1,6 +1,7 @@
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
+import { Calendar } from '@/shared/ui/Calendar';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
@@ -29,76 +30,153 @@ export default function PostMeetingView() {
   return (
     <form
       method="post"
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 py-8"
       onSubmit={(e) => {
         e.preventDefault();
         e.stopPropagation();
         form.handleSubmit();
       }}
     >
-      <form.AppField
-        name="meetingTitle"
-        validators={{
-          onBlur: meetingTitleSchema,
-        }}
-      >
+      <div className="flex gap-4">
+        <form.AppField
+          name="drinkType"
+          validators={{
+            onBlur: drinkTypeSchema,
+          }}
+        >
+          {(field) => (
+            <field.SelectField
+              label="시음회 종류"
+              options={drinkTypeOptions}
+              placeholder="음료 종류를 선택하세요"
+              className="flex-1"
+            />
+          )}
+        </form.AppField>
+
+        <form.AppField
+          name="meetingTitle"
+          validators={{
+            onBlur: meetingTitleSchema,
+          }}
+        >
+          {(field) => (
+            <field.TextField
+              label="모임 이름"
+              inputType="text"
+              placeholder="모임 이름을 작성해주세요"
+              className="flex-2"
+            />
+          )}
+        </form.AppField>
+      </div>
+
+      <form.AppField name="thumbnailUrl">
         {(field) => (
-          <field.TextField
-            label="Meeting Title"
-            inputType="text"
-            placeholder="모임 제목을 입력하세요"
+          <field.FileUploadField
+            label="대표 이미지"
+            accept="image/*"
+            placeholder="대표 이미지를 첨부해주세요."
           />
         )}
       </form.AppField>
+
+      <div className="flex flex-row gap-2 items-center">
+        <form.AppField name="location">
+          {(field) => (
+            <field.TextField
+              label="장소"
+              inputType="text"
+              placeholder="장소를 검색해주세요"
+              className="w-full"
+            />
+          )}
+        </form.AppField>
+        <Button type="button" className="">
+          장소 찾기
+        </Button>
+      </div>
+
+      <div className="flex gap-4">
+        <form.AppField name="startAt">
+          {(field) => (
+            <field.TextField label="모임 날짜" inputType="datetime-local" className="flex-1" />
+          )}
+        </form.AppField>
+
+        <form.AppField name="joinEndAt">
+          {(field) => (
+            <field.TextField
+              label="모임 모집 마감일"
+              inputType="datetime-local"
+              className="flex-1"
+            />
+          )}
+        </form.AppField>
+      </div>
+
+      <div className="flex gap-4 w-full">
+        <form.AppField
+          name="minParticipants"
+          validators={{
+            onBlur: minParticipantsSchema,
+          }}
+        >
+          {(field) => (
+            <field.NumberField
+              label="최소 모임 정원"
+              placeholder="모임이 생성될 수 있는 최소 인원을 작성해주세요"
+              className="flex-1"
+            />
+          )}
+        </form.AppField>
+
+        <form.AppField
+          name="maxParticipants"
+          validators={{
+            onBlur: maxParticipantsSchema,
+          }}
+        >
+          {(field) => (
+            <field.NumberField
+              label="최대 모임 정원"
+              placeholder="최대 참가자 수"
+              className="flex-1"
+            />
+          )}
+        </form.AppField>
+      </div>
+
       <form.AppField
         name="participationFee"
         validators={{
           onBlur: participationFeeSchema,
         }}
       >
-        {(field) => (
-          <field.NumberField label="Participation Fee" placeholder="참가비를 입력하세요" />
-        )}
+        {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
       </form.AppField>
-      <form.AppField name="startAt">
-        {(field) => <field.TextField label="Start At" inputType="datetime-local" />}
-      </form.AppField>
-      <form.AppField name="joinEndAt">
-        {(field) => <field.TextField label="Join End At" inputType="datetime-local" />}
-      </form.AppField>
-      <form.AppField
-        name="maxParticipants"
-        validators={{
-          onBlur: maxParticipantsSchema,
-        }}
-      >
-        {(field) => <field.NumberField label="Max Participants" placeholder="최대 참가자 수" />}
-      </form.AppField>
-      <form.AppField
-        name="minParticipants"
-        validators={{
-          onBlur: minParticipantsSchema,
-        }}
-      >
-        {(field) => <field.NumberField label="Min Participants" placeholder="최소 참가자 수" />}
-      </form.AppField>
-      <form.AppField name="thumbnailUrl">
-        {(field) => <field.TextField label="Thumbnail URL" inputType="file" />}
-      </form.AppField>
-      <form.AppField
-        name="drinkType"
-        validators={{
-          onBlur: drinkTypeSchema,
-        }}
-      >
-        {(field) => (
-          <field.SelectField
-            label="Drink Type"
-            options={drinkTypeOptions}
-            placeholder="음료 종류를 선택하세요"
-          />
-        )}
-      </form.AppField>
+
+      <div>
+        <h2 className="text-base font-medium mb-2">시음 리스트</h2>
+        <div className="flex gap-4">
+          <form.AppField name="tastingList">
+            {(field) => <field.TextField placeholder="음료명을 작성해주세요" className="flex-3" />}
+          </form.AppField>
+          <form.AppField name="tastingList">
+            {(field) => (
+              <field.FileUploadField
+                accept=".txt,.csv"
+                placeholder="음료 이미지를 첨부해주세요"
+                className="flex-2"
+              />
+            )}
+          </form.AppField>
+        </div>
+        <Button type="button" variant="ghost" className="cursor-pointer mx-auto block">
+          + 시음 리스트 추가하기
+        </Button>
+      </div>
+
       <form.AppField
         name="description"
         validators={{
@@ -106,10 +184,19 @@ export default function PostMeetingView() {
         }}
       >
         {(field) => (
-          <field.TextareaField label="Description" placeholder="모임 설명을 입력하세요" />
+          <field.TextareaField label="상세 설명" placeholder="모임에 대한 설명을 입력하세요" />
         )}
       </form.AppField>
-      <Button type="submit">모임 생성</Button>
+
+      {/* 제출 버튼 */}
+      <div className="flex justify-center mt-4 gap-3">
+        <Button type="button" size="lg" variant="outline" className="border-primary">
+          작성 취소
+        </Button>
+        <Button type="submit" size="lg" className="px-8">
+          모임 만들기
+        </Button>
+      </div>
     </form>
   );
 }

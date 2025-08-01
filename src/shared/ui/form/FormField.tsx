@@ -12,9 +12,9 @@ export default function FormField({
   const fieldId = `field-${field.name}`;
 
   return (
-    <div className={`grid gap-2 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       <Label htmlFor={fieldId}>{label}</Label>
-      <div className="relative">{children}</div>
+      {children}
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
       <ErrorField fieldStateMeta={field.state.meta} />
     </div>
