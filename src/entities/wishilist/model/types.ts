@@ -1,1 +1,1 @@
-export type { MeetingList as Wishlist } from '@/entities/meetings';
+export type { MeetingList as Wishlist } from '../../meetings';
