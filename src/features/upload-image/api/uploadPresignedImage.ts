@@ -10,4 +10,5 @@ export default async function uploadPresignedImage(
     // presigned URL은 백엔드에서 얻은 Authorization 토큰 보내면 reject
   };
   return putApi<object>(presignedUrl, image, headers, '');
+  // apiUrl 파라미터를 빈 값으로 넘긴 이유는 prefix URL을 붙히지 않기 위함.
 }
