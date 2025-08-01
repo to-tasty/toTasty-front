@@ -96,7 +96,7 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
     const { accessToken } = useUserStore.getState();
     const origin = { ...config };
 
-    if (accessToken || accessToken.length > 0) {
+    if (origin.headers.authRequired !== false && (accessToken || accessToken.length > 0)) {
       origin.headers.Authorization = `Bearer ${accessToken}`;
     }
     return origin;
