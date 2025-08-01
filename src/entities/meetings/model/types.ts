@@ -11,7 +11,7 @@ export interface MeetingParticipant {
   isHost: boolean;
 }
 
-export interface MeetingList {
+export interface MeetingCardInfo {
   meetingId: number;
   meetingAuthor: string;
   meetingTitle: string;
