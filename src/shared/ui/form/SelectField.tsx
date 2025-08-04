@@ -1,25 +1,15 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import FormField from './FormField';
+import { SelectFieldProps } from '../../lib/form/model/types';
 
-interface SelectOption {
-  value: string;
-  label: string;
-}
-
-interface SelectFieldProps {
-  label: string;
-  options: SelectOption[];
-  placeholder?: string;
-}
-
-export default function SelectField({ label, options, placeholder }: SelectFieldProps) {
-  const { value, field } = useFieldValue<string>({ componentName: 'SelectField' });
+export default function SelectField({ label, options, placeholder, className }: SelectFieldProps) {
+  const { displayValue, field } = useFieldValue<string>({ componentName: 'SelectField' });
 
   return (
-    <FormField field={field} label={label}>
-      <Select value={value} onValueChange={(newValue) => field.handleChange(newValue)}>
-        <SelectTrigger>
+    <FormField field={field} label={label} className={className}>
+      <Select value={displayValue} onValueChange={(newValue) => field.handleChange(newValue)}>
+        <SelectTrigger className="w-full">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
