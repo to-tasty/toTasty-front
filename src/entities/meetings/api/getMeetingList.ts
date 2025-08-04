@@ -1,9 +1,9 @@
 import { getApi } from '@/shared';
-import { MeetingFilters, MeetingList } from '../model/types';
+import { MeetingFilters, MeetingCardInfo } from '../model/types';
 
 export default async function getMeetingList(
   filter: MeetingFilters,
-): Promise<MeetingList[] | null> {
-  const res = await getApi<{ content: MeetingList[] }>('/api/v1/meetings', filter);
+): Promise<MeetingCardInfo[] | null> {
+  const res = await getApi<{ content: MeetingCardInfo[] }>('/api/v1/meetings', filter);
   return res ? res.content : null;
 }

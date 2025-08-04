@@ -16,6 +16,7 @@ export default function FindMeetingCardRow({ meetingCardList }: MeetingInfoList)
             <FindMeetingCard
               key={meetingInfo.meetingId?.toString() || index}
               meetingInfo={meetingInfo}
+              size="small"
             />
           ))
         ) : (

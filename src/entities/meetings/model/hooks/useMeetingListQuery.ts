@@ -1,9 +1,9 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { MeetingFilters, MeetingList } from '../types';
+import { MeetingFilters, MeetingCardInfo } from '../types';
 import meetingKeys from '../meeting.keys';
 
 export default function useMeetingListQuery(
   filter: MeetingFilters,
-): UseQueryResult<MeetingList[] | null, Error> {
+): UseQueryResult<MeetingCardInfo[] | null, Error> {
   return useQuery(meetingKeys.list(filter));
 }
