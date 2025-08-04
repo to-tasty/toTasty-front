@@ -106,7 +106,7 @@
   --secondary-foreground: var(--color-gray-040);
   --muted: var(--color-gray-030);
   --muted-foreground: var(--color-gray-050);
-  --accent: var(--color-gray-010);
+  --accent: var(--color-primary-010);
   --accent-foreground: var(--color-primary-030);
   --destructive: var(--color-danger);
   --border: var(--color-gray-020);
