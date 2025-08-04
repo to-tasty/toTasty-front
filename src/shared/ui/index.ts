@@ -1,5 +1,6 @@
 export { Button } from './Button';
 export { default as Logo } from './Logo';
+export { default as UserIcon } from './UserIcon';
 
 export {
   DropdownMenu,
