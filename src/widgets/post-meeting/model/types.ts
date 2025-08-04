@@ -10,12 +10,12 @@ export interface PostMeetingFormData {
     detail: string;
   };
   participationFee: number;
-  startAt: string; // 임시
-  joinEndAt: string; // 임시
+  startAt: string;
+  joinEndAt: string;
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;
-  thumbnailUrl: string;
+  thumbnailUrl: File | null;
   drinkType: DrinkType;
   tastingList: TastingInfo[];
   description: string;
