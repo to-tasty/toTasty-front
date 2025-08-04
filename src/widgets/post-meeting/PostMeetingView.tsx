@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
@@ -17,9 +18,16 @@ export default function PostMeetingView() {
     validators: {},
     onSubmit: ({ value }) => {
       /* eslint-disable-next-line */
-      console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+      console.log(value);
+      // console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
     },
   });
+
+  const idCounter = useRef(0);
+  const generateId = () => {
+    idCounter.current += 1;
+    return Date.now() + idCounter.current;
+  };
 
   const drinkTypeOptions = Object.values(DrinkType).map((type) => ({
     value: type,
@@ -159,26 +167,54 @@ export default function PostMeetingView() {
         {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
       </form.AppField>
 
-      <div>
-        <h2 className="text-base font-medium mb-2">시음 리스트</h2>
-        <div className="flex gap-4">
-          <form.AppField name="tastingList">
-            {(field) => <field.TextField placeholder="음료명을 작성해주세요" className="flex-3" />}
-          </form.AppField>
-          <form.AppField name="tastingList">
-            {(field) => (
-              <field.FileUploadField
-                accept=".txt,.csv"
-                placeholder="음료 이미지를 첨부해주세요"
-                className="flex-2"
-              />
-            )}
-          </form.AppField>
-        </div>
-        <Button type="button" variant="ghost" className="cursor-pointer mx-auto block">
-          + 시음 리스트 추가하기
-        </Button>
-      </div>
+      <form.AppField name="tastingList" mode="array">
+        {(field) => (
+          <>
+            <p className="text-sm leading-none font-medium select-none">시음 음료 목록</p>
+            {field.state.value.map((_, index) => {
+              return (
+                <div key={generateId()} className="flex gap-2">
+                  <form.AppField name={`tastingList[${index}].drinkName`}>
+                    {(subField) => (
+                      <subField.TextField
+                        inputType="text"
+                        placeholder="예: 샤르도네, 라떼 등"
+                        className="flex-1"
+                      />
+                    )}
+                  </form.AppField>
+                  <form.AppField name={`tastingList[${index}].drinkImgUrl`}>
+                    {(subField) => (
+                      <subField.FileUploadField
+                        accept="image/*"
+                        placeholder="음료 이미지를 첨부해주세요"
+                        className="flex-1"
+                      />
+                    )}
+                  </form.AppField>
+                  <Button
+                    type="button"
+                    variant="outlineDanger"
+                    onClick={() => field.removeValue(index)}
+                  >
+                    삭제
+                  </Button>
+                </div>
+              );
+            })}
+            <Button
+              variant="ghost"
+              onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
+              className="cursor-pointer"
+            >
+              <span className="border border-primary text-primary leading-[110%] rounded-full w-5 h-5 flex justify-center">
+                +
+              </span>
+              시음 리스트 추가하기
+            </Button>
+          </>
+        )}
+      </form.AppField>
 
       <form.AppField
         name="description"
@@ -191,7 +227,6 @@ export default function PostMeetingView() {
         )}
       </form.AppField>
 
-      {/* 제출 버튼 */}
       <div className="flex justify-center mt-4 gap-3">
         <Button type="button" size="lg" variant="outlinePrimary">
           작성 취소

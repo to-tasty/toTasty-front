@@ -1,7 +1,7 @@
 import { formOptions } from '@tanstack/react-form';
 import { DrinkType } from '@/entities/meetings/model/types';
+import { TastingInfo } from '@/entities/tasting-list/model/types';
 import { PostMeetingFormData } from './types';
-import { TastingInfo } from '../../../entities/tasting-list/model/types';
 
 const defaultValues: PostMeetingFormData = {
   meetingTitle: '',
