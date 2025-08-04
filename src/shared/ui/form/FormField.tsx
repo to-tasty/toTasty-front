@@ -13,7 +13,7 @@ export default function FormField({
 
   return (
     <div className={`space-y-2 ${className}`}>
-      <Label htmlFor={fieldId}>{label}</Label>
+      {label && <Label htmlFor={fieldId}>{label}</Label>}
       {children}
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
       <ErrorField fieldStateMeta={field.state.meta} />

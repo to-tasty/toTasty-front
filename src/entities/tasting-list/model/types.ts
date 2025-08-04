@@ -1,5 +1,5 @@
 export interface TastingInfo {
-  drinkId: number;
+  drinkId?: number;
   drinkName?: string;
   drinkTaste?: string; // 음료 맛
   drinkFlavor?: string; // 음료 향
