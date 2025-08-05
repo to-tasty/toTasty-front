@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useUploadImageMutation } from '@/features/upload-image';
 import { Button } from '../Button';
 import Input from '../Input';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
@@ -18,6 +17,8 @@ export default function FileUploadField({
   errorText = '업로드 실패, 다시 시도해주세요',
   selectedText = '업로드 준비 완료',
   onUploadSuccess,
+  uploadFile,
+  hasUploadError = false,
   ...props
 }: FileUploadFieldProps) {
   const { value, field } = useFieldValue<string | null>({
@@ -27,7 +28,6 @@ export default function FileUploadField({
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
     'idle',
   );
-  const { mutateAsync, isError } = useUploadImageMutation();
   const fieldId = `field-${field.name}`;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ export default function FileUploadField({
     setUploadStatus('loading');
 
     try {
-      const response = await mutateAsync(file);
+      const response = await uploadFile(file);
 
       if (response && response.imageUrl) {
         field.handleChange(response.imageUrl);
@@ -51,6 +51,7 @@ export default function FileUploadField({
         setUploadStatus('error');
       }
     } catch (error) {
+      /* eslint-disable-next-line */
       console.error('Image upload failed:', error);
       setUploadStatus('error');
     }
@@ -58,7 +59,7 @@ export default function FileUploadField({
 
   const getDisplayText = () => {
     if (uploadStatus === 'loading') return loadingText;
-    if (isError || uploadStatus === 'error') return errorText;
+    if (hasUploadError || uploadStatus === 'error') return errorText;
     if (selectedFile && uploadStatus === 'idle') return selectedText;
     if (value) return value;
     return placeholder || '이미지를 첨부해주세요';

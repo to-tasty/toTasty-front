@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
+import { useUploadImageMutation } from '@/features/upload-image';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
@@ -20,11 +21,11 @@ export default function PostMeetingView() {
     validators: {},
     onSubmit: ({ value }) => {
       /* eslint-disable-next-line */
-      console.log(value);
-      // console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+      console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
     },
   });
 
+  const uploadMutation = useUploadImageMutation();
   const idCounter = useRef(0);
   const generateId = () => {
     idCounter.current += 1;
@@ -86,6 +87,8 @@ export default function PostMeetingView() {
             label="대표 이미지"
             accept="image/*"
             placeholder="대표 이미지를 첨부해주세요."
+            uploadFile={uploadMutation.mutateAsync}
+            hasUploadError={uploadMutation.isError}
           />
         )}
       </form.AppField>
@@ -191,6 +194,8 @@ export default function PostMeetingView() {
                         accept="image/*"
                         placeholder="음료 이미지를 첨부해주세요"
                         className="flex-1"
+                        uploadFile={uploadMutation.mutateAsync}
+                        hasUploadError={uploadMutation.isError}
                       />
                     )}
                   </form.AppField>
