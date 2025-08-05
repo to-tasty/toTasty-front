@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
