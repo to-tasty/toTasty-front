@@ -1,7 +1,11 @@
 'use client';
 
-import { NewMeetingCardArea } from '@/entities/homeMeetingCard/index';
-import WishlistCardArea from '@/entities/homeMeetingCard/ui/wishlistCardArea';
+import {
+  FavoriteMeetingCardArea,
+  NewMeetingCardArea,
+  // PopularMeetingCardArea,
+  WishlistCardArea,
+} from '@/entities/homeMeetingCard/index';
 import { Button } from '@/shared';
 import Link from 'next/link';
 import { useUserStore } from '@/entities/user';
@@ -21,14 +25,10 @@ export default function HomePage() {
       </div>
       <div className="relative">
         <div
-          className={`flex flex-col gap-16 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
+          className={`flex flex-col gap-4 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
         >
-          <div>
-            <h1 className="font-semibold text-xl pb-[20px]">내가 좋아할 모임</h1>
-            <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
-              아직 내가 좋아할 모임이 없어요.
-            </div>
-          </div>
+          <h1 className="font-semibold text-xl ">내가 좋아할 모임</h1>
+          <FavoriteMeetingCardArea />
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
             <WishlistCardArea />
