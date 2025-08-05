@@ -42,6 +42,10 @@ export interface DateTimeFieldProps extends BaseFormFieldProps {
 
 export interface FileUploadFieldProps extends BaseFormFieldProps {
   accept?: string;
+  loadingText?: string;
+  errorText?: string;
+  selectedText?: string;
+  onUploadSuccess?: (imageUrl: string) => void;
 }
 
 export interface UseFieldValueOptions {

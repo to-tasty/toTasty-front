@@ -1,8 +1,10 @@
-import { Button } from '@/shared/ui';
-import Input from '@/shared/ui/Input';
+import { useState } from 'react';
+import { useUploadImageMutation } from '@/features/upload-image';
+import { Button } from '../Button';
+import Input from '../Input';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
-import FormField from './FormField';
 import { FileUploadFieldProps } from '../../lib/form/model/types';
+import FormField from './FormField';
 
 export default function FileUploadField({
   label,
@@ -10,14 +12,57 @@ export default function FileUploadField({
   disabled,
   required,
   className = '',
-  accept,
+  accept = 'image/*',
   placeholder,
+  loadingText = '업로드 중...',
+  errorText = '업로드 실패, 다시 시도해주세요',
+  selectedText = '업로드 준비 완료',
+  onUploadSuccess,
   ...props
 }: FileUploadFieldProps) {
-  const { value, displayValue, field } = useFieldValue<File | null>({
+  const { value, field } = useFieldValue<string | null>({
     componentName: 'FileUploadField',
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
+    'idle',
+  );
+  const { mutateAsync, isError } = useUploadImageMutation();
   const fieldId = `field-${field.name}`;
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setSelectedFile(file);
+    setUploadStatus('loading');
+
+    try {
+      const response = await mutateAsync(file);
+
+      if (response && response.imageUrl) {
+        field.handleChange(response.imageUrl);
+        setUploadStatus('success');
+
+        if (onUploadSuccess) {
+          onUploadSuccess(response.imageUrl);
+        }
+      } else {
+        setUploadStatus('error');
+      }
+    } catch (error) {
+      console.error('Image upload failed:', error);
+      setUploadStatus('error');
+    }
+  };
+
+  const getDisplayText = () => {
+    if (uploadStatus === 'loading') return loadingText;
+    if (isError || uploadStatus === 'error') return errorText;
+    if (selectedFile && uploadStatus === 'idle') return selectedText;
+    if (value) return value;
+    return placeholder || '이미지를 첨부해주세요';
+  };
 
   return (
     <FormField
@@ -34,20 +79,20 @@ export default function FileUploadField({
           name={field.name}
           type="file"
           accept={accept}
-          onChange={(e) => field.handleChange(e.target.files?.[0] || null)}
+          onChange={handleFileChange}
           className="hidden"
           {...props}
         />
         <div
           tabIndex={-1}
-          className="border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs opacity-50 md:text-sm bg-input text-secondary-foreground"
+          className="border-input h-9 w-full rounded-md border px-3 py-1 text-base shadow-xs opacity-50 md:text-sm bg-input text-secondary-foreground overflow-hidden text-ellipsis"
           aria-label="현재 선택된 파일 정보"
         >
-          {value ? displayValue : placeholder || '이미지를 첨부해주세요'}
+          {getDisplayText()}
         </div>
         <Button
           type="button"
-          variant="outlinePrimary"
+          variant={uploadStatus === 'error' ? 'outlineDanger' : 'outlinePrimary'}
           tabIndex={0}
           onClick={() => document.getElementById(fieldId)?.click()}
           aria-label="파일 찾기 버튼"

@@ -7,7 +7,7 @@ export default function FormField({
   label,
   children,
   description,
-  className,
+  className = '',
 }: FormFieldProps) {
   const fieldId = `field-${field.name}`;
 
