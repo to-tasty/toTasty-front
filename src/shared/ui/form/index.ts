@@ -5,3 +5,4 @@ export { default as TextareaField } from './TextareaField';
 export { default as FileUploadField } from './FileUploadField';
 export { default as DateTimeField } from './DateTimeField';
 export { default as FormField } from './FormField';
+export { default as AddressField } from './AddressField';

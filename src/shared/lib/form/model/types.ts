@@ -51,6 +51,8 @@ export interface FileUploadFieldProps extends BaseFormFieldProps {
   hasUploadError?: boolean;
 }
 
+export interface AddressFieldProps extends BaseFormFieldProps {}
+
 export interface UseFieldValueOptions {
   componentName:
     | 'TextField'
@@ -58,6 +60,7 @@ export interface UseFieldValueOptions {
     | 'SelectField'
     | 'TextareaField'
     | 'FileUploadField'
-    | 'DateTimeField';
+    | 'DateTimeField'
+    | 'AddressField';
   fieldName?: string;
 }
