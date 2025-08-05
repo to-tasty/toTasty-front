@@ -15,7 +15,7 @@ export default function MeetingPostPage() {
       {isPending && <div>생성 중...</div>}
       {isError && <div>에러: {error}</div>}
 
-      <div className="max-w-[1000px] mx-auto">
+      <div className="max-w-3xl mx-auto">
         <PostMeetingView />
       </div>
     </>

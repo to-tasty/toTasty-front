@@ -1,26 +1,26 @@
 import Input from '../Input';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import FormField from './FormField';
+import { NumberFieldProps } from '../../lib/form/model/types';
 
-interface NumberFieldProps {
-  label: string;
-  placeholder?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-}
-
-export default function NumberField({ label, placeholder, min, max, step = 1 }: NumberFieldProps) {
-  const { value, field } = useFieldValue<number>({ componentName: 'NumberField' });
+export default function NumberField({
+  label,
+  placeholder,
+  min,
+  max,
+  step = 1,
+  className,
+}: NumberFieldProps) {
+  const { displayValue, field } = useFieldValue<number>({ componentName: 'NumberField' });
   const fieldId = `field-${field.name}`;
 
   return (
-    <FormField field={field} label={label}>
+    <FormField field={field} label={label} className={className}>
       <Input
         id={fieldId}
         name={field.name}
         type="number"
-        value={value}
+        value={displayValue}
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(Number(e.target.value) || 0)}
         placeholder={placeholder}

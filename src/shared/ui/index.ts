@@ -44,3 +44,5 @@ export {
   SelectTrigger,
   SelectValue,
 } from './Select';
+
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './Popover';
