@@ -14,6 +14,9 @@ import {
   drinkTypeSchema,
   descriptionSchema,
   locationSchema,
+  startAtSchema,
+  joinEndAtSchema,
+  meetingDateSchema,
 } from './model/validationSchema';
 
 export default function PostMeetingView() {
@@ -21,8 +24,16 @@ export default function PostMeetingView() {
     ...postMeetingOptions,
     validators: {},
     onSubmit: ({ value }) => {
-      /* eslint-disable-next-line */
-      console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+      try {
+        meetingDateSchema.parse({
+          startAt: value.startAt,
+          joinEndAt: value.joinEndAt,
+        });
+
+        console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+      } catch (error) {
+        alert(JSON.parse(error as string)[0].message);
+      }
     },
   });
 
@@ -106,21 +117,31 @@ export default function PostMeetingView() {
       </form.AppField>
 
       <div className="flex gap-4">
-        <form.AppField name="startAt">
+        <form.AppField
+          name="joinEndAt"
+          validators={{
+            onChange: joinEndAtSchema,
+          }}
+        >
           {(field) => (
             <field.DateTimeField
-              label="모임 날짜"
-              placeholder="모임 날짜와 시간을 선택하세요"
+              label="모집 마감일"
+              placeholder="마감 날짜와 시간을 선택하세요"
               className="flex-1"
             />
           )}
         </form.AppField>
 
-        <form.AppField name="joinEndAt">
+        <form.AppField
+          name="startAt"
+          validators={{
+            onChange: startAtSchema,
+          }}
+        >
           {(field) => (
             <field.DateTimeField
-              label="모임 모집 마감일"
-              placeholder="마감 날짜와 시간을 선택하세요"
+              label="모임 날짜"
+              placeholder="모임 날짜와 시간을 선택하세요"
               className="flex-1"
             />
           )}
@@ -206,6 +227,7 @@ export default function PostMeetingView() {
               );
             })}
             <Button
+              type="button"
               variant="ghost"
               onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
               className="cursor-pointer"
