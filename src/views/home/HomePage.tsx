@@ -3,7 +3,7 @@
 import {
   FavoriteMeetingCardArea,
   NewMeetingCardArea,
-  // PopularMeetingCardArea,
+  PopularMeetingCardArea,
   WishlistCardArea,
 } from '@/entities/homeMeetingCard/index';
 import { Button } from '@/shared';
@@ -21,7 +21,7 @@ export default function HomePage() {
       </div>
       <div>
         <h1 className="font-semibold text-xl pb-[20px] mt-8">인기모임</h1>
-        <NewMeetingCardArea />
+        <PopularMeetingCardArea />
       </div>
       <div className="relative">
         <div
