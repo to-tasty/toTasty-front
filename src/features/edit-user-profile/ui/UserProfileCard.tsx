@@ -1,8 +1,10 @@
 'use client';
-import { Button, UserIcon } from '@/shared';
+
 import { useUserStore } from '@/entities/user';
+import { Dialog, DialogTrigger, UserIcon } from '@/shared';
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
+import ProfileEditDialog from './ProfileEditDialog';
 
 export default function UserProfileCard() {
   const { user } = useUserStore();
@@ -12,7 +14,12 @@ export default function UserProfileCard() {
       <div className="bg-primary h-[66px] relative flex flex-col justify-between">
         <div className="flex justify-between px-6 mt-4 ">
           <h1 className="text-gray-090 text-lg font-semibold">내 프로필</h1>
-          <Image src={EditIcon} alt="logo" width={32} height={32} draggable={false} />
+          <Dialog>
+            <DialogTrigger asChild>
+              <Image src={EditIcon} alt="logo" width={32} height={32} draggable={false} />
+            </DialogTrigger>
+            <ProfileEditDialog />
+          </Dialog>
         </div>
         <div className="left-0 w-full h-[2px] bg-primary-060 mb-1.5" />
       </div>

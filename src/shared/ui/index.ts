@@ -47,3 +47,16 @@ export {
 } from './Select';
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './Popover';
+
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from './Dialog';
+
+export { Command, CommandGroup, CommandItem, CommandList } from './Command';
