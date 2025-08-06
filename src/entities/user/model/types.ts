@@ -4,7 +4,6 @@ export interface User {
   profileImgUrl: string;
   interests: string[];
   memberId: number;
-  accessToken: string;
 }
 
 export interface UserState {
