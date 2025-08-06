@@ -17,6 +17,7 @@ import {
   startAtSchema,
   joinEndAtSchema,
   meetingDateSchema,
+  thumbnailUrlSchema,
 } from './model/validationSchema';
 
 export default function PostMeetingView() {
@@ -93,7 +94,12 @@ export default function PostMeetingView() {
         </form.AppField>
       </div>
 
-      <form.AppField name="thumbnailUrl">
+      <form.AppField
+        name="thumbnailUrl"
+        validators={{
+          onChange: thumbnailUrlSchema,
+        }}
+      >
         {(field) => (
           <field.FileUploadField
             label="대표 이미지"
