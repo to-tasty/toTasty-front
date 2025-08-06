@@ -21,11 +21,7 @@ export default function AddressField({
   });
   const [isOpen, setIsOpen] = useState(false);
   const [showDetailInput, setShowDetailInput] = useState(false);
-  const currentValue = (field.state?.value as LocationInfo) || {
-    sido: '',
-    address: '',
-    detail: '',
-  };
+  const currentValue = field.state?.value as LocationInfo;
 
   const onCompletePost = (data: Address) => {
     const locationData: LocationInfo = {
@@ -35,7 +31,7 @@ export default function AddressField({
     };
 
     field.handleChange(locationData);
-
+    currentValue.detail = '';
     setShowDetailInput(true);
     setIsOpen(false);
   };
@@ -66,20 +62,20 @@ export default function AddressField({
             className="w-full justify-start text-left font-normal"
             disabled={disabled}
           >
-            {currentValue?.address ? currentValue.address : placeholder}
+            {currentValue.address || placeholder}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <DaumPostcode onComplete={(data) => onCompletePost(data)} />
+          <DaumPostcode onComplete={onCompletePost} />
         </PopoverContent>
       </Popover>
 
-      {(showDetailInput || currentValue?.address) && (
+      {(showDetailInput || Boolean(currentValue.address)) && (
         <div className="mt-2">
           <Input
             placeholder="상세 주소를 입력하세요"
-            value={currentValue?.detail || ''}
-            onChange={(e) => handleDetailChange(e)}
+            value={currentValue.detail}
+            onChange={handleDetailChange}
             disabled={disabled}
           />
         </div>

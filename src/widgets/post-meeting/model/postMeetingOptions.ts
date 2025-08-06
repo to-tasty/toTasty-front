@@ -12,7 +12,11 @@ export interface LocationInfo {
 const defaultValues: PostMeetingFormData = {
   meetingTitle: '',
   meetingAuthor: '',
-  location: {} as LocationInfo,
+  location: {
+    sido: '',
+    address: '',
+    detail: '',
+  } as LocationInfo,
   participationFee: 0,
   startAt: '',
   joinEndAt: '',
