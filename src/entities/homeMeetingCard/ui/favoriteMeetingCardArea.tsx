@@ -9,8 +9,11 @@ import { FindMeetingCard } from '@/widgets/index';
 import useFavoriteMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useFavoriteMeetingsQuery';
 import { useUserStore } from '@/entities/user';
 
+import { useMemo } from 'react';
+
 export default function FavoriteMeetingCardArea() {
-  const interests = useUserStore((state) => state.user?.interests || []);
+  const rawInterests = useUserStore((state) => state.user?.interests);
+  const interests = useMemo(() => rawInterests || [], [rawInterests]);
   const { data, isLoading } = useFavoriteMeetingsQuery(interests);
 
   if (isLoading) return null;
