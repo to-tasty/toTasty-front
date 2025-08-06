@@ -27,6 +27,10 @@ export interface SelectFieldProps extends BaseFormFieldProps {
   options: Array<{ value: string; label: string }>;
 }
 
+export interface MultiSelectFieldProps extends SelectFieldProps {
+  field: AnyFieldApi;
+}
+
 export interface TextareaFieldProps extends BaseFormFieldProps {
   rows?: number;
 }
@@ -49,6 +53,7 @@ export interface UseFieldValueOptions {
     | 'TextField'
     | 'NumberField'
     | 'SelectField'
+    | 'MultiSelectField'
     | 'TextareaField'
     | 'FileUploadField'
     | 'DateTimeField';

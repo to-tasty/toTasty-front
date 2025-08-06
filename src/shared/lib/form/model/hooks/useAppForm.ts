@@ -6,6 +6,7 @@ import SelectField from '../../../../ui/form/SelectField';
 import NumberField from '../../../../ui/form/NumberField';
 import FileUploadField from '../../../../ui/form/FileUploadField';
 import DateTimeField from '../../../../ui/form/DateTimeField';
+import MultiSelectField from '../../../../ui/form/MultiSelectField';
 
 const { useAppForm } = createFormHook({
   fieldContext,
@@ -17,6 +18,7 @@ const { useAppForm } = createFormHook({
     NumberField,
     FileUploadField,
     DateTimeField,
+    MultiSelectField,
   },
   formComponents: {},
 });

@@ -37,10 +37,11 @@ export default function UserIcon({
   className,
 }: UserIconProps) {
   const size = iconSizeMap[type];
+  const src = ImageUrl?.trim() || DEFAULT_PROFILE_IMG;
 
   return (
     <Image
-      src={ImageUrl}
+      src={src}
       alt={`${type} icon`}
       width={size}
       height={size}
