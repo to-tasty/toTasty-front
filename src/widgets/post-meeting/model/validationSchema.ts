@@ -86,3 +86,12 @@ export const descriptionSchema = z
   .string()
   .min(10, '설명은 최소 10글자 이상 작성해주세요')
   .max(3000, '설명은 3000글자를 초과할 수 없습니다');
+
+export const tastingListSchema = z.array(z.any()).min(1, '시음 리스트를 1개 이상 추가해주세요');
+export const drinkNameSchema = z.string().min(1, '음료명을 입력해주세요');
+export const drinkImgUrlSchema = z.custom<string>(
+  (file) => file instanceof File && file.type.startsWith('image/'),
+  {
+    message: '음료 이미지를 첨부해주세요',
+  },
+);

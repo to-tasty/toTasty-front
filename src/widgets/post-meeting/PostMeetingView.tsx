@@ -5,6 +5,7 @@ import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { useUploadImageMutation } from '@/features/upload-image';
+import ErrorField from '@/shared/ui/form/ErrorField';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
@@ -18,6 +19,9 @@ import {
   joinEndAtSchema,
   meetingDateSchema,
   thumbnailUrlSchema,
+  tastingListSchema,
+  drinkNameSchema,
+  drinkImgUrlSchema,
 } from './model/validationSchema';
 
 export default function PostMeetingView() {
@@ -195,23 +199,40 @@ export default function PostMeetingView() {
         {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
       </form.AppField>
 
-      <form.AppField name="tastingList" mode="array">
+      <form.AppField
+        name="tastingList"
+        mode="array"
+        validators={{
+          onChange: tastingListSchema,
+        }}
+      >
         {(field) => (
-          <>
+          <div>
             <p className="text-sm leading-none font-medium select-none">시음 음료 목록</p>
+            <ErrorField fieldStateMeta={field.state.meta} />
             {field.state.value.map((_, index) => {
               return (
                 <div key={generateId()} className="flex gap-2">
-                  <form.AppField name={`tastingList[${index}].drinkName`}>
+                  <form.AppField
+                    name={`tastingList[${index}].drinkName`}
+                    validators={{
+                      onChange: drinkNameSchema,
+                    }}
+                  >
                     {(subField) => (
                       <subField.TextField
                         inputType="text"
-                        placeholder="예: 샤르도네, 라떼 등"
+                        placeholder="ex: Latte etc.."
                         className="flex-1"
                       />
                     )}
                   </form.AppField>
-                  <form.AppField name={`tastingList[${index}].drinkImgUrl`}>
+                  <form.AppField
+                    name={`tastingList[${index}].drinkImgUrl`}
+                    validators={{
+                      onChange: drinkImgUrlSchema,
+                    }}
+                  >
                     {(subField) => (
                       <subField.FileUploadField
                         accept="image/*"
@@ -236,14 +257,14 @@ export default function PostMeetingView() {
               type="button"
               variant="ghost"
               onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
-              className="cursor-pointer"
+              className="cursor-pointer w-full"
             >
               <span className="border border-primary text-primary leading-[110%] rounded-full w-5 h-5 flex justify-center">
                 +
               </span>
               시음 리스트 추가하기
             </Button>
-          </>
+          </div>
         )}
       </form.AppField>
 

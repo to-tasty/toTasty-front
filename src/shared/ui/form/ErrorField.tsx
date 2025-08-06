@@ -8,7 +8,7 @@ export default function ErrorField({
   return (
     <span className="block mb-5">
       {!fieldStateMeta.isValid && (
-        <p className="text-red-600 text-xs">
+        <p className="text-danger text-xs">
           {fieldStateMeta.errors.map((err) => err.message).join(', ')}
         </p>
       )}
