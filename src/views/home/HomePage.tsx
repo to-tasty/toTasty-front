@@ -15,15 +15,15 @@ export default function HomePage() {
 
   return (
     <main className="flex items-center justify-center flex-col gap-4 py-[40px]">
-      <div>
+      <div className="w-[1142px]">
         <h1 className="font-semibold text-xl pb-[20px]">신규모임</h1>
         <NewMeetingCardArea />
       </div>
-      <div>
+      <div className="w-[1142px]">
         <h1 className="font-semibold text-xl pb-[20px] mt-8">인기모임</h1>
         <PopularMeetingCardArea />
       </div>
-      <div className="relative">
+      <div className="relative w-[1142px]">
         <div
           className={`flex flex-col gap-4 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
         >
@@ -36,7 +36,7 @@ export default function HomePage() {
         </div>
       </div>
       {!isLoggedIn && (
-        <div className="absolute top-330 z-10  bg-opacity-50 flex gap-4 flex-col items-center justify-center">
+        <div className="absolute top-330 z-10 bg-opacity-50 flex gap-4 flex-col items-center justify-center w-[1142px]">
           <span className="text-foreground text-2xl">로그인 후에 이용가능 합니다.</span>
 
           <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
