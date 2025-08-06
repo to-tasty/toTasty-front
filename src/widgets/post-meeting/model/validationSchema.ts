@@ -31,24 +31,17 @@ export const descriptionSchema = z
 export const locationSchema = z
   .object({
     sido: z.string(),
-    address: z.string(),
+    address: z.string().refine((val) => val.length > 0, {
+      message: '장소를 선택해주세요',
+    }),
     detail: z.string(),
   })
-  .superRefine((data, ctx) => {
-    if (!data.address || data.address.length === 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: '장소를 선택해주세요',
-        path: ['address'],
-      });
-      return;
-    }
-
-    if (!data.detail || data.detail.length === 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: '상세 주소를 입력해주세요',
-        path: ['detail'],
-      });
-    }
-  });
+  .refine(
+    (data) => {
+      return data.address.length === 0 || data.detail.length > 0;
+    },
+    {
+      message: '상세 주소를 입력해주세요',
+      path: ['detail'],
+    },
+  );
