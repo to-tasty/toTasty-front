@@ -20,19 +20,16 @@ export default function AddressField({
     componentName: 'AddressField',
   });
   const [isOpen, setIsOpen] = useState(false);
-  const [showDetailInput, setShowDetailInput] = useState(false);
   const currentValue = field.state?.value as LocationInfo;
 
   const onCompletePost = (data: Address) => {
     const locationData: LocationInfo = {
       sido: data.sido,
       address: data.address,
-      detail: '',
+      detail: currentValue?.detail || '',
     };
 
     field.handleChange(locationData);
-    currentValue.detail = '';
-    setShowDetailInput(true);
     setIsOpen(false);
   };
 
@@ -55,31 +52,30 @@ export default function AddressField({
       required={required}
       className={className}
     >
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-full justify-start text-left font-normal"
-            disabled={disabled}
-          >
-            {currentValue.address || placeholder}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
-          <DaumPostcode onComplete={onCompletePost} />
-        </PopoverContent>
-      </Popover>
+      <div className="flex flex-row gap-2 w-full">
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className="flex-1 justify-start text-left font-normal"
+              disabled={disabled}
+            >
+              {currentValue?.address || placeholder}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <DaumPostcode onComplete={onCompletePost} />
+          </PopoverContent>
+        </Popover>
 
-      {(showDetailInput || Boolean(currentValue.address)) && (
-        <div className="mt-2">
-          <Input
-            placeholder="상세 주소를 입력하세요"
-            value={currentValue.detail}
-            onChange={handleDetailChange}
-            disabled={disabled}
-          />
-        </div>
-      )}
+        <Input
+          placeholder={currentValue?.address ? '상세 주소를 입력하세요' : '주소 먼저 검색해 주세요'}
+          value={currentValue?.detail || ''}
+          onChange={handleDetailChange}
+          disabled={disabled || !currentValue?.address}
+          className={`flex-2 ${!currentValue?.address ? 'opacity-50 bg-input text-secondary-foreground' : ''}`}
+        />
+      </div>
     </FormField>
   );
 }
