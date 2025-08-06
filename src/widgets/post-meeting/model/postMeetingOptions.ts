@@ -3,14 +3,16 @@ import { DrinkType } from '@/entities/meetings/model/types';
 import { TastingInfo } from '@/entities/tasting-list/model/types';
 import { PostMeetingFormData } from './types';
 
+export interface LocationInfo {
+  sido: string;
+  address: string;
+  detail: string;
+}
+
 const defaultValues: PostMeetingFormData = {
   meetingTitle: '',
   meetingAuthor: '',
-  location: {
-    sido: '',
-    address: '',
-    detail: '',
-  },
+  location: {} as LocationInfo,
   participationFee: 0,
   startAt: '',
   joinEndAt: '',
