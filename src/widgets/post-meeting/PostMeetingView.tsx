@@ -52,7 +52,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="drinkType"
           validators={{
-            onBlur: drinkTypeSchema,
+            onChange: drinkTypeSchema,
           }}
         >
           {(field) => (
@@ -68,7 +68,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="meetingTitle"
           validators={{
-            onBlur: meetingTitleSchema,
+            onChange: meetingTitleSchema,
           }}
         >
           {(field) => (
@@ -131,7 +131,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="minParticipants"
           validators={{
-            onBlur: minParticipantsSchema,
+            onChange: minParticipantsSchema,
           }}
         >
           {(field) => (
@@ -146,7 +146,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="maxParticipants"
           validators={{
-            onBlur: maxParticipantsSchema,
+            onChange: maxParticipantsSchema,
           }}
         >
           {(field) => (
@@ -162,7 +162,7 @@ export default function PostMeetingView() {
       <form.AppField
         name="participationFee"
         validators={{
-          onBlur: participationFeeSchema,
+          onChange: participationFeeSchema,
         }}
       >
         {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
@@ -222,7 +222,7 @@ export default function PostMeetingView() {
       <form.AppField
         name="description"
         validators={{
-          onBlur: descriptionSchema,
+          onChange: descriptionSchema,
         }}
       >
         {(field) => (
