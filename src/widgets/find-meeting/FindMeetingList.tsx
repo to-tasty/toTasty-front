@@ -17,7 +17,6 @@ export default function FindMeetingList() {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(filters);
       setMeetings(data);
     }
   }, [isSuccess, data]);
