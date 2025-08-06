@@ -27,3 +27,28 @@ export const descriptionSchema = z
   .string()
   .min(10, '설명은 최소 10글자 이상 작성해주세요')
   .max(500, '설명은 500글자를 초과할 수 없습니다');
+
+export const locationSchema = z
+  .object({
+    sido: z.string(),
+    address: z.string(),
+    detail: z.string(),
+  })
+  .superRefine((data, ctx) => {
+    if (!data.address || data.address.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '장소를 선택해주세요',
+        path: ['address'],
+      });
+      return;
+    }
+
+    if (!data.detail || data.detail.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '상세 주소를 입력해주세요',
+        path: ['detail'],
+      });
+    }
+  });

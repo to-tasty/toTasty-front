@@ -30,7 +30,6 @@ export default function AddressField({
     };
 
     field.handleChange(locationData);
-    currentValue.detail = '';
     setIsOpen(false);
 
     setTimeout(() => {

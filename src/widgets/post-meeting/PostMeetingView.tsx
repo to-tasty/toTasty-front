@@ -13,6 +13,7 @@ import {
   minParticipantsSchema,
   drinkTypeSchema,
   descriptionSchema,
+  locationSchema,
 } from './model/validationSchema';
 
 export default function PostMeetingView() {
@@ -93,7 +94,12 @@ export default function PostMeetingView() {
         )}
       </form.AppField>
 
-      <form.AppField name="location">
+      <form.AppField
+        name="location"
+        validators={{
+          onChange: locationSchema,
+        }}
+      >
         {(field) => (
           <field.AddressField label="장소" placeholder="장소를 입력해주세요" className="w-full" />
         )}
