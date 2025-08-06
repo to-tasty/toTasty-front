@@ -98,21 +98,6 @@ export default function PostMeetingView() {
           <field.AddressField label="장소" placeholder="장소를 입력해주세요" className="w-full" />
         )}
       </form.AppField>
-      {/* <div className="flex flex-row gap-2 items-center">
-        <form.AppField name="location">
-          {(field) => (
-            <field.TextField
-              label="장소"
-              inputType="text"
-              placeholder="장소를 검색해주세요"
-              className="w-full"
-            />
-          )}
-        </form.AppField>
-        <Button type="button" className="">
-          장소 찾기
-        </Button>
-      </div> */}
 
       <div className="flex gap-4">
         <form.AppField name="startAt">

@@ -26,11 +26,19 @@ export default function AddressField({
     const locationData: LocationInfo = {
       sido: data.sido,
       address: data.address,
-      detail: currentValue?.detail || '',
+      detail: '',
     };
 
     field.handleChange(locationData);
+    currentValue.detail = '';
     setIsOpen(false);
+
+    setTimeout(() => {
+      const detailInput = document.querySelector('input[name="detailAddress"]');
+      if (detailInput) {
+        (detailInput as HTMLInputElement).focus();
+      }
+    }, 100);
   };
 
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +77,8 @@ export default function AddressField({
         </Popover>
 
         <Input
+          name="detailAddress"
+          tabIndex={currentValue?.address ? 0 : -1}
           placeholder={currentValue?.address ? '상세 주소를 입력하세요' : '주소 먼저 검색해 주세요'}
           value={currentValue?.detail || ''}
           onChange={handleDetailChange}
