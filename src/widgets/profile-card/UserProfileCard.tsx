@@ -3,6 +3,8 @@
 import { useUserStore } from '@/entities/user';
 import { UserIcon } from '@/shared';
 import ProfileEditDialog from './ui/ProfileEditDialog';
+import Image from 'next/image';
+const PROFILE_CARD_IMAGE = '/assets/image/profile-card-image.svg' as const;
 
 export default function UserProfileCard() {
   const { user } = useUserStore();
@@ -16,6 +18,14 @@ export default function UserProfileCard() {
           <ProfileEditDialog />
         </div>
         <div className="left-0 w-full h-[2px] bg-primary-060 mb-1.5" />
+        <Image
+          src={PROFILE_CARD_IMAGE}
+          alt="profile-card-image"
+          width={158}
+          height={47.5}
+          draggable={false}
+          className="absolute mb-1.5 bottom-0 right-32"
+        />
       </div>
       <div className="absolute left-6 top-[58px]">
         <UserIcon
