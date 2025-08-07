@@ -107,6 +107,7 @@ export default function PostMeetingView() {
                 max={1000000}
                 step={1}
                 className="w-full"
+                useComma
               />
             )}
           </form.AppField>

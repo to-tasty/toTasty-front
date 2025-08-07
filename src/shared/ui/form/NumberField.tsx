@@ -1,5 +1,6 @@
 import Input from '../Input';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
+import useCommaInput from '../../lib/form/model/hooks/useCommaInput';
 import FormField from './FormField';
 import { NumberFieldProps } from '../../lib/form/model/types';
 
@@ -9,24 +10,47 @@ export default function NumberField({
   min,
   max,
   step = 1,
+  hideArrows = false,
+  useComma = false,
   className,
 }: NumberFieldProps) {
-  const { displayValue, field } = useFieldValue<number>({ componentName: 'NumberField' });
+  const { field } = useFieldValue<number>({ componentName: 'NumberField' });
   const fieldId = `field-${field.name}`;
+
+  const commaInput = useCommaInput(field.state.value);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (useComma) {
+      const numericValue = commaInput.handleChange(e);
+      if (numericValue !== null) {
+        field.handleChange(numericValue);
+      }
+    } else {
+      const value = Number(e.target.value) || 0;
+      field.handleChange(value);
+    }
+  };
 
   return (
     <FormField field={field} label={label} className={className}>
       <Input
         id={fieldId}
         name={field.name}
-        type="number"
-        value={displayValue}
-        onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(Number(e.target.value) || 0)}
-        placeholder={placeholder}
+        type={useComma ? 'text' : 'number'}
+        inputMode="numeric"
         min={min}
         max={max}
         step={step}
+        value={useComma ? commaInput.inputValue : String(field.state.value ?? '')}
+        onChange={handleChange}
+        onBlur={() => {
+          field.handleBlur();
+          if (useComma) {
+            commaInput.handleBlur();
+          }
+        }}
+        placeholder={placeholder}
+        className={`${hideArrows ? 'hideArrows' : ''}`}
       />
     </FormField>
   );

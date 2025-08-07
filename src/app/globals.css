@@ -236,3 +236,13 @@
     color: var(--color-gray-040);
   }
 }
+
+input[type='number'].hideArrows::-webkit-inner-spin-button,
+input[type='number'].hideArrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'].hideArrows {
+  -moz-appearance: textfield;
+}

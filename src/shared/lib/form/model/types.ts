@@ -34,6 +34,8 @@ export interface NumberFieldProps extends BaseFormFieldProps {
   min?: number;
   max?: number;
   step?: number;
+  hideArrows?: boolean;
+  useComma?: boolean;
 }
 
 export interface DateTimeFieldProps extends BaseFormFieldProps {
