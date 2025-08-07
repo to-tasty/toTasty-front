@@ -15,7 +15,7 @@ export interface PostMeetingFormData {
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;
-  thumbnailUrl: File | null;
+  thumbnailUrl: string;
   drinkType: DrinkType;
   tastingList: TastingInfo[];
   description: string;

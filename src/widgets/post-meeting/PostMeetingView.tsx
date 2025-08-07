@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
@@ -9,6 +8,7 @@ import ErrorField from '@/shared/ui/form/ErrorField';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
+  ImageUrlSchema,
   participationFeeSchema,
   maxParticipantsSchema,
   minParticipantsSchema,
@@ -18,10 +18,8 @@ import {
   startAtSchema,
   joinEndAtSchema,
   meetingDateSchema,
-  thumbnailUrlSchema,
   tastingListSchema,
   drinkNameSchema,
-  drinkImgUrlSchema,
 } from './model/validationSchema';
 
 export default function PostMeetingView() {
@@ -43,11 +41,6 @@ export default function PostMeetingView() {
   });
 
   const uploadMutation = useUploadImageMutation();
-  const idCounter = useRef(0);
-  const generateId = () => {
-    idCounter.current += 1;
-    return Date.now() + idCounter.current;
-  };
 
   const drinkTypeOptions = Object.values(DrinkType).map((type) => ({
     value: type,
@@ -101,7 +94,7 @@ export default function PostMeetingView() {
       <form.AppField
         name="thumbnailUrl"
         validators={{
-          onChange: thumbnailUrlSchema,
+          onChange: ImageUrlSchema('대표'),
         }}
       >
         {(field) => (
@@ -211,8 +204,9 @@ export default function PostMeetingView() {
             <p className="text-sm leading-none font-medium select-none">시음 음료 목록</p>
             <ErrorField fieldStateMeta={field.state.meta} />
             {field.state.value.map((_, index) => {
+              const itemKey = `tastingList-${index}`;
               return (
-                <div key={generateId()} className="flex gap-2">
+                <div key={itemKey} className="flex gap-2">
                   <form.AppField
                     name={`tastingList[${index}].drinkName`}
                     validators={{
@@ -222,15 +216,15 @@ export default function PostMeetingView() {
                     {(subField) => (
                       <subField.TextField
                         inputType="text"
-                        placeholder="ex: Latte etc.."
+                        placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
                         className="flex-1"
                       />
                     )}
                   </form.AppField>
                   <form.AppField
-                    name={`tastingList[${index}].drinkImgUrl`}
+                    name={`tastingList[${index}].drinkImageUrl`}
                     validators={{
-                      onChange: drinkImgUrlSchema,
+                      onChange: ImageUrlSchema('음료'),
                     }}
                   >
                     {(subField) => (
@@ -256,7 +250,7 @@ export default function PostMeetingView() {
             <Button
               type="button"
               variant="ghost"
-              onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
+              onClick={() => field.pushValue({ drinkName: '', drinkImageUrl: '' })}
               className="cursor-pointer w-full"
             >
               <span className="border border-primary text-primary leading-[110%] rounded-full w-5 h-5 flex justify-center">

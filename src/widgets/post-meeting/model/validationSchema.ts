@@ -11,12 +11,14 @@ export const meetingTitleSchema = z
   .min(3, '모임 제목은 최소 3글자 이상이어야 합니다')
   .max(50, '모임 제목은 50글자를 초과할 수 없습니다');
 
-export const thumbnailUrlSchema = z.custom<File | null>(
-  (file) => file instanceof File && file.type.startsWith('image/'),
-  {
-    message: '대표 이미지를 첨부해주세요',
-  },
-);
+export const ImageUrlSchema = (type: string) =>
+  z.string().refine(
+    (value) => {
+      if (value === '') return false;
+      return value.length > 0;
+    },
+    { message: `${type} 이미지를 첨부해주세요` },
+  );
 
 export const locationSchema = z
   .object({
@@ -89,9 +91,3 @@ export const descriptionSchema = z
 
 export const tastingListSchema = z.array(z.any()).min(1, '시음 리스트를 1개 이상 추가해주세요');
 export const drinkNameSchema = z.string().min(1, '음료명을 입력해주세요');
-export const drinkImgUrlSchema = z.custom<string>(
-  (file) => file instanceof File && file.type.startsWith('image/'),
-  {
-    message: '음료 이미지를 첨부해주세요',
-  },
-);

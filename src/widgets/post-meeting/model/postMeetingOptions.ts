@@ -23,7 +23,7 @@ const defaultValues: PostMeetingFormData = {
   maxParticipants: 0,
   minParticipants: 0,
   currentParticipants: 1,
-  thumbnailUrl: null,
+  thumbnailUrl: '',
   drinkType: DrinkType.coffee,
   tastingList: [] as TastingInfo[],
   description: '',
