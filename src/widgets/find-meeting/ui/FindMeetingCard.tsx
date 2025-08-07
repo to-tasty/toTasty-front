@@ -15,7 +15,6 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
   const textMuted = 'text-xs text-muted';
   const colRow = 'col-start-1 row-start-1';
 
-  // size prop에 따른 동적 클래스 정의
   const isBig = size === 'big';
 
   const cardWidth = isBig ? 'w-[263px]' : 'w-[228px]';
@@ -35,6 +34,14 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
   const tastingListButtonHeight = isBig ? 'h-[22px]' : 'h-[20px]';
   const tastingListButtonMarginRight = isBig ? 'mr-[3px]' : 'mr-1';
   const tastingListTextSize = isBig ? 'text-sm font-bold mr-3' : 'text-xs font-bold mr-2';
+
+  const dateObj = new Date(meetingInfo.startAt);
+
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+
+  const formattedStartAt = `${year}년 ${month}월 ${day}일`;
 
   return (
     <div
@@ -75,7 +82,7 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
         </div>
       </div>
       <div className={clsx(flexItemCenter, 'justify-between ml-3', isBig ? 'mt-3' : 'mt-2.5')}>
-        <span className="text-xs">
+        <span className={clsx('text-xs truncate text-ellipsis', isBig ? 'w-[120px]' : 'w-[105px]')}>
           {meetingInfo.location.address.replace(meetingInfo.location.sido, '')}
         </span>
         <div className={clsx(flexItemCenter)}>
@@ -90,8 +97,7 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
           >
             <span className="text-xs font-medium text-muted-foreground">시음리스트</span>
           </div>
-          <span className={tastingListTextSize}>5개</span>
-          {/* TODO: 시음리스트 API에 필드 추가 해서 받아와야함 */}
+          <span className={tastingListTextSize}>{meetingInfo.tastingDrinkCount ?? 0}개</span>
         </div>
       </div>
       <div className={clsx(flexItemCenter, 'mt-[1px] ml-3 text-sm font-bold')}>
@@ -106,7 +112,7 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
         <Progress value={(meetingInfo.currentParticipants / meetingInfo.maxParticipants) * 100} />
       </div>
       <span className={clsx(textMuted, 'ml-3', isBig ? 'mt-1.5' : 'mt-1')}>
-        {meetingInfo.startAt} 출발
+        {formattedStartAt} 예정
       </span>
       <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>
         {meetingInfo.participationFee.toLocaleString('ko-KR')}원

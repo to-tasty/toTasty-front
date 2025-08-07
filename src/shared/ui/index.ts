@@ -48,6 +48,8 @@ export {
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './Popover';
 
+export { Skeleton } from './Skeleton';
+
 export {
   Dialog,
   DialogClose,
