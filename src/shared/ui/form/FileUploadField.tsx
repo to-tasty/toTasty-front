@@ -57,11 +57,22 @@ export default function FileUploadField({
     }
   };
 
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${(bytes / k ** i).toFixed(2)} ${sizes[i]}`;
+  };
+
   const getDisplayText = () => {
     if (uploadStatus === 'loading') return loadingText;
     if (hasUploadError || uploadStatus === 'error') return errorText;
     if (selectedFile && uploadStatus === 'idle') return selectedText;
-    if (value) return value;
+    if (value && selectedFile) {
+      return `${formatFileSize(selectedFile.size)}`;
+    }
+    if (value) return '이미지 업로드 완료';
     return placeholder || '이미지를 첨부해주세요';
   };
 
@@ -74,7 +85,7 @@ export default function FileUploadField({
       required={required}
       className={className}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 w-full">
         <Input
           id={fieldId}
           name={field.name}
