@@ -4,5 +4,5 @@ export interface UploadFileInfo {
 
 export interface PresignedInfo {
   presignedUrl: string;
-  imageUrl: string;
+  imgUrl: string;
 }
