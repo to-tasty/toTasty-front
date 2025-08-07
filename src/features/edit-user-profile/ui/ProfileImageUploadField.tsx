@@ -16,21 +16,6 @@ export default function ProfileImageUploadField({ field }: { field: AnyFieldApi 
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const fileName = file.name;
-    // 확장자가 없으면 중단
-    if (!fileName.includes('.')) {
-      // TODO : 추후 토스트로 변경
-      alert('유효하지 않은 파일입니다.');
-      return;
-    }
-
-    const extension = fileName.split('.').pop()?.toLowerCase();
-    const validExtensions = ['jpg', 'jpeg', 'png'];
-    if (!extension || !validExtensions.includes(extension)) {
-      alert('유효하지 않은 파일 형식입니다.');
-      return;
-    }
-
     try {
       const compressedFile = await compressImage(file, 100);
       const result = await uploadMutation.mutateAsync(compressedFile);

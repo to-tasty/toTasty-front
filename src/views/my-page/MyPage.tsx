@@ -1,4 +1,4 @@
-import { UserProfileCard } from '@/features/edit-user-profile';
+import { UserProfileCard } from '@/widgets';
 
 export default function MyPage() {
   return <UserProfileCard />;
