@@ -45,8 +45,8 @@ export interface FileUploadFieldProps extends BaseFormFieldProps {
   loadingText?: string;
   errorText?: string;
   selectedText?: string;
-  onUploadSuccess?: (imageUrl: string) => void;
-  uploadFile: (file: File) => Promise<{ imageUrl: string } | null>;
+  onUploadSuccess?: (imgUrl: string) => void;
+  uploadFile: (file: File) => Promise<{ imgUrl: string } | null>;
   isUploading?: boolean;
   hasUploadError?: boolean;
 }

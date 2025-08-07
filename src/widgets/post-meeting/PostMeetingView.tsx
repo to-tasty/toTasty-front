@@ -222,7 +222,7 @@ export default function PostMeetingView() {
                     )}
                   </form.AppField>
                   <form.AppField
-                    name={`tastingList[${index}].drinkImageUrl`}
+                    name={`tastingList[${index}].drinkImgUrl`}
                     validators={{
                       onChange: ImageUrlSchema('음료'),
                     }}
@@ -250,7 +250,7 @@ export default function PostMeetingView() {
             <Button
               type="button"
               variant="ghost"
-              onClick={() => field.pushValue({ drinkName: '', drinkImageUrl: '' })}
+              onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
               className="cursor-pointer w-full"
             >
               <span className="border border-primary text-primary leading-[110%] rounded-full w-5 h-5 flex justify-center">

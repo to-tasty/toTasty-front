@@ -40,12 +40,12 @@ export default function FileUploadField({
     try {
       const response = await uploadFile(file);
 
-      if (response && response.imageUrl) {
-        field.handleChange(response.imageUrl);
+      if (response && response.imgUrl) {
+        field.handleChange(response.imgUrl);
         setUploadStatus('success');
 
         if (onUploadSuccess) {
-          onUploadSuccess(response.imageUrl);
+          onUploadSuccess(response.imgUrl);
         }
       } else {
         setUploadStatus('error');
