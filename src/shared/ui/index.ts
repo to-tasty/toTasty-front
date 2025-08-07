@@ -46,3 +46,5 @@ export {
 } from './Select';
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './Popover';
+
+export { Skeleton } from './Skeleton';

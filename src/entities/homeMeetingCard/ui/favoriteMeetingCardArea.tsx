@@ -1,7 +1,54 @@
-export default function favoriteMeetingCardArea() {
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/shared/ui';
+import { FindMeetingCard } from '@/widgets/index';
+import useFavoriteMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useFavoriteMeetingsQuery';
+import { useUserStore } from '@/entities/user';
+
+import { useMemo } from 'react';
+
+export default function FavoriteMeetingCardArea() {
+  const rawInterests = useUserStore((state) => state.user?.interests);
+  const interests = useMemo(() => rawInterests || [], [rawInterests]);
+  const { data, isLoading } = useFavoriteMeetingsQuery(interests);
+
+  if (isLoading) return null;
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+        아직 내가 좋아할 모임이 없어요.
+      </div>
+    );
+  }
+
   return (
-    <div className="text-center w-[263px] h-[333px] bg-amber-700 rounded-xl">
-      내가좋아하는모임카드
-    </div>
+    <Carousel
+      className="relative w-[1142px] overflow-visible"
+      opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
+      orientation="horizontal"
+    >
+      <CarouselPrevious
+        className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        style={{ pointerEvents: 'auto' }}
+      />
+
+      <CarouselContent className="flex gap-[30px]">
+        {data.map((item) => (
+          <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
+            <FindMeetingCard meetingInfo={item} size="big" />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+
+      <CarouselNext
+        className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        style={{ pointerEvents: 'auto' }}
+      />
+    </Carousel>
   );
 }

@@ -2,6 +2,16 @@ export enum DrinkType {
   coffee = 'COFFEE',
   whisky = 'WHISKY',
   wine = 'WINE',
+  end = 'END',
+}
+
+export enum SortType {
+  latest = 'LATEST',
+  popularity = 'POPULARITY_WISH',
+  costHigh = 'COST_HIGH',
+  costLow = 'COST_LOW',
+  closingSoon = 'CLOSING_SOON',
+  closedRecent = 'CLOSED_RECENT',
 }
 
 export interface MeetingParticipant {
@@ -32,10 +42,11 @@ export interface MeetingCardInfo {
   isReviewed?: boolean;
   drinkType: DrinkType;
   participation?: MeetingParticipant[];
+  tastingDrinkCount?: number;
 }
 
 export interface MeetingFilters {
   filter?: string;
-  sort?: 'latest' | 'popularity' | 'costHigh' | 'costLow';
+  sort?: SortType;
   drinkType?: DrinkType;
 }

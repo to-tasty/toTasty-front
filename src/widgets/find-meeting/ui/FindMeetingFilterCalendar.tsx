@@ -37,10 +37,10 @@ export default function FindMeetingFilterCalendar() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="flex flex-col w-[336px] h-[326px] overflow-hidden p-0 justify-between items-center"
+          className="flex flex-col w-[336px] overflow-hidden p-0 justify-between items-center"
           align="start"
         >
-          <div className="flex w-[250px] h-[226px] justify-center">
+          <div className="flex w-[250px] justify-center">
             <Calendar
               mode="single"
               defaultMonth={date}
