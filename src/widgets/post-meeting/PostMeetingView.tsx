@@ -33,7 +33,17 @@ export default function PostMeetingView() {
           joinEndAt: value.joinEndAt,
         });
 
-        console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+        const updatedTastingList = value.tastingList.map((item) => ({
+          ...item,
+          drinkType: value.drinkType,
+        }));
+
+        const finalData = {
+          ...value,
+          tastingList: updatedTastingList,
+        };
+
+        console.log('모임 생성 데이터:', JSON.stringify(finalData, null, 2));
       } catch (error) {
         alert(JSON.parse(error as string)[0].message);
       }
@@ -67,7 +77,7 @@ export default function PostMeetingView() {
           {(field) => (
             <field.SelectField
               label="시음회 종류"
-              options={drinkTypeOptions}
+              options={drinkTypeOptions.filter((option) => option.value !== DrinkType.end)}
               placeholder="음료 종류를 선택하세요"
               className="flex-1"
             />

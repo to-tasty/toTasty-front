@@ -73,7 +73,11 @@ const dateInFutureSchema = (type: string) =>
 export const startAtSchema = dateInFutureSchema('모임 날짜');
 export const joinEndAtSchema = dateInFutureSchema('모집 마감일자');
 
-export const minParticipantsSchema = z.number().min(1, '최소 참가자는 1명 이상이어야 합니다');
+export const minParticipantsSchema = z
+  .number()
+  .min(1, '최소 참가자는 1명 이상이어야 합니다')
+  .max(99, '최소 참가자는 99명을 초과할 수 없습니다');
+
 export const maxParticipantsSchema = z
   .number()
   .min(2, '최대 참가자는 2명 이상이어야 합니다')

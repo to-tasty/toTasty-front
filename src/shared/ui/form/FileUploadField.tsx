@@ -72,7 +72,7 @@ export default function FileUploadField({
     if (value && selectedFile) {
       return `${formatFileSize(selectedFile.size)}`;
     }
-    if (value) return '이미지 업로드 완료';
+    if (value) return '업로드 완료';
     return placeholder || '이미지를 첨부해주세요';
   };
 
