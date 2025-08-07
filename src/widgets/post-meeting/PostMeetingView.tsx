@@ -91,21 +91,45 @@ export default function PostMeetingView() {
         </form.AppField>
       </div>
 
-      <form.AppField
-        name="thumbnailUrl"
-        validators={{
-          onChange: ImageUrlSchema('대표'),
-        }}
-      >
-        {(field) => (
-          <field.FileUploadField
-            label="대표 이미지"
-            placeholder="대표 이미지를 첨부해주세요."
-            uploadFile={uploadMutation.mutateAsync}
-            hasUploadError={uploadMutation.isError}
-          />
-        )}
-      </form.AppField>
+      <div className="flex gap-4">
+        <div className="flex-1 relative">
+          <form.AppField
+            name="participationFee"
+            validators={{
+              onChange: participationFeeSchema,
+            }}
+          >
+            {(field) => (
+              <field.NumberField
+                label="참가 비용"
+                placeholder="참가비를 입력하세요"
+                min={0}
+                max={1000000}
+                step={1}
+                className="w-full"
+              />
+            )}
+          </form.AppField>
+          <span className="text-secondary-foreground mt-1 absolute right-3 top-7">원</span>
+        </div>
+
+        <form.AppField
+          name="thumbnailUrl"
+          validators={{
+            onChange: ImageUrlSchema('대표'),
+          }}
+        >
+          {(field) => (
+            <field.FileUploadField
+              label="대표 이미지"
+              placeholder="대표 이미지를 첨부해주세요."
+              uploadFile={uploadMutation.mutateAsync}
+              hasUploadError={uploadMutation.isError}
+              className="flex-2"
+            />
+          )}
+        </form.AppField>
+      </div>
 
       <form.AppField
         name="location"
@@ -185,23 +209,6 @@ export default function PostMeetingView() {
           )}
         </form.AppField>
       </div>
-
-      <form.AppField
-        name="participationFee"
-        validators={{
-          onChange: participationFeeSchema,
-        }}
-      >
-        {(field) => (
-          <field.NumberField
-            label="참가 비용"
-            placeholder="참가비를 입력하세요"
-            min={1}
-            max={1000000}
-            step={1}
-          />
-        )}
-      </form.AppField>
 
       <form.AppField
         name="tastingList"
