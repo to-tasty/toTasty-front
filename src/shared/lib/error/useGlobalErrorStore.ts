@@ -2,10 +2,10 @@ import { create } from 'zustand';
 
 interface GlobalErrorStatus {
   status: number | null;
-  errorData: any | null;
+  errorData: object | null;
   // reponse data 는 API 마다 다르기 때문에 이례적으로 any 사용
 
-  setGlobalError: (status: number | null, errorData?: any | null) => void;
+  setGlobalError: (status: number | null, errorData?: object | null) => void;
   clearGlobalError: () => void;
 }
 

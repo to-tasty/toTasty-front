@@ -1,6 +1,6 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
-import { SorterState } from '../model/types';
 import { SortType } from '@/entities/meetings';
+import { SorterState } from '../model/types';
 import useSorterStore from '../model/hooks/useSorterStore';
 import useFilterStore from '../model/hooks/useFilterStore';
 
@@ -21,7 +21,7 @@ export default function FindSorterDropdown() {
   function selectSorter(item: SorterState) {
     setSelectedSorter(item.sorter);
 
-    setFilters({ ...filters, sort: item.sortType });
+    setFilters({ ...filters, page: 1, sort: item.sortType });
   }
 
   return (

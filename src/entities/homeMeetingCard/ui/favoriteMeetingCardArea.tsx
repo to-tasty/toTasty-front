@@ -10,6 +10,7 @@ import useFavoriteMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/use
 import { useUserStore } from '@/entities/user';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 
 export default function FavoriteMeetingCardArea() {
   const rawInterests = useUserStore((state) => state.user?.interests);
@@ -40,7 +41,9 @@ export default function FavoriteMeetingCardArea() {
       <CarouselContent className="flex gap-[30px]">
         {data.map((item) => (
           <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
-            <FindMeetingCard meetingInfo={item} size="big" />
+            <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
+              <FindMeetingCard meetingInfo={item} size="big" />
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
