@@ -52,7 +52,7 @@ export default function Page(): React.JSX.Element {
       const response = await mutateAsync(file);
       setSelectedFile(file);
       if (response) {
-        setUploadedImage(response.imageUrl);
+        setUploadedImage(response.imgUrl);
       }
     }
   };
