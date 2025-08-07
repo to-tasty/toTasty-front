@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import { Progress } from '@/shared/ui/Progress';
-import { MeetingList } from '@/entities/meetings/index';
+import { MeetingCardInfo } from '@/entities/meetings/index';
 import clsx from 'clsx';
 
 interface MeetingCardInfoProps {
-  meetingInfo: MeetingList;
+  meetingInfo: MeetingCardInfo;
   size?: 'big' | 'small';
 }
 
 export default function FindMeetingCard({ meetingInfo, size = 'small' }: MeetingCardInfoProps) {
   const flexItemCenter = 'flex items-center';
-  const flexCenter = flexItemCenter + ' justify-center';
+  const flexCenter = `${flexItemCenter} justify-center`;
   const flexEnd = 'flex justify-end';
   const textMuted = 'text-xs text-muted';
   const colRow = 'col-start-1 row-start-1';

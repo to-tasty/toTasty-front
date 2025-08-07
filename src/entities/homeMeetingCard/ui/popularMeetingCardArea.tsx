@@ -7,6 +7,7 @@ import {
 } from '@/shared/ui';
 import { FindMeetingCard } from '@/widgets/index';
 import usePopularMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/usePopularMeetingsQuery';
+import Link from 'next/link';
 
 export default function PopularMeetingCardArea() {
   const { data, isLoading } = usePopularMeetingsQuery();
@@ -27,7 +28,9 @@ export default function PopularMeetingCardArea() {
       <CarouselContent className="flex gap-[30px]">
         {data.map((item) => (
           <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
-            <FindMeetingCard meetingInfo={item} size="big" />
+            <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
+              <FindMeetingCard meetingInfo={item} size="big" />
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>

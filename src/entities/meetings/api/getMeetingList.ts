@@ -1,9 +1,13 @@
 import { getApi } from '@/shared';
-import { MeetingFilters, MeetingCardInfo } from '../model/types';
+import { MeetingFilters, MeetingListInfo } from '../model/types';
 
 export default async function getMeetingList(
   filter: MeetingFilters,
-): Promise<MeetingCardInfo[] | null> {
-  const res = await getApi<{ content: MeetingCardInfo[] }>('/api/v1/meetings', filter);
-  return res ? res.content : null;
+  pageParam: number,
+): Promise<MeetingListInfo | null> {
+  return getApi<MeetingListInfo>('/api/v1/meetings', {
+    ...filter,
+    page: pageParam,
+    size: 16,
+  });
 }
