@@ -81,7 +81,7 @@ export const maxParticipantsSchema = z
 
 export const participationFeeSchema = z
   .number()
-  .min(1, '참가비는 0원 이상이어야 합니다')
+  .min(0, '참가비는 0원 이상이어야 합니다')
   .max(1000000, '참가비는 100만원을 초과할 수 없습니다');
 
 export const descriptionSchema = z

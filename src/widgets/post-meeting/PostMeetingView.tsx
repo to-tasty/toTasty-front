@@ -162,6 +162,8 @@ export default function PostMeetingView() {
               label="최소 모임 정원"
               placeholder="모임이 생성될 수 있는 최소 인원을 작성해주세요"
               className="flex-1"
+              min={1}
+              step={1}
             />
           )}
         </form.AppField>
@@ -177,6 +179,8 @@ export default function PostMeetingView() {
               label="최대 모임 정원"
               placeholder="최대 참가자 수"
               className="flex-1"
+              min={2}
+              step={1}
             />
           )}
         </form.AppField>
@@ -188,7 +192,15 @@ export default function PostMeetingView() {
           onChange: participationFeeSchema,
         }}
       >
-        {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
+        {(field) => (
+          <field.NumberField
+            label="참가 비용"
+            placeholder="참가비를 입력하세요"
+            min={1}
+            max={1000000}
+            step={1}
+          />
+        )}
       </form.AppField>
 
       <form.AppField
