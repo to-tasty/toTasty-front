@@ -10,6 +10,12 @@ export default function UserProfileCard() {
   const { user } = useUserStore();
   if (!user) return null;
 
+  const drinkMap: { [key: string]: string } = {
+    COFFEE: '커피',
+    WHISKY: '위스키',
+    WINE: '와인',
+  };
+
   return (
     <div className="relative flex flex-col w-full max-w-[992px] h-[148px] rounded-2xl overflow-hidden shadow-xs bg-white outline-2 outline-gray-020">
       <div className="bg-primary h-[66px] relative flex flex-col justify-between">
@@ -39,7 +45,9 @@ export default function UserProfileCard() {
         <h2 className="text-gray-080 font-semibold text-base my-1">{user.nickname}</h2>
         <div>
           <span className="font-medium text-sm">관심사. </span>
-          <span className="text-sm">{user.interests.join(', ')}</span>
+          <span className="text-sm">
+            {user.interests.map((interest) => drinkMap[interest]).join(', ')}
+          </span>
         </div>
       </div>
     </div>

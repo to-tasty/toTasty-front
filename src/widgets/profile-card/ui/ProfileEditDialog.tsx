@@ -20,11 +20,12 @@ import {
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
 import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
+import { DrinkType } from '@/entities/meetings';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
-  { value: '커피', label: '☕ 커피' },
-  { value: '와인', label: '🍷 와인' },
-  { value: '위스키', label: '🥃 위스키' },
+  { value: DrinkType.coffee, label: '☕ 커피' },
+  { value: DrinkType.wine, label: '🍷 와인' },
+  { value: DrinkType.whisky, label: '🥃 위스키' },
 ];
 
 export default function ProfileEditDialog() {
@@ -42,7 +43,7 @@ export default function ProfileEditDialog() {
     defaultValues: profileDefaultValues,
     validators: {},
     onSubmit: ({ value }: { value: UpdatedUserProfile }) => {
-      const interestOrder = ['커피', '와인', '위스키'];
+      const interestOrder = ['COFFEE', 'WINE', 'WHISKY'];
       value.interests?.sort((a, b) => interestOrder.indexOf(a) - interestOrder.indexOf(b));
       updateProfile.mutate(value);
     },
