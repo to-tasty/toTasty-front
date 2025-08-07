@@ -100,7 +100,6 @@ export default function PostMeetingView() {
         {(field) => (
           <field.FileUploadField
             label="대표 이미지"
-            accept="image/*"
             placeholder="대표 이미지를 첨부해주세요."
             uploadFile={uploadMutation.mutateAsync}
             hasUploadError={uploadMutation.isError}
@@ -215,9 +214,8 @@ export default function PostMeetingView() {
                   >
                     {(subField) => (
                       <subField.TextField
-                        inputType="text"
                         placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
-                        className="flex-1"
+                        className="w-full"
                       />
                     )}
                   </form.AppField>
@@ -229,9 +227,8 @@ export default function PostMeetingView() {
                   >
                     {(subField) => (
                       <subField.FileUploadField
-                        accept="image/*"
                         placeholder="음료 이미지를 첨부해주세요"
-                        className="flex-1"
+                        className="max-w-[200px]"
                         uploadFile={uploadMutation.mutateAsync}
                         hasUploadError={uploadMutation.isError}
                       />
