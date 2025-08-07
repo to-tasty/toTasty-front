@@ -32,7 +32,7 @@ export default async function postFileInfo(image: File): Promise<PresignedInfo |
     return null;
   }
 
-  if (!checkFileExtensions(image.name)) {
+  if (!checkFileExtensions(image.name.toLowerCase())) {
     alert('지원하지 않는 이미지 확장자입니다.');
     return null;
   }
