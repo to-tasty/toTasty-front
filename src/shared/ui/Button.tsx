@@ -24,9 +24,9 @@ const buttonVariants = cva(
         calendarBtn2:
           'w-[118px] h-[40px] bg-primary text-sm font-semibold text-background rounded-xl',
         outlinePrimary:
-          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border-primary text-primary',
+          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-primary/60 dark:hover:bg-primary/30 border-primary text-primary',
         outlineDanger:
-          'border bg-background shadow-xs hover:bg-danger/20 dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border-danger text-danger',
+          'border bg-background shadow-xs hover:bg-danger/20 dark:bg-input/30 dark:border-danger/60 dark:hover:bg-danger/30 border-danger text-danger',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

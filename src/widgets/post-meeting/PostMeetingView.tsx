@@ -227,7 +227,7 @@ export default function PostMeetingView() {
                     {(subField) => (
                       <subField.TextField
                         placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
-                        className="w-full"
+                        className="flex-2"
                       />
                     )}
                   </form.AppField>
@@ -240,7 +240,7 @@ export default function PostMeetingView() {
                     {(subField) => (
                       <subField.FileUploadField
                         placeholder="음료 이미지를 첨부해주세요"
-                        className="max-w-[200px]"
+                        className="flex-1"
                         uploadFile={uploadMutation.mutateAsync}
                         hasUploadError={uploadMutation.isError}
                       />
