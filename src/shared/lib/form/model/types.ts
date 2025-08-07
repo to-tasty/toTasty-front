@@ -7,6 +7,7 @@ export interface BaseFormFieldProps {
   required?: boolean;
   className?: string;
   placeholder?: string;
+  maxLength?: number;
 }
 
 export interface FormFieldProps {
@@ -17,6 +18,7 @@ export interface FormFieldProps {
   className?: string;
   disabled?: boolean;
   required?: boolean;
+  maxLength?: number;
 }
 
 export interface TextFieldProps extends BaseFormFieldProps {

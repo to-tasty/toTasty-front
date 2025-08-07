@@ -9,6 +9,7 @@ export default function FormField({
   description,
   required,
   className = '',
+  maxLength = 0,
 }: FormFieldProps) {
   const fieldId = `field-${field.name}`;
 
@@ -16,7 +17,13 @@ export default function FormField({
     <div className={`space-y-2 ${className}`}>
       <div className="flex items-center">
         {label && <Label htmlFor={fieldId}>{label}</Label>}
-        {required && <p className="text-danger ml-1">*</p>}
+        {required && <p className="text-danger mr-auto ml-1">*</p>}
+        {maxLength > 0 && (
+          <p className="text-sm text-muted-foreground ml-auto">
+            <span className="text-primary text-bold">{field.state.value?.length || 0}</span>/
+            {maxLength}
+          </p>
+        )}
       </div>
       {children}
       {description && <p className="text-sm text-muted-foreground">{description}</p>}

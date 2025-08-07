@@ -241,7 +241,9 @@ export default function PostMeetingView() {
       >
         {(field) => (
           <div>
-            <p className="text-sm leading-none font-medium select-none">시음 음료 목록</p>
+            <p className="text-sm leading-none font-medium select-none">
+              시음 음료 목록<span className="text-danger ml-1">*</span>
+            </p>
             <ErrorField fieldStateMeta={field.state.meta} />
             {field.state.value.map((_, index) => {
               const itemKey = `tastingList-${index}`;
@@ -310,6 +312,7 @@ export default function PostMeetingView() {
           <field.TextareaField
             label="상세 설명"
             placeholder="모임에 대한 설명을 입력하세요"
+            maxLength={3000}
             required
           />
         )}
