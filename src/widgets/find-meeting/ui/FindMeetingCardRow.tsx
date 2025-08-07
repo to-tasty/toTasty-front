@@ -1,9 +1,9 @@
-import { MeetingList } from '@/entities/meetings/index';
+import { MeetingCardInfo } from '@/entities/meetings/index';
 import FindMeetingCard from './FindMeetingCard';
 import Link from 'next/link';
 
 interface MeetingInfoList {
-  meetingCardList: MeetingList[] | null | undefined;
+  meetingCardList: MeetingCardInfo[] | null | undefined;
 }
 
 export default function FindMeetingCardRow({ meetingCardList }: MeetingInfoList) {
