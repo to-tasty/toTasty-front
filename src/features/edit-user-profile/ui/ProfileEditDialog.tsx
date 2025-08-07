@@ -2,17 +2,22 @@
 
 import {
   Button,
+  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '@/shared/ui';
-import useUserStore from '@/entities/user/model/hooks/useUserStore';
+import { useUserStore } from '@/entities/user';
 import { useAppForm } from '@/shared';
-import ProfileImageUploadField from './ProfileImageUploader';
+import Image from 'next/image';
+import EditIcon from 'public/assets/icons/edit-icon.svg';
+import ProfileImageUploadField from './ProfileImageUploadField';
 import usePatchUserProfileMutation from '../model/hooks/usePatchUserProfileMutation';
 import UpdatedUserProfile from '../model/types';
+import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
   { value: '커피', label: '☕ 커피' },
@@ -21,7 +26,7 @@ const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
 ];
 
 export default function ProfileEditDialog() {
-  const profileUpdate = usePatchUserProfileMutation();
+  const updateProfile = usePatchUserProfileMutation();
   const user = useUserStore((state) => state.user);
   const { nickname, interests, profileImgUrl } = user ?? {
     nickname: '',
@@ -29,10 +34,15 @@ export default function ProfileEditDialog() {
     profileImgUrl: '',
   };
 
+  const profileDefaultValues = { nickname, interests: [...interests], profileImgUrl };
+
   const form = useAppForm({
-    defaultValues: { nickname, interests: [...interests], profileImgUrl },
+    defaultValues: profileDefaultValues,
+    validators: {},
     onSubmit: ({ value }: { value: UpdatedUserProfile }) => {
-      profileUpdate.mutate(value);
+      const interestOrder = ['커피', '와인', '위스키'];
+      value.interests?.sort((a, b) => interestOrder.indexOf(a) - interestOrder.indexOf(b));
+      updateProfile.mutate(value);
     },
   });
 
@@ -45,47 +55,83 @@ export default function ProfileEditDialog() {
   };
 
   return (
-    <DialogContent className="sm:max-w-[425px]">
-      <form method="post" onSubmit={handleSubmit}>
-        <DialogHeader>
-          <DialogTitle>프로필 수정</DialogTitle>
-        </DialogHeader>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Image src={EditIcon} alt="logo" width={32} height={32} draggable={false} />
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px] w-full">
+        <form method="post" onSubmit={handleSubmit} className="max-w-full">
+          <div className="w-full"></div>
+          <DialogHeader>
+            <DialogTitle>프로필 수정</DialogTitle>
+          </DialogHeader>
 
-        <div className="grid gap-6 py-4">
-          <form.AppField name="profileImgUrl">
-            {(field) => <ProfileImageUploadField field={field} />}
-          </form.AppField>
+          <div className="grid gap-6 py-4 flex-1 max-w-full">
+            <form.AppField
+              name="profileImgUrl"
+              validators={{ onMount: profileImgUrlSchema, onChange: profileImgUrlSchema }}
+            >
+              {(field) => <ProfileImageUploadField field={field} />}
+            </form.AppField>
 
-          <form.AppField name="nickname">
-            {(field) => <field.TextField label="닉네임" inputType="text" />}
-          </form.AppField>
-          <form.AppField name="interests" mode="array">
-            {(field) => (
-              <field.MultiSelectField
-                label="관심사"
-                options={INTEREST_OPTIONS}
-                field={field}
-                placeholder="관심사를 선택하세요"
-              />
-            )}
-          </form.AppField>
-        </div>
+            <form.AppField
+              name="nickname"
+              validators={{
+                onMount: nicknameSchema,
+                onChange: nicknameSchema,
+              }}
+            >
+              {(field) => (
+                <field.TextField label="닉네임" inputType="text" className="overflow-hidden" />
+              )}
+            </form.AppField>
+            <form.AppField
+              name="interests"
+              mode="array"
+              validators={{
+                onMount: interestsSchema,
+              }}
+            >
+              {(field) => (
+                <field.MultiSelectField
+                  label="관심사"
+                  options={INTEREST_OPTIONS}
+                  field={field}
+                  placeholder="관심사를 선택하세요"
+                />
+              )}
+            </form.AppField>
+          </div>
 
-        <DialogFooter className="flex gap-2">
-          <DialogClose asChild>
-            <Button type="button" variant="outline" className="flex-1">
-              취소
-            </Button>
-          </DialogClose>
-          <form.Subscribe selector={(state) => state.isDefaultValue}>
-            {(isDefaultValue) => (
-              <Button type="submit" className="flex-1" disabled={isDefaultValue}>
-                수정하기
+          <DialogFooter className="flex gap-2">
+            <DialogClose asChild>
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1"
+                onClick={() => form.reset()}
+              >
+                취소
               </Button>
-            )}
-          </form.Subscribe>
-        </DialogFooter>
-      </form>
-    </DialogContent>
+            </DialogClose>
+            <form.Subscribe
+              selector={(state) => [state.isDefaultValue, state.canSubmit, state.isSubmitting]}
+            >
+              {([isDefaultValue, canSubmit, isSubmitting]) => (
+                <DialogClose asChild>
+                  <Button
+                    type="submit"
+                    className="flex-1"
+                    disabled={isDefaultValue || !canSubmit || isSubmitting}
+                  >
+                    수정하기
+                  </Button>
+                </DialogClose>
+              )}
+            </form.Subscribe>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }

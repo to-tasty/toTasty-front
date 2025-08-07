@@ -11,8 +11,8 @@ import {
   CommandList,
 } from '@/shared/ui';
 import { Check, ChevronDown } from 'lucide-react';
-import FormField from './FormField';
 import { MultiSelectFieldProps } from '@/shared/lib/form/model/types';
+import FormField from './FormField';
 
 export default function MultiSelectField({
   label,

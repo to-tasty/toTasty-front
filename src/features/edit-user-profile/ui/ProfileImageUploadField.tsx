@@ -16,15 +16,30 @@ export default function ProfileImageUploadField({ field }: { field: AnyFieldApi 
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const fileName = file.name;
+    // 확장자가 없으면 중단
+    if (!fileName.includes('.')) {
+      // TODO : 추후 토스트로 변경
+      alert('유효하지 않은 파일입니다.');
+      return;
+    }
+
+    const extension = fileName.split('.').pop()?.toLowerCase();
+    const validExtensions = ['jpg', 'jpeg', 'png'];
+    if (!extension || !validExtensions.includes(extension)) {
+      alert('유효하지 않은 파일 형식입니다.');
+      return;
+    }
+
     try {
       const compressedFile = await compressImage(file, 100);
       const result = await uploadMutation.mutateAsync(compressedFile);
-      if (result?.imageUrl) {
-        setPreviewUrl(result.imageUrl);
-        field.handleChange(result.imageUrl);
+      if (result?.imgUrl) {
+        setPreviewUrl(result.imgUrl);
+        field.handleChange(result.imgUrl);
       }
     } catch (error) {
-      console.error('이미지 업로드 실패:', error);
+      // TODO : 토스트 혹은 모달로 에러 처리할 것
       alert('이미지 업로드 중 문제가 발생했습니다.');
     }
   };
