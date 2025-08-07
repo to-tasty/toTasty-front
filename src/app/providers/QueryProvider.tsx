@@ -13,6 +13,8 @@ export function QueryProvider({ children }: { children: React.ReactNode }): Reac
     queryCache: new QueryCache({
       onError: (error, query) => {
         if (isAxiosError(error)) {
+          /* eslint-disable-next-line no-console */
+          console.error(query);
         }
       },
     }),

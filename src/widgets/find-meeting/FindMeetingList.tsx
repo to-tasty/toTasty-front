@@ -31,13 +31,13 @@ export default function FindMeetingList() {
       );
       setMeetings(combinedMeetingInfo);
     }
-  }, [data]);
+  }, [data, setMeetings]);
 
   useEffect(() => {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, fetchNextPage]);
 
   if (isPending) {
     return <Skeleton className="h-[1020px] w-full rounded-xl bg-gray-020" />;

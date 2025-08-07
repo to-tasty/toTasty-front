@@ -8,7 +8,7 @@ const meetingKeys = createQueryKeys('meetings', {
   all: null,
   list: (filter: MeetingFilters) => ({
     queryKey: [filter],
-    queryFn: ({ pageParam = 1 }: QueryFunctionContext<any, number>) =>
+    queryFn: ({ pageParam = 1 }: QueryFunctionContext<[MeetingFilters], number>) =>
       getMeetingList(filter, pageParam),
   }),
   // detail: (meetingId: number) => ({

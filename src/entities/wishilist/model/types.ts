@@ -1,1 +1,1 @@
-export type { MeetingList as Wishlist } from '../../meetings';
+export type { MeetingCardInfo as Wishlist } from '../../meetings';
