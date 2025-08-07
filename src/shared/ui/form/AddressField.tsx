@@ -55,7 +55,6 @@ export default function AddressField({
       field={field}
       label={label}
       description={description}
-      disabled={disabled}
       required={required}
       className={className}
     >

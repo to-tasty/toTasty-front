@@ -6,6 +6,7 @@ import { NumberFieldProps } from '../../lib/form/model/types';
 
 export default function NumberField({
   label,
+  description,
   placeholder,
   min,
   max,
@@ -13,6 +14,8 @@ export default function NumberField({
   hideArrows = false,
   useComma = false,
   className,
+  disabled,
+  required,
 }: NumberFieldProps) {
   const { field } = useFieldValue<number>({ componentName: 'NumberField' });
   const fieldId = `field-${field.name}`;
@@ -32,7 +35,13 @@ export default function NumberField({
   };
 
   return (
-    <FormField field={field} label={label} className={className}>
+    <FormField
+      field={field}
+      label={label}
+      description={description}
+      required={required}
+      className={className}
+    >
       <Input
         id={fieldId}
         name={field.name}
@@ -50,6 +59,7 @@ export default function NumberField({
           }
         }}
         placeholder={placeholder}
+        disabled={disabled}
         className={`${hideArrows ? 'hideArrows' : ''}`}
       />
     </FormField>

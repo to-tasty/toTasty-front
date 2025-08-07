@@ -80,6 +80,7 @@ export default function PostMeetingView() {
               options={drinkTypeOptions.filter((option) => option.value !== DrinkType.end)}
               placeholder="음료 종류를 선택하세요"
               className="flex-1"
+              required
             />
           )}
         </form.AppField>
@@ -96,6 +97,7 @@ export default function PostMeetingView() {
               inputType="text"
               placeholder="모임 이름을 작성해주세요"
               className="flex-2"
+              required
             />
           )}
         </form.AppField>
@@ -137,6 +139,7 @@ export default function PostMeetingView() {
               uploadFile={uploadMutation.mutateAsync}
               hasUploadError={uploadMutation.isError}
               className="flex-2"
+              required
             />
           )}
         </form.AppField>
@@ -149,7 +152,12 @@ export default function PostMeetingView() {
         }}
       >
         {(field) => (
-          <field.AddressField label="장소" placeholder="장소를 입력해주세요" className="w-full" />
+          <field.AddressField
+            label="장소"
+            placeholder="장소를 입력해주세요"
+            className="w-full"
+            required
+          />
         )}
       </form.AppField>
 
@@ -165,6 +173,7 @@ export default function PostMeetingView() {
               label="모집 마감일"
               placeholder="마감 날짜와 시간을 선택하세요"
               className="flex-1"
+              required
             />
           )}
         </form.AppField>
@@ -180,6 +189,7 @@ export default function PostMeetingView() {
               label="모임 날짜"
               placeholder="모임 날짜와 시간을 선택하세요"
               className="flex-1"
+              required
             />
           )}
         </form.AppField>
@@ -216,6 +226,7 @@ export default function PostMeetingView() {
               className="flex-1"
               min={2}
               step={1}
+              required
             />
           )}
         </form.AppField>
@@ -296,7 +307,11 @@ export default function PostMeetingView() {
         }}
       >
         {(field) => (
-          <field.TextareaField label="상세 설명" placeholder="모임에 대한 설명을 입력하세요" />
+          <field.TextareaField
+            label="상세 설명"
+            placeholder="모임에 대한 설명을 입력하세요"
+            required
+          />
         )}
       </form.AppField>
 

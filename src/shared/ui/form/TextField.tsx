@@ -7,13 +7,22 @@ export default function TextField({
   label,
   inputType = 'text',
   placeholder,
+  description,
+  disabled,
+  required,
   className,
 }: TextFieldProps) {
   const { displayValue, field } = useFieldValue<string>({ componentName: 'TextField' });
   const fieldId = `field-${field.name}`;
 
   return (
-    <FormField field={field} label={label} className={className}>
+    <FormField
+      field={field}
+      label={label}
+      description={description}
+      required={required}
+      className={className}
+    >
       <Input
         id={fieldId}
         type={inputType}
@@ -22,6 +31,7 @@ export default function TextField({
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(e.target.value)}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </FormField>
   );

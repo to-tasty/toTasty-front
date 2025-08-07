@@ -7,13 +7,17 @@ export default function FormField({
   label,
   children,
   description,
+  required,
   className = '',
 }: FormFieldProps) {
   const fieldId = `field-${field.name}`;
 
   return (
     <div className={`space-y-2 ${className}`}>
-      {label && <Label htmlFor={fieldId}>{label}</Label>}
+      <div className="flex items-center">
+        {label && <Label htmlFor={fieldId}>{label}</Label>}
+        {required && <p className="text-danger ml-1">*</p>}
+      </div>
       {children}
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
       <ErrorField fieldStateMeta={field.state.meta} />

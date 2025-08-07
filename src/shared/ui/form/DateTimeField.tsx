@@ -77,7 +77,6 @@ export default function DateTimeField({
       field={field}
       label={label}
       description={description}
-      disabled={disabled}
       required={required}
       className={className}
     >

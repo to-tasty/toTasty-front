@@ -81,7 +81,6 @@ export default function FileUploadField({
       field={field}
       label={label}
       description={description}
-      disabled={disabled}
       required={required}
       className={className}
     >
@@ -109,6 +108,7 @@ export default function FileUploadField({
           onClick={() => document.getElementById(fieldId)?.click()}
           aria-label="파일 찾기 버튼"
           className="cursor-pointer"
+          disabled={disabled}
         >
           파일 찾기
         </Button>
