@@ -2,7 +2,7 @@
 
 import { useUserStore } from '@/entities/user';
 import { UserIcon } from '@/shared';
-import ProfileEditDialog from './ProfileEditDialog';
+import ProfileEditDialog from './ui/ProfileEditDialog';
 
 export default function UserProfileCard() {
   const { user } = useUserStore();

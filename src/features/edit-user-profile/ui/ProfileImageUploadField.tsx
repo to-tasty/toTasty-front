@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { Camera } from 'lucide-react';
-import { Button, Label, UserIcon } from '@/shared/ui';
+import { Button, UserIcon } from '@/shared/ui';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { compressImage } from '@/shared/lib';
 import type { AnyFieldApi } from '@tanstack/react-form';
@@ -46,7 +46,6 @@ export default function ProfileImageUploadField({ field }: { field: AnyFieldApi 
 
   return (
     <div className="grid gap-2">
-      <Label className="text-sm font-medium">프로필 이미지</Label>
       <div className="flex flex-col items-center gap-4">
         <div className="relative">
           <UserIcon type="myPageIcon" ImageUrl={previewUrl || undefined} />

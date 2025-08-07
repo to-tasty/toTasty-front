@@ -12,11 +12,13 @@ import {
 } from '@/shared/ui';
 import { useUserStore } from '@/entities/user';
 import { useAppForm } from '@/shared';
+import {
+  ProfileImageUploadField,
+  UpdatedUserProfile,
+  usePatchUserProfileMutation,
+} from '@/features/edit-user-profile';
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
-import ProfileImageUploadField from './ProfileImageUploadField';
-import usePatchUserProfileMutation from '../model/hooks/usePatchUserProfileMutation';
-import UpdatedUserProfile from '../model/types';
 import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
@@ -57,7 +59,14 @@ export default function ProfileEditDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Image src={EditIcon} alt="logo" width={32} height={32} draggable={false} />
+        <Image
+          src={EditIcon}
+          alt="logo"
+          width={32}
+          height={32}
+          draggable={false}
+          className="cursor-pointer"
+        />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] w-full">
         <form method="post" onSubmit={handleSubmit} className="max-w-full">
