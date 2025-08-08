@@ -11,14 +11,10 @@ export const meetingTitleSchema = z
   .min(3, '모임 제목은 최소 3글자 이상이어야 합니다')
   .max(50, '모임 제목은 50글자를 초과할 수 없습니다');
 
+const isValidImageUrl = (value: string) => value !== '' && value.length > 0;
+
 export const ImageUrlSchema = (type: string) =>
-  z.string().refine(
-    (value) => {
-      if (value === '') return false;
-      return value.length > 0;
-    },
-    { message: `${type} 이미지를 첨부해주세요` },
-  );
+  z.string().refine(isValidImageUrl, { message: `${type} 이미지를 첨부해주세요` });
 
 export const locationSchema = z
   .object({
@@ -98,4 +94,12 @@ export const tastingListSchema = z
   .min(1, '시음 리스트를 1개 이상 추가해주세요')
   .max(7, '시음 리스트는 7개 이하로 추가해주세요');
 
-export const drinkNameSchema = z.string().min(1, '음료명을 입력해주세요');
+export const drinkNameSchema = (isAddable: boolean) =>
+  z.string().refine((val) => isAddable && val.length > 0, {
+    message: isAddable ? '음료명을 입력해주세요' : '삭제해주세요',
+  });
+
+export const drinkImgUrlSchema = (isAddable: boolean) =>
+  z.string().refine((value) => isAddable && isValidImageUrl(value), {
+    message: isAddable ? '음료 이미지를 첨부해주세요' : '',
+  });

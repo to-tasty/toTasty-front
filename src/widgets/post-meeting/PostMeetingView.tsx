@@ -21,6 +21,7 @@ import {
   meetingDateSchema,
   tastingListSchema,
   drinkNameSchema,
+  drinkImgUrlSchema,
 } from './model/validationSchema';
 
 interface PostMeetingViewProps {
@@ -261,7 +262,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
                   <form.AppField
                     name={`tastingList[${index}].drinkName`}
                     validators={{
-                      onChange: drinkNameSchema,
+                      onChange: drinkNameSchema(isAddable),
                     }}
                   >
                     {(subField) => (
@@ -279,7 +280,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
                   <form.AppField
                     name={`tastingList[${index}].drinkImgUrl`}
                     validators={{
-                      onChange: ImageUrlSchema('음료'),
+                      onChange: drinkImgUrlSchema(isAddable),
                     }}
                   >
                     {(subField) => (
