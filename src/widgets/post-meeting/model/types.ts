@@ -17,5 +17,5 @@ export interface PostMeetingFormData {
   thumbnailUrl: string;
   drinkType: DrinkType;
   tastingList: TastingInfo[];
-  description: string;
+  content: string;
 }

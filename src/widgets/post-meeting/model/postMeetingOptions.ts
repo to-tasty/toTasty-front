@@ -25,7 +25,7 @@ const defaultValues: PostMeetingFormData = {
   thumbnailUrl: '',
   drinkType: DrinkType.coffee,
   tastingList: [] as TastingInfo[],
-  description: '',
+  content: '',
 };
 
 export const postMeetingOptions = formOptions({

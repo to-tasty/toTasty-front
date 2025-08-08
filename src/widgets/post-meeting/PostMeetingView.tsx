@@ -4,6 +4,7 @@ import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { useUploadImageMutation } from '@/features/upload-image';
+import { PostMeetingRequest } from '@/features/meeting/model/types';
 import ErrorField from '@/shared/ui/form/ErrorField';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
@@ -13,7 +14,7 @@ import {
   maxParticipantsSchema,
   minParticipantsSchema,
   drinkTypeSchema,
-  descriptionSchema,
+  contentSchema,
   locationSchema,
   startAtSchema,
   joinEndAtSchema,
@@ -22,7 +23,11 @@ import {
   drinkNameSchema,
 } from './model/validationSchema';
 
-export default function PostMeetingView() {
+interface PostMeetingViewProps {
+  callbackSubmit: (data: PostMeetingRequest) => Promise<void>;
+}
+
+export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps) {
   const form = useAppForm({
     ...postMeetingOptions,
     validators: {},
@@ -38,12 +43,14 @@ export default function PostMeetingView() {
           drinkType: value.drinkType,
         }));
 
-        const finalData = {
+        const requestData = {
           ...value,
           tastingList: updatedTastingList,
         };
 
-        console.log('모임 생성 데이터:', JSON.stringify(finalData, null, 2));
+        console.log('모임 생성 데이터:', JSON.stringify(requestData, null, 2));
+
+        callbackSubmit(requestData);
       } catch (error) {
         alert(JSON.parse(error as string)[0].message);
       }
@@ -304,9 +311,9 @@ export default function PostMeetingView() {
       </form.AppField>
 
       <form.AppField
-        name="description"
+        name="content"
         validators={{
-          onChange: descriptionSchema,
+          onChange: contentSchema,
         }}
       >
         {(field) => (

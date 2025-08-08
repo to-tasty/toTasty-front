@@ -88,7 +88,7 @@ export const participationFeeSchema = z
   .min(0, '참가비는 0원 이상이어야 합니다')
   .max(1000000, '참가비는 100만원을 초과할 수 없습니다');
 
-export const descriptionSchema = z
+export const contentSchema = z
   .string()
   .min(10, '설명은 최소 10글자 이상 작성해주세요')
   .max(3000, '설명은 3000글자를 초과할 수 없습니다');
