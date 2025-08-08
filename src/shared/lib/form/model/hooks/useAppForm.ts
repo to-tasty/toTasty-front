@@ -8,6 +8,7 @@ import {
   FileUploadField,
   DateTimeField,
   AddressField,
+  MultiSelectField,
 } from '../../../../ui/form';
 
 const { useAppForm } = createFormHook({
@@ -21,6 +22,7 @@ const { useAppForm } = createFormHook({
     FileUploadField,
     DateTimeField,
     AddressField,
+    MultiSelectField,
   },
   formComponents: {},
 });

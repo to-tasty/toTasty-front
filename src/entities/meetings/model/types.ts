@@ -45,8 +45,21 @@ export interface MeetingCardInfo {
   tastingDrinkCount?: number;
 }
 
+interface SliceInfo {
+  currentPage: number;
+  size: number;
+  hasNext: boolean;
+}
+
+export interface MeetingListInfo {
+  content: MeetingCardInfo[];
+  sliceInfo: SliceInfo;
+}
+
 export interface MeetingFilters {
   filter?: string;
   sort?: SortType;
   drinkType?: DrinkType;
+  page?: number;
+  size?: number;
 }

@@ -1,14 +1,6 @@
 'use client';
 
 import { TestPage } from '@/views/test-page/TestPage';
-import {
-  GetDetailTestView,
-  GetListTestView,
-  PostTestView,
-  PatchTestView,
-  PutTestView,
-  DeleteTestView,
-} from '@/views/axios-api-test/index';
 
 import { create } from 'zustand';
 import { ChangeEvent } from 'react';
@@ -59,37 +51,13 @@ export default function Page(): React.JSX.Element {
 
   return (
     <div>
+      <TestPage />
       <Button>
         파일 선택버튼
         <input type="file" id="file-input" onChange={handleFileChange} />
       </Button>
 
       <Image src={uploadedImage} alt="test" width={100} height={100} />
-      <TestPage />
-      <h2>
-        <b>------------axios get List test--------------</b>
-      </h2>
-      <GetListTestView />
-      <h2>
-        <b>------------axios get detail test--------------</b>
-      </h2>
-      <GetDetailTestView />
-      <h2>
-        <b>------------axios post test--------------</b>
-      </h2>
-      <PostTestView />
-      <h2>
-        <b>------------axios patch test--------------</b>
-      </h2>
-      <PatchTestView />
-      <h2>
-        <b>------------axios put test--------------</b>
-      </h2>
-      <PutTestView />
-      <h2>
-        <b>------------axios delete test--------------</b>
-      </h2>
-      <DeleteTestView />
     </div>
   );
 }

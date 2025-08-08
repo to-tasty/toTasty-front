@@ -1,10 +1,10 @@
 'use client';
 
 import { Button } from '@/shared';
+import { DrinkType, SortType } from '@/entities/meetings';
 import { FindFilterBtn } from '../model/types';
 import useFilterBtnStore from '../model/hooks/useFilterBtnStore';
 import useFilterStore from '../model/hooks/useFilterStore';
-import { DrinkType, SortType } from '@/entities/meetings';
 
 export default function FindMeetingFilters() {
   const selectedFilterId = useFilterBtnStore((state) => state.selectedFileterBtnId);
@@ -25,13 +25,13 @@ export default function FindMeetingFilters() {
     setSelectedFilterId(prop.id);
 
     if (prop.drinkType === undefined) {
-      const { drinkType, ...newFilters } = filters;
-      setFileters({ ...newFilters, sort: SortType.latest });
+      const { drinkType, page, ...newFilters } = filters;
+      setFileters({ ...newFilters, page: 1, sort: SortType.latest });
     } else if (prop.drinkType === DrinkType.end) {
-      const { drinkType, ...newFilters } = filters;
-      setFileters({ ...newFilters, sort: SortType.closedRecent });
+      const { drinkType, page, ...newFilters } = filters;
+      setFileters({ ...newFilters, page: 1, sort: SortType.closedRecent });
     } else {
-      setFileters({ ...filters, sort: SortType.latest, drinkType: prop.drinkType });
+      setFileters({ ...filters, page: 1, sort: SortType.latest, drinkType: prop.drinkType });
     }
   }
 

@@ -1,6 +1,6 @@
 import FindMeetingPanel from './ui/FindMeetingPanel';
 import FindMeetingFilters from './ui/FindMeetingFilterBtns';
-import FindMeetingFilterCalendar from './ui/FindMeetingFilterCalendar';
+// import FindMeetingFilterCalendar from './ui/FindMeetingFilterCalendar';
 import FindMeetingRegionSelector from './ui/FindMeetingRegionSelector';
 import FindMeetingSorter from './ui/FindMeetingSorter';
 

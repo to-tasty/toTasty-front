@@ -1,1 +1,1 @@
-export type { MeetingList as HomeMeetingCard } from '../../meetings';
+export type { MeetingCardInfo as HomeMeetingCard } from '../../meetings';

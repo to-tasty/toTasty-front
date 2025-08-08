@@ -1,14 +1,14 @@
 import { create } from 'zustand';
-import { MeetingList } from '@/entities/meetings/index';
+import { MeetingListInfo } from '@/entities/meetings/index';
 
 interface SorterState {
-  meetingList: MeetingList[] | null | undefined;
-  setMeetings: (meetings: MeetingList[] | null | undefined) => void;
+  meetingListInfo: MeetingListInfo | null | undefined;
+  setMeetings: (meetings: MeetingListInfo | null | undefined) => void;
 }
 
 const useMeetingListStore = create<SorterState>()((set) => ({
-  meetingList: null,
-  setMeetings: (meetings: MeetingList[] | null | undefined) => set({ meetingList: meetings }),
+  meetingListInfo: { content: [], sliceInfo: { currentPage: 0, size: 0, hasNext: true } },
+  setMeetings: (meetings: MeetingListInfo | null | undefined) => set({ meetingListInfo: meetings }),
 }));
 
 export default useMeetingListStore;

@@ -62,7 +62,7 @@ export default function DateTimeField({
         setSelectedMinute(format(dateValue, 'mm'));
         setSelectedAmPm(hourValue >= 12 ? 'PM' : 'AM');
       } catch (error) {
-        /* eslint-disable-next-line */
+        /* eslint-disable-next-line no-console */
         console.error('Invalid date format:', error);
       }
     }
