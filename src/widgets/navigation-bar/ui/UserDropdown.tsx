@@ -2,7 +2,7 @@
 
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
 import Link from 'next/link';
-import useLogout from '@/features/logout';
+import { useLogout } from '@/features/logout';
 
 export default function UserDropdown() {
   const { handleLogout } = useLogout();

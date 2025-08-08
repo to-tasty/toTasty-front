@@ -16,8 +16,8 @@ const useUserStore = create<UserState>()(
       ...initialUserState,
       isHydrated: false,
 
-      logIn: (user: User) => set({ user, isLoggedIn: true }),
-      logOut: () =>
+      setLoggedIn: (user: User) => set({ user, isLoggedIn: true }),
+      setLoggedOut: () =>
         set((state) => ({
           ...initialUserState,
           isHydrated: state.isHydrated,
