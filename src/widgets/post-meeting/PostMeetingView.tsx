@@ -265,8 +265,13 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
                   >
                     {(subField) => (
                       <subField.TextField
-                        placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
+                        placeholder={
+                          index < 7
+                            ? '샤르도네 2025, 바닐라 라떼, 몽키숄더 등'
+                            : '최대 7개까지만 가능합니다.'
+                        }
                         className="flex-1"
+                        disabled={index >= 7}
                       />
                     )}
                   </form.AppField>
