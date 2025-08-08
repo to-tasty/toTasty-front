@@ -97,6 +97,7 @@ export default function PostMeetingView() {
               inputType="text"
               placeholder="모임 이름을 작성해주세요"
               className="flex-2"
+              maxLength={50}
               required
             />
           )}
@@ -258,7 +259,7 @@ export default function PostMeetingView() {
                     {(subField) => (
                       <subField.TextField
                         placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
-                        className="flex-2"
+                        className="flex-1"
                       />
                     )}
                   </form.AppField>

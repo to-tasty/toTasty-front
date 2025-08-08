@@ -50,7 +50,7 @@ export default function NumberField({
         min={min}
         max={max}
         step={step}
-        value={useComma ? commaInput.inputValue : field.state.value}
+        value={useComma ? commaInput.inputValue : String(field.state.value ?? '')}
         onChange={handleChange}
         onBlur={() => {
           field.handleBlur();
