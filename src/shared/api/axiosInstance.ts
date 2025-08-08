@@ -53,7 +53,7 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
                   response.data;
 
                 useUserStore.getState().setAccessToken(accessToken);
-                useUserStore.getState().logIn({
+                useUserStore.getState().setLoggedIn({
                   memberId,
                   email,
                   profileImgUrl,
