@@ -1,4 +1,4 @@
-import MeetingPostPage from '@/views/meeting/post/MeetingPostPage';
+import MeetingPostPage from '@/views/meetings/post/MeetingPostPage';
 
 export default function MeetingPost() {
   return <MeetingPostPage />;
