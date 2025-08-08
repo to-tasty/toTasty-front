@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
 import { useUploadImageMutation } from '@/features/upload-image';
-import { PostMeetingRequest } from '@/features/meeting/model/types';
+import { PostMeetingRequest } from '@/features/meetings/model/types';
 import ErrorField from '@/shared/ui/form/ErrorField';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
