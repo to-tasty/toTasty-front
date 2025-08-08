@@ -6,14 +6,25 @@ import { Textarea } from '../Textarea';
 export default function TextareaField({
   label,
   placeholder,
-  rows = 4,
+  description,
+  disabled,
+  required,
   className,
+  rows = 4,
+  maxLength,
 }: TextareaFieldProps) {
   const { displayValue, field } = useFieldValue<string>({ componentName: 'TextareaField' });
   const fieldId = `field-${field.name}`;
 
   return (
-    <FormField field={field} label={label} className={className}>
+    <FormField
+      field={field}
+      label={label}
+      description={description}
+      required={required}
+      className={className}
+      maxLength={maxLength}
+    >
       <Textarea
         id={fieldId}
         name={field.name}
@@ -21,6 +32,8 @@ export default function TextareaField({
         onBlur={field.handleBlur}
         onChange={(e) => field.handleChange(e.target.value)}
         placeholder={placeholder}
+        disabled={disabled}
+        maxLength={maxLength}
         rows={rows}
       />
     </FormField>

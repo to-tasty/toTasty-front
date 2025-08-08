@@ -7,6 +7,7 @@ export interface BaseFormFieldProps {
   required?: boolean;
   className?: string;
   placeholder?: string;
+  maxLength?: number;
 }
 
 export interface FormFieldProps {
@@ -17,6 +18,7 @@ export interface FormFieldProps {
   className?: string;
   disabled?: boolean;
   required?: boolean;
+  maxLength?: number;
 }
 
 export interface TextFieldProps extends BaseFormFieldProps {
@@ -38,6 +40,8 @@ export interface NumberFieldProps extends BaseFormFieldProps {
   min?: number;
   max?: number;
   step?: number;
+  hideArrows?: boolean;
+  useComma?: boolean;
 }
 
 export interface DateTimeFieldProps extends BaseFormFieldProps {
@@ -46,7 +50,16 @@ export interface DateTimeFieldProps extends BaseFormFieldProps {
 
 export interface FileUploadFieldProps extends BaseFormFieldProps {
   accept?: string;
+  loadingText?: string;
+  errorText?: string;
+  selectedText?: string;
+  onUploadSuccess?: (imgUrl: string) => void;
+  uploadFile: (file: File) => Promise<{ imgUrl: string } | null>;
+  isUploading?: boolean;
+  hasUploadError?: boolean;
 }
+
+export interface AddressFieldProps extends BaseFormFieldProps {}
 
 export interface UseFieldValueOptions {
   componentName:
@@ -56,6 +69,7 @@ export interface UseFieldValueOptions {
     | 'MultiSelectField'
     | 'TextareaField'
     | 'FileUploadField'
-    | 'DateTimeField';
+    | 'DateTimeField'
+    | 'AddressField';
   fieldName?: string;
 }

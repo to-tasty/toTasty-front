@@ -1,12 +1,15 @@
 import { createFormHook } from '@tanstack/react-form';
 import { fieldContext, formContext } from './useFormContext';
-import TextField from '../../../../ui/form/TextField';
-import TextareaField from '../../../../ui/form/TextareaField';
-import SelectField from '../../../../ui/form/SelectField';
-import NumberField from '../../../../ui/form/NumberField';
-import FileUploadField from '../../../../ui/form/FileUploadField';
-import DateTimeField from '../../../../ui/form/DateTimeField';
-import MultiSelectField from '../../../../ui/form/MultiSelectField';
+import {
+  TextField,
+  TextareaField,
+  SelectField,
+  NumberField,
+  FileUploadField,
+  DateTimeField,
+  AddressField,
+  MultiSelectField,
+} from '../../../../ui/form';
 
 const { useAppForm } = createFormHook({
   fieldContext,
@@ -18,6 +21,7 @@ const { useAppForm } = createFormHook({
     NumberField,
     FileUploadField,
     DateTimeField,
+    AddressField,
     MultiSelectField,
   },
   formComponents: {},

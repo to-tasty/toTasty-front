@@ -3,7 +3,6 @@ import { TastingInfo } from '@/entities/tasting-list/model/types';
 
 export interface PostMeetingFormData {
   meetingTitle: string;
-  meetingAuthor: string;
   location: {
     sido: string;
     address: string;
@@ -15,8 +14,8 @@ export interface PostMeetingFormData {
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;
-  thumbnailUrl: File | null;
+  thumbnailUrl: string;
   drinkType: DrinkType;
   tastingList: TastingInfo[];
-  description: string;
+  content: string;
 }

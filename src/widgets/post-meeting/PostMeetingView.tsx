@@ -1,25 +1,63 @@
+'use client';
+
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType } from '@/entities/meetings/model/types';
+import { useUploadImageMutation } from '@/features/upload-image';
+import { PostMeetingRequest } from '@/features/meeting/model/types';
+import ErrorField from '@/shared/ui/form/ErrorField';
 import { postMeetingOptions } from './model/postMeetingOptions';
 import {
   meetingTitleSchema,
+  ImageUrlSchema,
   participationFeeSchema,
   maxParticipantsSchema,
   minParticipantsSchema,
   drinkTypeSchema,
-  descriptionSchema,
+  contentSchema,
+  locationSchema,
+  startAtSchema,
+  joinEndAtSchema,
+  meetingDateSchema,
+  tastingListSchema,
+  drinkNameSchema,
 } from './model/validationSchema';
 
-export default function PostMeetingView() {
+interface PostMeetingViewProps {
+  callbackSubmit: (data: PostMeetingRequest) => Promise<void>;
+}
+
+export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps) {
   const form = useAppForm({
     ...postMeetingOptions,
     validators: {},
     onSubmit: ({ value }) => {
-      /* eslint-disable-next-line */
-      console.log('모임 생성 데이터:', JSON.stringify(value, null, 4));
+      try {
+        meetingDateSchema.parse({
+          startAt: value.startAt,
+          joinEndAt: value.joinEndAt,
+        });
+
+        const updatedTastingList = value.tastingList.map((item) => ({
+          ...item,
+          drinkType: value.drinkType,
+        }));
+
+        const requestData = {
+          ...value,
+          tastingList: updatedTastingList,
+        };
+
+        console.log('모임 생성 데이터:', JSON.stringify(requestData, null, 2));
+
+        callbackSubmit(requestData);
+      } catch (error) {
+        alert(JSON.parse(error as string)[0].message);
+      }
     },
   });
+
+  const uploadMutation = useUploadImageMutation();
 
   const drinkTypeOptions = Object.values(DrinkType).map((type) => ({
     value: type,
@@ -40,15 +78,16 @@ export default function PostMeetingView() {
         <form.AppField
           name="drinkType"
           validators={{
-            onBlur: drinkTypeSchema,
+            onChange: drinkTypeSchema,
           }}
         >
           {(field) => (
             <field.SelectField
               label="시음회 종류"
-              options={drinkTypeOptions}
+              options={drinkTypeOptions.filter((option) => option.value !== DrinkType.end)}
               placeholder="음료 종류를 선택하세요"
               className="flex-1"
+              required
             />
           )}
         </form.AppField>
@@ -56,7 +95,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="meetingTitle"
           validators={{
-            onBlur: meetingTitleSchema,
+            onChange: meetingTitleSchema,
           }}
         >
           {(field) => (
@@ -65,54 +104,100 @@ export default function PostMeetingView() {
               inputType="text"
               placeholder="모임 이름을 작성해주세요"
               className="flex-2"
+              maxLength={50}
+              required
             />
           )}
         </form.AppField>
       </div>
 
-      <form.AppField name="thumbnailUrl">
+      <div className="flex gap-4">
+        <div className="flex-1 relative">
+          <form.AppField
+            name="participationFee"
+            validators={{
+              onChange: participationFeeSchema,
+            }}
+          >
+            {(field) => (
+              <field.NumberField
+                label="참가 비용"
+                placeholder="참가비를 입력하세요"
+                min={0}
+                max={1000000}
+                step={1}
+                className="w-full"
+                useComma
+              />
+            )}
+          </form.AppField>
+          <span className="text-secondary-foreground mt-1 absolute right-3 top-7">원</span>
+        </div>
+
+        <form.AppField
+          name="thumbnailUrl"
+          validators={{
+            onChange: ImageUrlSchema('대표'),
+          }}
+        >
+          {(field) => (
+            <field.FileUploadField
+              label="대표 이미지"
+              placeholder="대표 이미지를 첨부해주세요."
+              uploadFile={uploadMutation.mutateAsync}
+              hasUploadError={uploadMutation.isError}
+              className="flex-2"
+              required
+            />
+          )}
+        </form.AppField>
+      </div>
+
+      <form.AppField
+        name="location"
+        validators={{
+          onChange: locationSchema,
+        }}
+      >
         {(field) => (
-          <field.FileUploadField
-            label="대표 이미지"
-            accept="image/*"
-            placeholder="대표 이미지를 첨부해주세요."
+          <field.AddressField
+            label="장소"
+            placeholder="장소를 입력해주세요"
+            className="w-full"
+            required
           />
         )}
       </form.AppField>
 
-      <div className="flex flex-row gap-2 items-center">
-        <form.AppField name="location">
+      <div className="flex gap-4">
+        <form.AppField
+          name="joinEndAt"
+          validators={{
+            onChange: joinEndAtSchema,
+          }}
+        >
           {(field) => (
-            <field.TextField
-              label="장소"
-              inputType="text"
-              placeholder="장소를 검색해주세요"
-              className="w-full"
+            <field.DateTimeField
+              label="모집 마감일"
+              placeholder="마감 날짜와 시간을 선택하세요"
+              className="flex-1"
+              required
             />
           )}
         </form.AppField>
-        <Button type="button" className="">
-          장소 찾기
-        </Button>
-      </div>
 
-      <div className="flex gap-4">
-        <form.AppField name="startAt">
+        <form.AppField
+          name="startAt"
+          validators={{
+            onChange: startAtSchema,
+          }}
+        >
           {(field) => (
             <field.DateTimeField
               label="모임 날짜"
               placeholder="모임 날짜와 시간을 선택하세요"
               className="flex-1"
-            />
-          )}
-        </form.AppField>
-
-        <form.AppField name="joinEndAt">
-          {(field) => (
-            <field.DateTimeField
-              label="모임 모집 마감일"
-              placeholder="마감 날짜와 시간을 선택하세요"
-              className="flex-1"
+              required
             />
           )}
         </form.AppField>
@@ -122,7 +207,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="minParticipants"
           validators={{
-            onBlur: minParticipantsSchema,
+            onChange: minParticipantsSchema,
           }}
         >
           {(field) => (
@@ -130,6 +215,8 @@ export default function PostMeetingView() {
               label="최소 모임 정원"
               placeholder="모임이 생성될 수 있는 최소 인원을 작성해주세요"
               className="flex-1"
+              min={1}
+              step={1}
             />
           )}
         </form.AppField>
@@ -137,7 +224,7 @@ export default function PostMeetingView() {
         <form.AppField
           name="maxParticipants"
           validators={{
-            onBlur: maxParticipantsSchema,
+            onChange: maxParticipantsSchema,
           }}
         >
           {(field) => (
@@ -145,53 +232,100 @@ export default function PostMeetingView() {
               label="최대 모임 정원"
               placeholder="최대 참가자 수"
               className="flex-1"
+              min={2}
+              step={1}
+              required
             />
           )}
         </form.AppField>
       </div>
 
       <form.AppField
-        name="participationFee"
+        name="tastingList"
+        mode="array"
         validators={{
-          onBlur: participationFeeSchema,
-        }}
-      >
-        {(field) => <field.NumberField label="참가 비용" placeholder="참가비를 입력하세요" />}
-      </form.AppField>
-
-      <div>
-        <h2 className="text-base font-medium mb-2">시음 리스트</h2>
-        <div className="flex gap-4">
-          <form.AppField name="tastingList">
-            {(field) => <field.TextField placeholder="음료명을 작성해주세요" className="flex-3" />}
-          </form.AppField>
-          <form.AppField name="tastingList">
-            {(field) => (
-              <field.FileUploadField
-                accept=".txt,.csv"
-                placeholder="음료 이미지를 첨부해주세요"
-                className="flex-2"
-              />
-            )}
-          </form.AppField>
-        </div>
-        <Button type="button" variant="ghost" className="cursor-pointer mx-auto block">
-          + 시음 리스트 추가하기
-        </Button>
-      </div>
-
-      <form.AppField
-        name="description"
-        validators={{
-          onBlur: descriptionSchema,
+          onChange: tastingListSchema,
         }}
       >
         {(field) => (
-          <field.TextareaField label="상세 설명" placeholder="모임에 대한 설명을 입력하세요" />
+          <div>
+            <p className="text-sm leading-none font-medium select-none">
+              시음 음료 목록<span className="text-danger ml-1">*</span>
+            </p>
+            <ErrorField fieldStateMeta={field.state.meta} />
+            {field.state.value.map((_, index) => {
+              const itemKey = `tastingList-${index}`;
+              return (
+                <div key={itemKey} className="flex gap-2">
+                  <form.AppField
+                    name={`tastingList[${index}].drinkName`}
+                    validators={{
+                      onChange: drinkNameSchema,
+                    }}
+                  >
+                    {(subField) => (
+                      <subField.TextField
+                        placeholder="샤르도네 2025, 바닐라 라떼, 몽키숄더 등"
+                        className="flex-1"
+                      />
+                    )}
+                  </form.AppField>
+                  <form.AppField
+                    name={`tastingList[${index}].drinkImgUrl`}
+                    validators={{
+                      onChange: ImageUrlSchema('음료'),
+                    }}
+                  >
+                    {(subField) => (
+                      <subField.FileUploadField
+                        placeholder="음료 이미지를 첨부해주세요"
+                        className="flex-1"
+                        uploadFile={uploadMutation.mutateAsync}
+                        hasUploadError={uploadMutation.isError}
+                      />
+                    )}
+                  </form.AppField>
+                  <Button
+                    type="button"
+                    variant="outlineDanger"
+                    onClick={() => field.removeValue(index)}
+                  >
+                    삭제
+                  </Button>
+                </div>
+              );
+            })}
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => field.pushValue({ drinkName: '', drinkImgUrl: '' })}
+              className="cursor-pointer w-full"
+            >
+              <span className="border border-primary text-primary leading-[110%] rounded-full w-5 h-5 flex justify-center">
+                +
+              </span>
+              시음 리스트 추가하기
+            </Button>
+          </div>
         )}
       </form.AppField>
 
-      {/* 제출 버튼 */}
+      <form.AppField
+        name="content"
+        validators={{
+          onChange: contentSchema,
+        }}
+      >
+        {(field) => (
+          <field.TextareaField
+            label="상세 설명"
+            placeholder="모임에 대한 설명을 입력하세요"
+            maxLength={3000}
+            required
+          />
+        )}
+      </form.AppField>
+
       <div className="flex justify-center mt-4 gap-3">
         <Button type="button" size="lg" variant="outlinePrimary">
           작성 취소

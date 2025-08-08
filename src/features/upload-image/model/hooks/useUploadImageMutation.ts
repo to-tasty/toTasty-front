@@ -3,7 +3,7 @@ import { PresignedInfo } from '../types';
 import postFileInfo from '../../api/postFileInfo';
 import uploadPresignedImage from '../../api/uploadPresignedImage';
 
-export default function usePostReivewMutation(): UseMutationResult<
+export default function useUploadImageMutation(): UseMutationResult<
   PresignedInfo | null,
   Error,
   File,

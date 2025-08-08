@@ -1,26 +1,31 @@
 import { formOptions } from '@tanstack/react-form';
 import { DrinkType } from '@/entities/meetings/model/types';
+import { TastingInfo } from '@/entities/tasting-list/model/types';
 import { PostMeetingFormData } from './types';
-import { TastingInfo } from '../../../entities/tasting-list/model/types';
+
+export interface LocationInfo {
+  sido: string;
+  address: string;
+  detail: string;
+}
 
 const defaultValues: PostMeetingFormData = {
   meetingTitle: '',
-  meetingAuthor: '',
   location: {
     sido: '',
     address: '',
     detail: '',
-  },
+  } as LocationInfo,
   participationFee: 0,
   startAt: '',
   joinEndAt: '',
   maxParticipants: 0,
   minParticipants: 0,
   currentParticipants: 1,
-  thumbnailUrl: null,
+  thumbnailUrl: '',
   drinkType: DrinkType.coffee,
   tastingList: [] as TastingInfo[],
-  description: '',
+  content: '',
 };
 
 export const postMeetingOptions = formOptions({
