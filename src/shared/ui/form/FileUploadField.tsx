@@ -110,7 +110,7 @@ export default function FileUploadField({
           className="cursor-pointer"
           disabled={disabled}
         >
-          파일 찾기
+          {disabled ? '선택 불가' : '파일 찾기'}
         </Button>
       </div>
     </FormField>

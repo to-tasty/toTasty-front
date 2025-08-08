@@ -255,6 +255,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
             <ErrorField fieldStateMeta={field.state.meta} />
             {field.state.value.map((_, index) => {
               const itemKey = `tastingList-${index}`;
+              const isAddable = index < 7;
               return (
                 <div key={itemKey} className="flex gap-2">
                   <form.AppField
@@ -266,12 +267,12 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
                     {(subField) => (
                       <subField.TextField
                         placeholder={
-                          index < 7
+                          isAddable
                             ? '샤르도네 2025, 바닐라 라떼, 몽키숄더 등'
                             : '최대 7개까지만 가능합니다.'
                         }
                         className="flex-1"
-                        disabled={index >= 7}
+                        disabled={!isAddable}
                       />
                     )}
                   </form.AppField>
@@ -283,10 +284,11 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
                   >
                     {(subField) => (
                       <subField.FileUploadField
-                        placeholder="음료 이미지를 첨부해주세요"
+                        placeholder={isAddable ? '음료 이미지를 첨부해주세요' : '업로드 불가'}
                         className="flex-1"
                         uploadFile={uploadMutation.mutateAsync}
                         hasUploadError={uploadMutation.isError}
+                        disabled={!isAddable}
                       />
                     )}
                   </form.AppField>
