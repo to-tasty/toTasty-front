@@ -1,5 +1,5 @@
-import { FindMeetingList } from '@/widgets/';
+import MeetingListPage from '@/views/meetings/MeetingListPage';
 
 export default function FindingMeeting() {
-  return <FindMeetingList />;
+  return <MeetingListPage />;
 }
