@@ -1,0 +1,21 @@
+import { DrinkType } from '@/entities/meetings/model/types';
+import { TastingInfo } from '@/entities/tasting-list/model/types';
+
+export interface PostMeetingFormData {
+  meetingTitle: string;
+  location: {
+    sido: string;
+    address: string;
+    detail: string;
+  };
+  participationFee: number;
+  startAt: string;
+  joinEndAt: string;
+  maxParticipants: number;
+  minParticipants: number;
+  currentParticipants: number;
+  thumbnailUrl: string;
+  drinkType: DrinkType;
+  tastingList: TastingInfo[];
+  content: string;
+}

@@ -5,27 +5,40 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui';
+import { FindMeetingCard } from '@/widgets/index';
+import useNewMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useNewMeetingsQuery';
+import Link from 'next/link';
 
 export default function NewMeetingCardArea() {
+  const { data, isLoading } = useNewMeetingsQuery();
+
+  if (isLoading || !data) return null;
+
   return (
     <Carousel
       className="relative w-[1142px] overflow-visible"
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
-      <CarouselPrevious className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md" />
+      <CarouselPrevious
+        className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        style={{ pointerEvents: 'auto' }}
+      />
 
       <CarouselContent className="flex gap-[30px] ">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-          <CarouselItem key={i} className=" flex-shrink-0 basis-[263px]">
-            <div className="w-full h-[333px] bg-amber-700 rounded-xl flex items-center justify-center">
-              신규모임카드 {i}
-            </div>
+        {data.map((item) => (
+          <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
+            <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
+              <FindMeetingCard meetingInfo={item} size="big" />
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
 
-      <CarouselNext className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md" />
+      <CarouselNext
+        className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        style={{ pointerEvents: 'auto' }}
+      />
     </Carousel>
   );
 }

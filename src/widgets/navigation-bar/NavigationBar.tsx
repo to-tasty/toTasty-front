@@ -1,21 +1,21 @@
 'use client';
 
-import { Logo, NavigationMenu, DropdownMenu, DropdownMenuTrigger } from '@/shared';
+import { Logo, NavigationMenu, DropdownMenu, DropdownMenuTrigger, UserIcon } from '@/shared';
 import { useUserStore } from '@/entities/user';
 import { useShallow } from 'zustand/shallow';
-import { NavigationTabs, LoginButton, UserDropdown, UserIcon } from './ui';
+import { NavigationTabs, LoginButton, UserDropdown } from './ui';
 
 export default function NavigationBar() {
-  const { isHydrated, isLoggedIn } = useUserStore(
+  const { isHydrated, isLoggedIn, profileImgUrl } = useUserStore(
     useShallow((state) => ({
-      // 선택자 함수로 필요한 속성만 구독, useShallow를 사용해 불필요한 리렌더링 방지
       isHydrated: state.isHydrated,
       isLoggedIn: state.isLoggedIn,
+      profileImgUrl: state.user?.profileImgUrl,
     })),
   );
-  // const isLoggedIn = true;
+
   return (
-    <div className="flex justify-center w-full sticky top-0 bg-white border-b border-gray-020 z-15">
+    <div className="flex justify-center w-full sticky top-0 bg-secondary border-b z-15">
       <div className="flex justify-between h-[75px] w-7xl items-center px-5">
         <NavigationMenu className="gap-6">
           <Logo />
@@ -26,7 +26,7 @@ export default function NavigationBar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div>
-                  <UserIcon />
+                  <UserIcon type="navIcon" ImageUrl={profileImgUrl} />
                 </div>
               </DropdownMenuTrigger>
               <UserDropdown />

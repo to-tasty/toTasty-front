@@ -4,7 +4,6 @@ export interface User {
   profileImgUrl: string;
   interests: string[];
   memberId: number;
-  accessToken: string;
 }
 
 export interface UserState {
@@ -22,5 +21,9 @@ export interface UserState {
 
 export interface ReissueResponse {
   accessToken: string;
-  user: User;
+  memberId: number;
+  email: string;
+  nickname: string;
+  profileImgUrl: string;
+  interests: string[];
 }

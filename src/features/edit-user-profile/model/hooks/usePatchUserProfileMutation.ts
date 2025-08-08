@@ -11,7 +11,7 @@ export default function usePatchUserProfileMutation(): UseMutationResult<
 > {
   const { updateProfile } = useUserStore((state) => state);
   return useMutation({
-    mutationFn: (userProfile: UpdatedUserProfile) => patchUserProfile(userProfile),
+    mutationFn: (data) => patchUserProfile(data),
     onSuccess: (data) => {
       if (data) updateProfile(data);
     },
