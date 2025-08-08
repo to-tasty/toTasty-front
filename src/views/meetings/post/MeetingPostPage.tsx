@@ -1,7 +1,7 @@
 'use client';
 
-import { usePostMeetingMutation } from '@/features/meeting';
-import { PostMeetingRequest } from '@/features/meeting/model/types';
+import { usePostMeetingMutation } from '@/features/meetings';
+import { PostMeetingRequest } from '@/features/meetings/model/types';
 import { PostMeetingView } from '@/widgets';
 import { useRouter } from 'next/navigation';
 
