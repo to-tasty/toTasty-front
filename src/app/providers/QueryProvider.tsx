@@ -8,6 +8,9 @@ export function QueryProvider({ children }: { children: React.ReactNode }): Reac
     defaultOptions: {
       queries: {
         retry: 0,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
       },
     },
     queryCache: new QueryCache({
