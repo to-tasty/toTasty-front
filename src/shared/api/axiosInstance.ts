@@ -1,13 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import { useUserStore, User } from '@/entities/user/index';
+import { useUserStore } from '@/entities/user/index';
+import { ReissueResponse } from '@/entities/user/model/types';
 import { useGlobalErrorStore } from '../lib';
 
 const instances = new Map<string, AxiosInstance>();
-
-interface ReissueResponse {
-  accessToken: string;
-  user: User;
-}
 
 export default function axiosInstance(apiUrl: string | undefined): AxiosInstance {
   if (apiUrl === undefined) {
@@ -54,8 +50,18 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
               );
 
               if (response.status === 200) {
-                const { accessToken } = response.data;
+                const { accessToken, memberId, email, profileImgUrl, nickname, interests } =
+                  response.data;
+
                 useUserStore.getState().setAccessToken(accessToken);
+                useUserStore.getState().logIn({
+                  memberId,
+                  email,
+                  profileImgUrl,
+                  nickname,
+                  interests,
+                });
+
                 originRequest.headers.Authorization = `Bearer ${accessToken}`;
                 return await axios(originRequest);
               }
