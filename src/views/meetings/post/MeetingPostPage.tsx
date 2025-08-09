@@ -2,7 +2,7 @@
 
 import { usePostMeetingMutation } from '@/features/meetings';
 import { PostMeetingRequest } from '@/features/meetings/model/types';
-import { PostMeetingView } from '@/widgets';
+import { PostMeetingForm } from '@/widgets';
 import { useRouter } from 'next/navigation';
 
 export default function MeetingPostPage() {
@@ -27,7 +27,7 @@ export default function MeetingPostPage() {
       {isError && <div>에러: {error.message}</div>}
 
       <div className="max-w-3xl mx-auto">
-        <PostMeetingView callbackSubmit={handleSubmit} />
+        <PostMeetingForm callbackSubmit={handleSubmit} />
       </div>
     </>
   );

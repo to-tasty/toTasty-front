@@ -28,7 +28,7 @@ interface PostMeetingViewProps {
   callbackSubmit: (data: PostMeetingRequest) => Promise<void>;
 }
 
-export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps) {
+export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps) {
   const form = useAppForm({
     ...postMeetingOptions,
     validators: {},
