@@ -4,7 +4,7 @@ type PageProps = {
   params: { meetingId: string };
 };
 
-export default function MeetingDetailRoute({ params }: PageProps) {
-  const meetingId = Number(params.meetingId);
-  return <MeetingDetailPage meetingId={meetingId} />;
+export default async function MeetingDetailRoute({ params }: PageProps) {
+  const { meetingId } = await params;
+  return <MeetingDetailPage meetingId={Number(meetingId)} />;
 }
