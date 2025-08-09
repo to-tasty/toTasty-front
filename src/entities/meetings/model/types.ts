@@ -36,13 +36,24 @@ export interface MeetingCardInfo {
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;
-  isWished: boolean;
+  isWished: boolean; // liked
   thumbnailUrl: string;
   status: 'open' | 'closed' | 'cancelled';
   isReviewed?: boolean;
   drinkType: DrinkType;
   participation?: MeetingParticipant[];
   tastingDrinkCount?: number;
+}
+
+export interface MeetingDetailInfo extends MeetingCardInfo {
+  tastingList: {
+    drinkId?: number;
+    drinkName?: string;
+    drinkImgUrl?: string;
+    drinkType?: DrinkType;
+  }[];
+  description: string;
+  isParticipated: boolean;
 }
 
 interface SliceInfo {
