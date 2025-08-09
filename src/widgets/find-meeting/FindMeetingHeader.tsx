@@ -24,7 +24,7 @@ export default function FindMeetingHeader({
         </div>
         <FindMeetingSorter />
       </div>
-      <div className="flex mt-6">{children}</div>
+      <div className="mt-6">{children}</div>
     </div>
   );
 }

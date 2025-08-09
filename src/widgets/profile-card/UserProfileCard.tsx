@@ -2,8 +2,9 @@
 
 import { useUserStore } from '@/entities/user';
 import { UserIcon } from '@/shared';
-import ProfileEditDialog from './ui/ProfileEditDialog';
 import Image from 'next/image';
+import ProfileEditDialog from './ui/ProfileEditDialog';
+
 const PROFILE_CARD_IMAGE = '/assets/image/profile-card-image.svg' as const;
 
 export default function UserProfileCard() {

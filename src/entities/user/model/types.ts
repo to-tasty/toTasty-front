@@ -11,8 +11,8 @@ export interface UserState {
   isLoggedIn: boolean;
   accessToken: string;
   isHydrated: boolean;
-  logIn: (user: User) => void;
-  logOut: () => void;
+  setLoggedIn: (user: User) => void;
+  setLoggedOut: () => void;
   updateProfile: (partial: Partial<User>) => void;
   setAccessToken: (token: string) => void;
   clearAccessToken: () => void;
@@ -21,5 +21,9 @@ export interface UserState {
 
 export interface ReissueResponse {
   accessToken: string;
-  user: User;
+  memberId: number;
+  email: string;
+  nickname: string;
+  profileImgUrl: string;
+  interests: string[];
 }

@@ -4,15 +4,24 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { User, UserState } from '../types';
 
+const initialUserState = {
+  user: null,
+  isLoggedIn: false,
+  accessToken: '',
+};
+
 const useUserStore = create<UserState>()(
   persist(
     (set) => ({
-      user: null,
-      isLoggedIn: false,
-      accessToken: '',
+      ...initialUserState,
       isHydrated: false,
-      logIn: (user: User) => set({ user, isLoggedIn: true }),
-      logOut: () => set({ user: null, isLoggedIn: false, accessToken: '' }),
+
+      setLoggedIn: (user: User) => set({ user, isLoggedIn: true }),
+      setLoggedOut: () =>
+        set((state) => ({
+          ...initialUserState,
+          isHydrated: state.isHydrated,
+        })),
       updateProfile: (partial) =>
         set((state) => (state.user ? { user: { ...state.user, ...partial } } : state)),
       setAccessToken: (token: string) => set({ accessToken: token }),
@@ -34,5 +43,4 @@ const useUserStore = create<UserState>()(
     },
   ),
 );
-
 export default useUserStore;

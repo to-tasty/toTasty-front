@@ -19,8 +19,8 @@ import {
 } from '@/features/edit-user-profile';
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
-import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 import { DrinkType } from '@/entities/meetings';
+import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
   { value: DrinkType.coffee, label: '☕ 커피' },
@@ -71,7 +71,6 @@ export default function ProfileEditDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] w-full">
         <form method="post" onSubmit={handleSubmit} className="max-w-full">
-          <div className="w-full"></div>
           <DialogHeader>
             <DialogTitle>프로필 수정</DialogTitle>
           </DialogHeader>
