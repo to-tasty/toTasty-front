@@ -38,7 +38,7 @@ export interface MeetingCardInfo {
 
 export interface MeetingDetailInfo extends MeetingCardInfo {
   tastingList: TastingInfo[];
-  description: string;
+  content: string;
   isParticipated: boolean;
 }
 
