@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Progress } from '@/shared/ui/Progress';
+import { Progress } from '@/shared/ui';
 import { MeetingCardInfo } from '@/entities/meetings/index';
 import clsx from 'clsx';
 
