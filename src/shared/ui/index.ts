@@ -63,3 +63,4 @@ export {
 
 export { Command, CommandGroup, CommandItem, CommandList } from './Command';
 export { Progress } from './Progress';
+export { Badge } from './Badge';
