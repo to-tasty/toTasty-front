@@ -3,3 +3,8 @@ export interface WishButtonProps {
   meetingId: number;
   onWishChange?: (newIsWished: boolean) => void;
 }
+
+export interface ContentBoxProps {
+  title: string;
+  content: string;
+}
