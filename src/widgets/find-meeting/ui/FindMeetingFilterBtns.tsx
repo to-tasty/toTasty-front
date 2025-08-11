@@ -1,11 +1,11 @@
 'use client';
 
-import { Button } from '@/shared';
-import { DrinkType, SortType } from '@/entities/meetings';
+import { Button, DrinkType } from '@/shared';
+import { SortType } from '@/entities/meetings';
+import Link from 'next/link';
 import { FindFilterBtn } from '../model/types';
 import useFilterBtnStore from '../model/hooks/useFilterBtnStore';
 import useFilterStore from '../model/hooks/useFilterStore';
-import Link from 'next/link';
 
 export default function FindMeetingFilters() {
   const selectedFilterId = useFilterBtnStore((state) => state.selectedFileterBtnId);

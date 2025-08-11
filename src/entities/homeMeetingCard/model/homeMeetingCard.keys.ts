@@ -9,8 +9,8 @@ const homeMeetingCardKeys = createQueryKeys('homeMeetingCard', {
     queryKey: ['new'],
     queryFn: () => getNewMeetings(),
   }),
-  wishlist: () => ({
-    queryKey: ['wishlist'],
+  wishlist: (userId?: number) => ({
+    queryKey: ['wishlist', userId],
     queryFn: () => getWishlistMeetings(),
   }),
   favorite: (interests: string[]) => ({

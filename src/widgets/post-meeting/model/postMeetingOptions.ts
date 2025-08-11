@@ -1,13 +1,6 @@
 import { formOptions } from '@tanstack/react-form';
-import { DrinkType } from '@/entities/meetings/model/types';
-import { TastingInfo } from '@/entities/tasting-list/model/types';
-import { PostMeetingFormData } from './types';
-
-export interface LocationInfo {
-  sido: string;
-  address: string;
-  detail: string;
-}
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
+import PostMeetingFormData from './types';
 
 const defaultValues: PostMeetingFormData = {
   meetingTitle: '',

@@ -1,4 +1,4 @@
-import { TastingInfo } from '@/entities/tasting-list/model/types';
+import { TastingInfo } from '@/shared';
 
 interface ReviewContent {
   reviewId: number;
@@ -26,14 +26,8 @@ export interface ReviewList {
   pageInfo: PageInfo;
 }
 
-export enum PageFlag {
-  MYREIVEWS,
-  MEETINGDETAIL,
-}
-
 export interface ReviewFilters {
   page: number;
   size: number;
-  pageFlag: number;
   meetingId?: number;
 }

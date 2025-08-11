@@ -1,9 +1,4 @@
-export enum DrinkType {
-  coffee = 'COFFEE',
-  whisky = 'WHISKY',
-  wine = 'WINE',
-  end = 'END',
-}
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
 
 export enum SortType {
   latest = 'LATEST',
@@ -25,18 +20,14 @@ export interface MeetingCardInfo {
   meetingId: number;
   meetingAuthor: string;
   meetingTitle: string;
-  location: {
-    sido: string;
-    address: string;
-    detail: string;
-  };
+  location: LocationInfo;
   participationFee: number;
   startAt: string;
   joinEndAt: string;
   maxParticipants: number;
   minParticipants: number;
   currentParticipants: number;
-  isWished: boolean; // liked
+  isWished: boolean;
   thumbnailUrl: string;
   status: 'open' | 'closed' | 'cancelled';
   isReviewed?: boolean;
@@ -46,12 +37,7 @@ export interface MeetingCardInfo {
 }
 
 export interface MeetingDetailInfo extends MeetingCardInfo {
-  tastingList: {
-    drinkId?: number;
-    drinkName?: string;
-    drinkImgUrl?: string;
-    drinkType?: DrinkType;
-  }[];
+  tastingList: TastingInfo[];
   description: string;
   isParticipated: boolean;
 }

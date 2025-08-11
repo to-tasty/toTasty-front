@@ -1,8 +1,9 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
-import { DrinkType } from '@/entities/meetings/model/types';
+import { DrinkType, TastingInfo } from '@/shared';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { PostMeetingRequest } from '@/features/meetings/model/types';
 import ErrorField from '@/shared/ui/form/ErrorField';
@@ -28,7 +29,8 @@ interface PostMeetingViewProps {
   callbackSubmit: (data: PostMeetingRequest) => Promise<void>;
 }
 
-export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps) {
+export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps) {
+  const router = useRouter();
   const form = useAppForm({
     ...postMeetingOptions,
     validators: {},
@@ -48,8 +50,6 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
           ...value,
           tastingList: updatedTastingList,
         };
-
-        console.log('모임 생성 데이터:', JSON.stringify(requestData, null, 2));
 
         callbackSubmit(requestData);
       } catch (error) {
@@ -254,7 +254,7 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
               시음 음료 목록<span className="text-danger ml-1">*</span>
             </p>
             <ErrorField fieldStateMeta={field.state.meta} />
-            {field.state.value.map((_, index) => {
+            {field.state.value.map((_: TastingInfo, index: number) => {
               const itemKey = `tastingList-${index}`;
               const isAddable = index < 7;
               return (
@@ -335,7 +335,7 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
       </form.AppField>
 
       <div className="flex justify-center mt-4 gap-3">
-        <Button type="button" size="lg" variant="outlinePrimary">
+        <Button type="button" size="lg" variant="outlinePrimary" onClick={() => router.back()}>
           작성 취소
         </Button>
         <Button type="submit" size="lg" className="px-8">

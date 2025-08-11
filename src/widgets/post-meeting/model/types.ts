@@ -1,7 +1,6 @@
-import { DrinkType } from '@/entities/meetings/model/types';
-import { TastingInfo } from '@/entities/tasting-list/model/types';
+import { DrinkType, TastingInfo } from '@/shared';
 
-export interface PostMeetingFormData {
+export default interface PostMeetingFormData {
   meetingTitle: string;
   location: {
     sido: string;
