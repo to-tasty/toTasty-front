@@ -5,6 +5,7 @@ import {
   NewMeetingCardArea,
   PopularMeetingCardArea,
   WishlistCardArea,
+  DummyCardArea,
 } from '@/entities/homeMeetingCard/index';
 import { Button } from '@/shared';
 import Link from 'next/link';
@@ -28,10 +29,10 @@ export default function HomePage() {
           className={`flex flex-col gap-4 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
         >
           <h1 className="font-semibold text-xl ">내가 좋아할 모임</h1>
-          <FavoriteMeetingCardArea />
+          {isLoggedIn ? <FavoriteMeetingCardArea /> : <DummyCardArea />}
           <div>
             <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
-            <WishlistCardArea />
+            {isLoggedIn ? <WishlistCardArea /> : <DummyCardArea />}
           </div>
         </div>
       </div>
