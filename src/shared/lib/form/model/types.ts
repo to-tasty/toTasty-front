@@ -73,9 +73,3 @@ export interface UseFieldValueOptions {
     | 'AddressField';
   fieldName?: string;
 }
-
-export interface LocationInfo {
-  sido: string;
-  address: string;
-  detail: string;
-}
