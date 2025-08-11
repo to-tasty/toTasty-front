@@ -62,5 +62,7 @@ export {
 } from './Dialog';
 
 export { Command, CommandGroup, CommandItem, CommandList } from './Command';
+
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 export { Progress } from './Progress';
 export { Badge } from './Badge';
