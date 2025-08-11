@@ -10,7 +10,7 @@ export default function UserDropdown() {
     <DropdownMenuContent className="w-30">
       <DropdownMenuGroup>
         <DropdownMenuItem asChild>
-          <Link href="/my-page">마이페이지</Link>
+          <Link href="/my-page/meetings">마이페이지</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}>로그아웃</DropdownMenuItem>
       </DropdownMenuGroup>
