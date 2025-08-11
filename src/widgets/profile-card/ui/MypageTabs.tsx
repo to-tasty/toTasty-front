@@ -12,7 +12,7 @@ const tabTriggerClass =
 
 const tabs = [
   { value: 'meetings', label: '나의 모임' },
-  { value: 'tastings', label: '나의 테이스팅북' },
+  { value: 'tastings', label: '나의 테이스팅 북' },
   { value: 'wishlist', label: '위시리스트' },
 ];
 
@@ -32,7 +32,7 @@ export default function MyPageTabs({ children }: { children: ReactNode }) {
       <Tabs
         value={currentPathValue}
         onValueChange={onTabChange}
-        className="w-full border-t-2 border-gray-090 pl-6"
+        className="w-full border-t-2 border-gray-090 px-6"
       >
         <TabsList className="relative bg-transparent justify-start overflow-x-auto overflow-y-hidden h-auto p-0 rounded-none py-2 gap-6">
           {tabs.map((tab) => (
