@@ -33,12 +33,10 @@ export default function WishButton({
 
     try {
       if (!isWished) {
-        console.log('위시리스트 추가 요청:', { meetingId, accessToken: !!accessToken });
         await postWishlist.mutateAsync(meetingId);
         setIsWished(true);
         setPopoverMessage('관심 모임에 추가됐어요!');
       } else {
-        console.log('위시리스트 삭제 요청:', { meetingId, accessToken: !!accessToken });
         await deleteWishlist.mutateAsync(meetingId);
         setIsWished(false);
         setPopoverMessage('관심 모임에서 제외됐어요');
