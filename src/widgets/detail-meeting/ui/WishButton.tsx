@@ -24,7 +24,6 @@ export default function WishButton({
   const isLoading = postWishlist.isPending || deleteWishlist.isPending;
 
   const toggleWish = async () => {
-    // 로그인 상태 확인
     if (!isLoggedIn || !accessToken) {
       setPopoverMessage('로그인 후 이용할 수 있습니다');
       setIsPopoverOpen(true);
@@ -57,11 +56,6 @@ export default function WishButton({
     } catch (error) {
       console.error('좋아요 토글 에러:', error);
       const errorMessage = '요청 처리에 실패했습니다';
-      // if (error.response?.status === 401) {
-      //   errorMessage = '로그인 세션이 만료되었습니다';
-      //   선택적: 자동 로그아웃 처리
-      //   useUserStore.getState().logout();
-      // }
       setPopoverMessage(errorMessage);
       setIsPopoverOpen(true);
     }
@@ -79,7 +73,7 @@ export default function WishButton({
         >
           <Heart
             className={
-              isWished ? 'fill-danger/70 text-danger/70' : 'text-muted group-hover:fill-danger/70'
+              isWished ? 'fill-danger/70 text-danger/70' : 'text-muted group-hover:fill-danger/30'
             }
           />
         </Button>
