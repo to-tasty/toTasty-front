@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
 import { DrinkType, TastingInfo } from '@/shared';
@@ -28,7 +29,8 @@ interface PostMeetingViewProps {
   callbackSubmit: (data: PostMeetingRequest) => Promise<void>;
 }
 
-export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps) {
+export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps) {
+  const router = useRouter();
   const form = useAppForm({
     ...postMeetingOptions,
     validators: {},
@@ -333,7 +335,7 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
       </form.AppField>
 
       <div className="flex justify-center mt-4 gap-3">
-        <Button type="button" size="lg" variant="outlinePrimary">
+        <Button type="button" size="lg" variant="outlinePrimary" onClick={() => router.back()}>
           작성 취소
         </Button>
         <Button type="submit" size="lg" className="px-8">
