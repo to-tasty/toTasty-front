@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import DaumPostcode, { Address } from 'react-daum-postcode';
-import { LocationInfo } from '@/widgets/post-meeting/model/postMeetingOptions';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
-import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '../index';
-import { AddressFieldProps } from '../../lib/form/model/types';
 import FormField from './FormField';
+import { LocationInfo, AddressFieldProps } from '../../lib/form/model/types';
+import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '../index';
 
 export default function AddressField({
   label,

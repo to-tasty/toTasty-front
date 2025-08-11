@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/shared/ui';
 import { useUserStore } from '@/entities/user';
-import { useAppForm } from '@/shared';
+import { useAppForm, DrinkType } from '@/shared';
 import {
   ProfileImageUploadField,
   UpdatedUserProfile,
@@ -19,7 +19,6 @@ import {
 } from '@/features/edit-user-profile';
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
-import { DrinkType } from '@/entities/meetings';
 import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [

@@ -1,4 +1,4 @@
-import { DrinkType } from '@/entities/meetings/model/types';
+import { DrinkType } from '@/shared';
 
 export interface TastingInfo {
   drinkId?: number;
