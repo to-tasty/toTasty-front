@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { CheckCircle, ClockAlert, Heart } from 'lucide-react';
-import { Button, Progress } from '@/shared/ui';
+import { Badge, Button, Progress } from '@/shared/ui';
 import { MeetingDetailInfo } from '@/entities/meetings/model/types';
 import WithIcon from './ui/WithIcon';
 
@@ -50,10 +50,10 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
         <div className="p-6">
           <div className="flex items-start justify-between mb-3">
             <div className="flex-1 mr-4">
-              <h1 className="text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-xl lg:text-2xl font-bold text-foreground leading-tight">
                 {meetingTitle}
               </h1>
-              <p className="text-gray-600 mt-2 text-sm lg:text-base">
+              <p className="text-secondary-foreground mt-2 text-sm lg:text-base">
                 {location.address} {location.detail}
               </p>
             </div>
@@ -67,16 +67,12 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <span className="bg-gray-900 text-white px-3 py-1 rounded text-sm font-medium">
-              {formattedDate}
-            </span>
-            <span className="bg-gray-900 text-white px-3 py-1 rounded text-sm font-medium">
-              {formattedTime}
-            </span>
+            <Badge variant="tertiary">{formattedDate}</Badge>
+            <Badge variant="tertiary">{formattedTime}</Badge>
           </div>
         </div>
 
-        <div className="space-y-2 text-sm p-6 border-dashed border-t-3 border-gray-200">
+        <div className="space-y-2 text-sm p-6 border-dashed border-t-1 border-muted">
           <div className="flex items-center justify-between">
             <span>현재 인원 {currentParticipants}명</span>
             <div className="flex items-center gap-2">
