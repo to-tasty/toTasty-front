@@ -1,10 +1,9 @@
-'use client';
-
 import Image from 'next/image';
-import { CheckCircle, ClockAlert, Heart } from 'lucide-react';
-import { Badge, Button, Progress } from '@/shared/ui';
+import { CheckCircle, ClockAlert } from 'lucide-react';
+import { Badge, Progress } from '@/shared/ui';
+import { getDeadlineText, getFormattedDate, getFormattedTime } from '@/shared/lib/date';
 import { MeetingDetailInfo } from '@/entities/meetings/model/types';
-import WithIcon from './ui/WithIcon';
+import { WithIcon, WishButton } from './ui';
 
 export default function MeetingDetailHeader(data: MeetingDetailInfo) {
   const {
@@ -12,6 +11,7 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
     currentParticipants,
     thumbnailUrl,
     startAt,
+    joinEndAt,
     maxParticipants,
     minParticipants,
     isWished,
@@ -20,11 +20,7 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
 
   const progressPercentage = (currentParticipants / maxParticipants) * 100;
   const isClosed = currentParticipants >= minParticipants;
-
-  const date = startAt.split('T')[0].split('-');
-  const time = startAt.split('T')[1].split(':');
-  const formattedDate = `${Number(date[1])}월 ${Number(date[2])}일`;
-  const formattedTime = `${time[0]}:${time[1]}`;
+  const { isToday, message: DeadlineMessage } = getDeadlineText(joinEndAt);
 
   const style = {
     card: 'lg:flex-1 border border-muted rounded-3xl overflow-hidden',
@@ -32,7 +28,7 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
 
   return (
     <div className="flex flex-col gap-6 lg:flex-row">
-      <div className={`relative ${style.card}`}>
+      <div className={`relative ${style.card} min-h-[200px] md:min-h-[250px]`}>
         <Image
           src={thumbnailUrl}
           alt={meetingTitle}
@@ -40,14 +36,16 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 484px"
         />
-        <WithIcon
-          Icon={ClockAlert}
-          text="오늘 21시 마감"
-          className="absolute top-0 right-0 sub-gradient text-white px-4 py-1 rounded-bl-3xl text-sm font-medium"
-        />
+        {isToday && (
+          <WithIcon
+            Icon={ClockAlert}
+            text={DeadlineMessage}
+            className="absolute top-0 right-0 sub-gradient text-white px-4 py-1 rounded-bl-3xl text-sm font-medium"
+          />
+        )}
       </div>
       <div className={style.card}>
-        <div className="p-6">
+        <div className="p-6 pb-8">
           <div className="flex items-start justify-between mb-3">
             <div className="flex-1 mr-4">
               <h1 className="text-xl lg:text-2xl font-bold text-foreground leading-tight">
@@ -57,22 +55,18 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
                 {location.address} {location.detail}
               </p>
             </div>
-            <Button variant="ghost" size="sm" className="p-2 hover:bg-gray-50 flex-shrink-0">
-              <Heart
-                className={`w-6 h-6 ${
-                  isWished ? 'fill-red-500 text-red-500' : 'text-gray-400 hover:text-red-400'
-                }`}
-              />
-            </Button>
+            <WishButton isWished={isWished} />
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Badge variant="tertiary">{formattedDate}</Badge>
-            <Badge variant="tertiary">{formattedTime}</Badge>
+            <Badge variant="tertiary">{getFormattedDate(startAt)}</Badge>
+            <Badge variant="tertiary" className="text-primary-030 dark:text-primary-060">
+              {getFormattedTime(startAt)}
+            </Badge>
           </div>
         </div>
 
-        <div className="space-y-2 text-sm p-6 border-dashed border-t-1 border-muted">
+        <div className="space-y-2 text-sm p-6 pt-8 border-dashed border-t-1 border-muted">
           <div className="flex items-center justify-between">
             <span>현재 인원 {currentParticipants}명</span>
             <div className="flex items-center gap-2">
