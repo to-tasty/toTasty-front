@@ -49,8 +49,6 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
           tastingList: updatedTastingList,
         };
 
-        console.log('모임 생성 데이터:', JSON.stringify(requestData, null, 2));
-
         callbackSubmit(requestData);
       } catch (error) {
         alert(JSON.parse(error as string)[0].message);
