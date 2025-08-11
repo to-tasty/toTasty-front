@@ -12,7 +12,17 @@ import Link from 'next/link';
 export default function NewMeetingCardArea() {
   const { data, isLoading } = useNewMeetingsQuery();
 
-  if (isLoading || !data) return null;
+  if (isLoading) return null;
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+        아직 새로운 모임이 없어요.
+        <br />
+        새로운 모임을 생성해 보세요.
+      </div>
+    );
+  }
 
   return (
     <Carousel
