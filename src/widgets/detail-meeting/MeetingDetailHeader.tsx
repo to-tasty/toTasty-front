@@ -7,6 +7,7 @@ import { WithIcon, WishButton } from './ui';
 
 export default function MeetingDetailHeader(data: MeetingDetailInfo) {
   const {
+    meetingId,
     meetingTitle,
     currentParticipants,
     thumbnailUrl,
@@ -55,7 +56,7 @@ export default function MeetingDetailHeader(data: MeetingDetailInfo) {
                 {location.address} {location.detail}
               </p>
             </div>
-            <WishButton isWished={isWished} />
+            <WishButton isWished={isWished} meetingId={Number(meetingId)} />
           </div>
 
           <div className="flex flex-wrap gap-2">
