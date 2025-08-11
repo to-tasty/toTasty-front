@@ -1,5 +1,3 @@
-import { UserProfileCard } from '@/widgets';
-
 export default function MyPage() {
-  return <UserProfileCard />;
+  return <div>마이페이지</div>;
 }

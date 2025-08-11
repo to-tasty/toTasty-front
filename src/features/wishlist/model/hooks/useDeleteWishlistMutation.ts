@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import wishlistKeys from '@/entities/wishilist/model/wishlist.keys';
+import wishlistKeys from '@/entities/wishlist/model/wishlist.keys';
 import deleteWishlist from '../../api/deleteWishlist';
 
 export default function useDeleteWishlistMutation(): UseMutationResult<
