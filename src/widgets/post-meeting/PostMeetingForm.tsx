@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
-import { DrinkType } from '@/shared';
+import { DrinkType, TastingInfo } from '@/shared';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { PostMeetingRequest } from '@/features/meetings/model/types';
 import ErrorField from '@/shared/ui/form/ErrorField';
@@ -254,7 +254,7 @@ export default function PostMeetingForm({ callbackSubmit }: PostMeetingViewProps
               시음 음료 목록<span className="text-danger ml-1">*</span>
             </p>
             <ErrorField fieldStateMeta={field.state.meta} />
-            {field.state.value.map((_, index) => {
+            {field.state.value.map((_: TastingInfo, index: number) => {
               const itemKey = `tastingList-${index}`;
               const isAddable = index < 7;
               return (
