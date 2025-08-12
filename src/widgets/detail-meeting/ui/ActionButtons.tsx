@@ -19,16 +19,9 @@ export default function ActionButtons({ ctx, handlers }: { ctx: FooterCtx; handl
         const disabled = a.disabled?.(ctx) ?? false;
         const variant = a.variant === ButtonVariant.Outline ? 'outlinePrimary' : 'default';
         return (
-          <>
-            <Button key={a.id} variant={variant} disabled={disabled} onClick={call(a.handlerKey)}>
-              {a.label}
-            </Button>
-            {disabled && (
-              <Button key={`review-${a.id}`} variant="outlinePrimary">
-                리뷰 작성하기
-              </Button>
-            )}
-          </>
+          <Button key={a.id} variant={variant} disabled={disabled} onClick={call(a.handlerKey)}>
+            {a.label}
+          </Button>
         );
       })}
     </>

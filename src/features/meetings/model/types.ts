@@ -1,4 +1,6 @@
+import { MeetingDetailInfo } from '@/entities/meetings/model/types';
 import { TastingInfo } from '@/shared';
+import { QueryKey } from '@tanstack/react-query';
 
 export interface PostMeetingRequest {
   meetingTitle: string;
@@ -18,4 +20,17 @@ export interface PostMeetingRequest {
 }
 export interface PostMeetingSucceed {
   meetingId: number;
+}
+
+export interface MutationCtx {
+  prev?: MeetingDetailInfo;
+  detailKey: QueryKey;
+}
+
+export interface CancelMeetingRequest {
+  meetingId: number;
+}
+export interface CancelMeetingResponse {
+  meetingId: number;
+  status: 'cancelled';
 }

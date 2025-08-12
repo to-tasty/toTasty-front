@@ -1,17 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import {
-  useMeetingDetailQuery,
-  // useJoinMeetingMutation,
-  // useCancelJoinMutation,
-  // useCancelMeetingMutation,
-} from '@/entities/meetings';
-import type { MeetingDetailInfo } from '@/entities/meetings/model/types';
+import { useMeetingDetailQuery } from '@/entities/meetings';
 import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/detail-meeting';
 import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
 import { useConfirm } from '@/widgets/detail-meeting/model/hook/useConfirm';
+import { useCancelMeetingMutation } from '@/features/meetings';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
@@ -20,14 +15,14 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
   const user = useUserStore((s) => s.user);
   const { confirm, ConfirmDialog } = useConfirm();
 
+  const cancelMeetingMutation = useCancelMeetingMutation();
+
   if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>오류: {(error as Error).message}</div>;
   if (!meetingData) return <div>모임 정보를 불러오는 중입니다...</div>;
 
   const displayName = user?.nickname ?? '';
-  const isHost = Boolean(
-    isLoggedIn && displayName && meetingData && displayName === meetingData.meetingAuthor,
-  );
+  const isHost = Boolean(isLoggedIn && displayName && displayName === meetingData.meetingAuthor);
 
   let role: Role;
   if (isHost) role = Role.host;
@@ -35,10 +30,6 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
   else role = Role.guest;
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  // --- mutations (프로젝트 훅으로 교체) ---
-  // const joinMutation = useJoinMeetingMutation();
-  // const cancelJoinMutation = useCancelJoinMutation();
-  // const cancelMeetingMutation = useCancelMeetingMutation();
 
   const handlers = {
     onLogin: () => {
@@ -60,8 +51,14 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       if (navigator.share) {
         navigator.share({ title: 'To tasty', url: currentUrl }).catch(() => {});
       } else {
-        navigator.clipboard.writeText(currentUrl);
-        alert('링크가 복사되었습니다.');
+        navigator.clipboard
+          .writeText(currentUrl)
+          .then(() => {
+            // TODO: toast.success('링크가 복사되었습니다.');
+          })
+          .catch(() => {
+            // TODO: toast.error('복사에 실패했습니다.');
+          });
       }
     },
     onCancelMeeting: async () => {
@@ -72,8 +69,8 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
         cancelText: '아니요',
         destructive: true,
       });
-      if (!ok) {
-        // cancelMeetingMutation.mutate({ meetingId });
+      if (ok) {
+        cancelMeetingMutation.mutate({ meetingId });
       }
     },
     onNoop: () => {},
@@ -82,14 +79,14 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
   return (
     <main className="max-w-[1000px] mx-auto py-8">
       <div className="mb-8">
-        <MeetingDetailHeader {...(meetingData as MeetingDetailInfo)} />
+        <MeetingDetailHeader {...meetingData} />
       </div>
 
       <div className="space-y-4">
         <ContentBox title="모임 상세 설명" content={meetingData.content} />
 
         <MeetingDetailFooter
-          meeting={meetingData as MeetingDetailInfo}
+          meeting={meetingData}
           role={role}
           isHost={isHost}
           handlers={handlers}
