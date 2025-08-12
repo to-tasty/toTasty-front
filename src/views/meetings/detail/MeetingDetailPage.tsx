@@ -72,8 +72,9 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
         cancelText: '아니요',
         destructive: true,
       });
-      if (!ok) return;
-      // cancelMeetingMutation.mutate({ meetingId });
+      if (!ok) {
+        // cancelMeetingMutation.mutate({ meetingId });
+      }
     },
     onNoop: () => {},
   };
