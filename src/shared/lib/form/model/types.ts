@@ -75,9 +75,3 @@ export interface UseFieldValueOptions {
     | 'RatingField';
   fieldName?: string;
 }
-
-export interface LocationInfo {
-  sido: string;
-  address: string;
-  detail: string;
-}

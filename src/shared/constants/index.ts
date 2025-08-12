@@ -1,1 +1,1 @@
-export { DrinkType } from './types';
+export * from './types';

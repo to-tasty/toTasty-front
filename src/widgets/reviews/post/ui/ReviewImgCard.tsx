@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { TastingInfo } from '@/entities/tasting-list';
+import { TastingInfo } from '@/shared';
 
 interface ReviewImgProps {
   item: TastingInfo;
