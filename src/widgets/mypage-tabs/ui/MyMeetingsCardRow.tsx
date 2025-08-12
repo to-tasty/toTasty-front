@@ -105,6 +105,7 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
             alt={`${meeting.meetingTitle} 썸네일`}
             width={280}
             height={156}
+            layout="fixed"
             className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
           />
         </Link>
