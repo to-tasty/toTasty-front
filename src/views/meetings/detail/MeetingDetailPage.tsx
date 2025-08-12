@@ -12,6 +12,7 @@ import {
   useCancelJoinMutation,
 } from '@/features/meetings';
 import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews';
+import ReviewImgCardRow from '@/widgets/reviews/ui/ReviewImgCardRow';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
@@ -87,6 +88,11 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       </div>
 
       <div className="space-y-15">
+        <ReviewImgCardRow
+          tastingInfo={meetingData.tastingList}
+          className="text-lg font-semibold mb-2"
+        />
+
         <ContentBox title="모임 상세 설명">{meetingData.content}</ContentBox>
 
         <ContentBox title="이 모임에 대한 리뷰">
