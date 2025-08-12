@@ -30,9 +30,6 @@ export default function WishlistCardRow({ wishlistCardList }: MeetingInfoList) {
       <p className="text-muted-foreground text-sm font-medium items-center justify-center">
         위시리스트가 비어 있어요.
       </p>
-      <p className="text-muted-foreground text-sm font-medium items-center justify-center">
-        지금 바로 모임을 찜해보세요.
-      </p>
     </div>
   );
 }

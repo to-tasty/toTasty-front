@@ -1,5 +1,5 @@
-import MyMeetingsTab from '@/widgets/mypage-tabs/ui/MyMeetingsTab';
+import { MyMeetingCards } from '@/widgets';
 
 export default function MeetingsTab() {
-  return <MyMeetingsTab />;
+  return <MyMeetingCards />;
 }

@@ -7,10 +7,10 @@ export interface ReviewContent {
   meetingId: number;
   meetingTitle: string;
   thumbnailUrl: string;
+  reviewerImgUrl: string;
+  reviewDate: string;
   reviewRating: number;
   reviewContent: string;
-  reviewer: string;
-  reviewerImgUrl: string;
 }
 
 interface PageInfo {

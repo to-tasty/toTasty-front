@@ -23,10 +23,8 @@ export default function WishlistTab() {
     }
   }, [inView, fetchNextPage, memberId]);
 
-  //   console.log('flatWishlist.length:', flatWishlist.length);
-
   if (isPending) {
-    return <Skeleton className="h-[1020px] w-full rounded-xl bg-gray-020" />;
+    return <Skeleton className="h-full w-full rounded-xl bg-gray-020" />;
   }
 
   return (

@@ -143,19 +143,21 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
             다음 기회에 만나요 🙏
           </div>
         )}
-        <Image
-          src={
-            meeting.thumbnailUrl
-              ? meeting.thumbnailUrl
-              : '/placeholder.svg?height=156&width=280&query=meeting-thumbnail'
-          }
-          alt={`${meeting.meetingTitle} 썸네일`}
-          width={280}
-          height={156}
-          className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
-        />
+        <Link href={`/meetings/${meeting.meetingId}`}>
+          <Image
+            src={
+              meeting.thumbnailUrl
+                ? meeting.thumbnailUrl
+                : '/placeholder.svg?height=156&width=280&query=meeting-thumbnail'
+            }
+            alt={`${meeting.meetingTitle} 썸네일`}
+            width={280}
+            height={156}
+            className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
+          />
+        </Link>
 
-        <div className="flex flex-1 flex-col min-w-0 h-[156px] justify-between">
+        <div className="flex flex-col min-w-0 h-[156px] justify-between">
           <div className="flex items-center gap-2 flex-wrap">
             {badges.map((b, i) => (
               <Button
@@ -170,10 +172,12 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
               </Button>
             ))}
           </div>
-          <div>
-            <div className="text-lg font-semibold truncate">{meeting.meetingTitle}&ensp;|</div>
-            <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
-          </div>
+          <Link href={`/meetings/${meeting.meetingId}`}>
+            <div>
+              <div className="text-lg font-semibold truncate">{meeting.meetingTitle}&ensp;|</div>
+              <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
+            </div>
+          </Link>
 
           <div>
             {action.href ? (
@@ -218,9 +222,6 @@ export default function MyMeetingsCardRow({ myMeetingsCardList = [] as MeetingCa
     <div className="flex flex-col h-[500px] w-full items-center justify-center">
       <p className="text-muted-foreground text-sm font-medium items-center justify-center">
         아직 참여한 모임이 없어요.
-      </p>
-      <p className="text-muted-foreground text-sm font-medium items-center justify-center">
-        지금 바로 모임에 참여해보세요.
       </p>
     </div>
   );
