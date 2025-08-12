@@ -1,12 +1,8 @@
-import { DrinkType, TastingInfo } from '@/shared';
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
 
 export default interface PostMeetingFormData {
   meetingTitle: string;
-  location: {
-    sido: string;
-    address: string;
-    detail: string;
-  };
+  location: LocationInfo;
   participationFee: number;
   startAt: string;
   joinEndAt: string;
