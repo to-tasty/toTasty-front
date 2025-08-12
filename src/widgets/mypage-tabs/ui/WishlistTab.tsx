@@ -30,7 +30,7 @@ export default function WishlistTab() {
   }
 
   return (
-    <div className="flex flex-col mb-8">
+    <div className="flex flex-col my-6">
       <WishlistCardRow wishlistCardList={flatWishlist} />
       <div ref={ref} />
     </div>
