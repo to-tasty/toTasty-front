@@ -31,6 +31,7 @@ const buttonVariants = cva(
           'bg-primary-010 text-primary shadow-xs hover:bg-primary-010 cursor-default disabled:bg-gray-020 disabled:text-gray-500 disabled:opacity-100',
         meetingStatusSecondary:
           'border bg-background text-primary shadow-xs hover:bg-background cursor-default disabled:text-gray-500 disabled:opacity-100',
+        hidden: '',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -38,6 +39,7 @@ const buttonVariants = cva(
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
         findFilterSize: 'min-w-[57px] h-[40px] rounded-xl px-4 mr-2',
+        hidden: '',
       },
     },
     defaultVariants: {
