@@ -8,7 +8,7 @@ export interface WishButtonProps {
 
 export interface ContentBoxProps {
   title: string;
-  content: string;
+  children: React.ReactNode;
 }
 
 export enum MeetingStatus {

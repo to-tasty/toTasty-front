@@ -88,9 +88,12 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       </div>
 
       <div className="space-y-4">
-        <ContentBox title="모임 상세 설명" content={meetingData.content} />
+        <ContentBox title="모임 상세 설명">{meetingData.content}</ContentBox>
 
-        <MeetingDetailReviews meetingId={meetingId} />
+        <ContentBox title="이 모임에 대한 리뷰">
+          <MeetingDetailReviews meetingId={meetingId} />
+        </ContentBox>
+
         <MeetingDetailFooter
           meeting={meetingData}
           role={role}
