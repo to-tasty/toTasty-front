@@ -1,7 +1,7 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import getNewMeetings from '../api/getNewMeetings';
 import getWishlistMeetings from '../api/getWishlist';
-import getFavoriteMeetings from '../api/getFavoriteMeetings';
+// import getFavoriteMeetings from '../api/getFavoriteMeetings';
 import getPopularMeetings from '../api/getPopularMeetings';
 
 const homeMeetingCardKeys = createQueryKeys('homeMeetingCard', {
@@ -14,8 +14,7 @@ const homeMeetingCardKeys = createQueryKeys('homeMeetingCard', {
     queryFn: () => getWishlistMeetings(),
   }),
   favorite: (interests: string[]) => ({
-    queryKey: ['favorite', interests],
-    queryFn: () => getFavoriteMeetings(interests),
+    queryKey: ['favorite', { interests: [...(interests ?? [])].sort() }],
   }),
   popular: () => ({
     queryKey: ['popular'],
