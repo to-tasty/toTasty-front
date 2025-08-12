@@ -51,6 +51,7 @@ export interface MeetingFilters {
   filter?: string;
   sort?: SortType;
   drinkType?: DrinkType;
+  memberId?: number;
   page?: number;
   size?: number;
 }

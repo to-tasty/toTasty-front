@@ -1,1 +1,4 @@
-export type { MeetingCardInfo as Wishlist } from '../../meetings';
+export type {
+  MeetingCardInfo as WishlistCardInfo,
+  MeetingListInfo as WishlistInfo,
+} from '@/entities/meetings';
