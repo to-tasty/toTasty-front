@@ -1,12 +1,16 @@
 import { TastingInfo } from '@/entities/tasting-list';
 
-interface ReviewContent {
+export interface ReviewContent {
   reviewId: number;
+  memberId: number;
+  memberNickname: string;
+  meetingId: number;
+  meetingTitle: string;
+  thumbnailUrl: string;
   reviewRating: number;
   reviewContent: string;
   reviewer: string;
   reviewerImgUrl: string;
-  thumbnailUrl?: string;
 }
 
 interface PageInfo {
