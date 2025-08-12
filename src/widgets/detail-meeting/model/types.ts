@@ -66,6 +66,7 @@ export interface ActionDef {
   disabled?: (ctx: FooterCtx) => boolean;
   variant?: ButtonVariant;
   handlerKey: keyof Handlers;
+  order?: number;
 }
 
 export interface MeetingFooterProps {

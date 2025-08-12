@@ -25,7 +25,7 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
       max: meeting.maxParticipants,
       fee: meeting.participationFee,
       isParticipated: meeting.isParticipated,
-      isReviewed: meeting.isReviewed,
+      isReviewed: meeting.isReviewed ?? false,
     }),
     [
       role,
