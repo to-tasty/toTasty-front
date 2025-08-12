@@ -38,11 +38,9 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
     ],
   );
 
-  const containerClass = isMobile
-    ? 'relative mt-8'
-    : isFixed
-      ? 'fixed bottom-0 left-0'
-      : 'relative mt-20';
+  let containerClass = 'relative mt-20';
+  if (isMobile) containerClass = 'relative mt-8';
+  else if (isFixed) containerClass = 'fixed bottom-0 left-0';
 
   return (
     <>
