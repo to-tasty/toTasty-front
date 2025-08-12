@@ -4,6 +4,7 @@ import { ReviewFilters } from './types';
 import getReviewList from '../api/getReviewList';
 import getReviewDetail from '../api/getReviewDetail';
 import getMyReviewList from '../api/getMyReviewList';
+import getMeetingReviews from '../api/getMeetingReviews';
 
 const reviewKeys = createQueryKeys('reviews', {
   all: null,
@@ -19,6 +20,13 @@ const reviewKeys = createQueryKeys('reviews', {
     queryKey: [memberId],
     queryFn: ({ pageParam = 1 }: QueryFunctionContext<[number], number>) =>
       getMyReviewList(pageParam),
+  }),
+  byMeeting: (meetingId: number, size: number) => ({
+    queryKey: ['meeting', { meetingId, size }] as const,
+    queryFn: ({
+      pageParam = 1,
+    }: QueryFunctionContext<[string, { meetingId: number; size: number }], number>) =>
+      getMeetingReviews(meetingId, pageParam, size),
   }),
 });
 

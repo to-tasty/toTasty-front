@@ -8,10 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui';
-import { useAppForm } from '@/shared/lib';
-
 import Image from 'next/image';
-import { TastingInfo } from '@/shared';
+import { TastingInfo, useAppForm } from '@/shared';
 import { usePostReviewMutation } from '@/features/reviews';
 import { useRouter } from 'next/navigation';
 import ReviewImgCardRow from '../ui/ReviewImgCardRow';
@@ -47,7 +45,7 @@ export default function PostReview({
 
   return (
     <div className="mb-10">
-      <div className="flex items-center justify-center min-h-12 text-gray-080 text-3xl font-bold mt-16 border-2 rounded-xl">
+      <div className="flex items-center justify-center min-h-12 text-gray-080 text-3xl font-bold mt-16 rounded-xl">
         참여했던 모임은 어떠셨나요? 후기를 남겨주세요!
       </div>
       <form
