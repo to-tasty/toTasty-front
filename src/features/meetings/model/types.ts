@@ -34,3 +34,21 @@ export interface CancelMeetingResponse {
   meetingId: number;
   status: 'cancelled';
 }
+
+export interface JoinMeetingRequest {
+  meetingId: number;
+}
+export interface JoinMeetingResponse {
+  meetingId: number;
+  currentParticipants: number;
+  isParticipated: true;
+}
+
+export interface CancelJoinRequest {
+  meetingId: number;
+}
+export interface CancelJoinResponse {
+  meetingId: number;
+  currentParticipants: number;
+  isParticipated: false;
+}
