@@ -4,10 +4,10 @@ export interface ReviewContent {
   reviewId: number;
   memberId: number;
   memberNickname: string;
+  memberProfileImageUrl: string;
   meetingId: number;
   meetingTitle: string;
   thumbnailUrl: string;
-  reviewerImgUrl: string;
   reviewDate: string;
   reviewRating: number;
   reviewContent: string;
@@ -35,4 +35,10 @@ export interface ReviewFilters {
   page: number;
   size: number;
   meetingId?: number;
+}
+
+export interface MeetingReviewFilters {
+  meetingId: number;
+  currentPage: number;
+  size: number;
 }

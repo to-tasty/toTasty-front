@@ -66,3 +66,7 @@ export { Command, CommandGroup, CommandItem, CommandList } from './Command';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 
 export { Textarea } from './Textarea';
+export { Progress } from './Progress';
+export { Badge } from './Badge';
+
+export * from './AlertDialog';

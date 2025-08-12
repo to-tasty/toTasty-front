@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { ReviewContent } from '@/entities/reviews';
 import { formatDateToDotString } from '@/shared/lib';
+
 interface ReviewList {
   reviewCardList: ReviewContent[] | null | undefined;
 }

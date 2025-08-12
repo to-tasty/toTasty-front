@@ -1,9 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { Button, Dialog, DialogTrigger } from '@/shared';
+import { Button, Dialog, DialogTrigger, formatDate, formatTime } from '@/shared';
 import { UsersRound, Check } from 'lucide-react';
-import { formatDate, formatTime } from '@/shared';
 import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
 import MyMeetingsCancelDialog from './MyMeetingsCancelDialog';
@@ -61,7 +60,7 @@ function MeetingMeta({ startAt, current, max }: { startAt: string; current: numb
   return (
     <div className="flex flex-wrap items-center gap-x-4 text-sm font-medium text-gray-070 mt-1.5">
       <div className="flex items-center gap-1.5">
-        <span>{formatDate(start) + ' · ' + formatTime(start)}</span>
+        <span>{`${formatDate(start)} · ${formatTime(start)}`}</span>
       </div>
       <div className="flex items-center gap-1.5">
         <UsersRound className="h-4 w-4" />

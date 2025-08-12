@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/ui';
 import { useAppForm } from '@/shared/lib';
-import { DrinkType } from '@/shared';
+import { DrinkType, TastingInfo } from '@/shared';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { PostMeetingRequest } from '@/features/meetings/model/types';
 import ErrorField from '@/shared/ui/form/ErrorField';
@@ -50,8 +50,6 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
           ...value,
           tastingList: updatedTastingList,
         };
-
-        console.log('모임 생성 데이터:', JSON.stringify(requestData, null, 2));
 
         callbackSubmit(requestData);
       } catch (error) {
@@ -218,7 +216,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
               label="최소 모임 정원"
               placeholder="모임이 생성될 수 있는 최소 인원을 작성해주세요"
               className="flex-1"
-              min={1}
+              min={2}
               step={1}
             />
           )}
@@ -256,7 +254,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
               시음 음료 목록<span className="text-danger ml-1">*</span>
             </p>
             <ErrorField fieldStateMeta={field.state.meta} />
-            {field.state.value.map((_, index) => {
+            {field.state.value.map((_: TastingInfo, index: number) => {
               const itemKey = `tastingList-${index}`;
               const isAddable = index < 7;
               return (
@@ -330,7 +328,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
           <field.TextareaField
             label="상세 설명"
             placeholder="모임에 대한 설명을 입력하세요"
-            maxLength={3000}
+            maxLength={2000}
             required
           />
         )}

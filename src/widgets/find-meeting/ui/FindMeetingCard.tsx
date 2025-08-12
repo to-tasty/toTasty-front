@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Progress } from '@/shared/ui/Progress';
+import { Progress } from '@/shared/ui';
 import { MeetingCardInfo } from '@/entities/meetings/index';
 import clsx from 'clsx';
 
@@ -53,7 +53,7 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
           // height={imageHeight}
           fill
           style={{ objectFit: 'cover' }}
-          className={'col-start-1 row-start-1'}
+          className="col-start-1 row-start-1"
         />
         <div
           className={clsx(
