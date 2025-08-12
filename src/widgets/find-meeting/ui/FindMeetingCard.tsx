@@ -50,7 +50,7 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
     >
       <div className={clsx('grid overflow-hidden', imageDivWidth, imageDivHeight)}>
         <Image
-          src="/assets/image/card-test-1.png"
+          src={meetingInfo.thumbnailUrl}
           alt="Meeting Card Test Image"
           width={imageWidth}
           height={imageHeight}
@@ -73,12 +73,16 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
             'justify-self-end mr-1 mt-1',
           )}
         >
-          <Image
-            src={imageSrc}
-            alt="wish meeting"
-            width={imageHeartWidth}
-            height={imageHeartHeight}
-          />
+          {meetingInfo.isWished ? (
+            <Image
+              src={imageSrc}
+              alt="wish meeting"
+              width={imageHeartWidth}
+              height={imageHeartHeight}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div className={clsx(flexItemCenter, 'justify-between ml-3', isBig ? 'mt-3' : 'mt-2.5')}>

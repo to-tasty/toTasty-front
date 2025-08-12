@@ -1,5 +1,5 @@
 import { formOptions } from '@tanstack/react-form';
-import { TastingInfo } from '@/entities/tasting-list/model/types';
+import { TastingInfo } from '@/entities/tasting-list';
 import { DrinkType, LocationInfo } from '@/shared';
 import PostMeetingFormData from './types';
 

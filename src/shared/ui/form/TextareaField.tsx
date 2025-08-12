@@ -35,6 +35,7 @@ export default function TextareaField({
         disabled={disabled}
         maxLength={maxLength}
         rows={rows}
+        className={className}
       />
     </FormField>
   );

@@ -70,7 +70,8 @@ export interface UseFieldValueOptions {
     | 'TextareaField'
     | 'FileUploadField'
     | 'DateTimeField'
-    | 'AddressField';
+    | 'AddressField'
+    | 'RatingField';
   fieldName?: string;
 }
 

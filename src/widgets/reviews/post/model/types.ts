@@ -1,12 +1,9 @@
+// TastingInfo
 import { TastingInfo } from '@/entities/tasting-list';
 
-export interface PostReviewInfo {
+export default interface ReviewFormData {
   meetingId: number;
   reviewRating: number;
   reviewContent: string;
   tastingList: TastingInfo[];
-}
-
-export interface ReviewSucceedInfo {
-  reviewId: number;
 }
