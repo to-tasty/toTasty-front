@@ -47,6 +47,8 @@ export interface FooterCtx {
   fee: number;
   isParticipated: boolean;
   isReviewed?: boolean;
+  joinEndAt: string;
+  startAt: string;
 }
 
 export interface Handlers {
@@ -66,6 +68,7 @@ export interface ActionDef {
   disabled?: (ctx: FooterCtx) => boolean;
   variant?: ButtonVariant;
   handlerKey: keyof Handlers;
+  order?: number;
 }
 
 export interface MeetingFooterProps {

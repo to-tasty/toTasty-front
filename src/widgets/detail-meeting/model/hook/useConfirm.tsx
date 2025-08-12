@@ -20,7 +20,7 @@ interface Options {
   destructive?: boolean;
 }
 
-export function useConfirm() {
+export default function useConfirm() {
   const [open, setOpen] = useState(false);
   const optsRef = useRef<Options>({});
   const resolverRef = useRef<((v: boolean) => void) | null>(null);
