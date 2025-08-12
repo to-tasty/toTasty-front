@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { Label } from '@/shared';
 import { ReviewDetailInfo } from '@/entities/reviews';
-import ReviewImgCardRow from './ui/ReviewImgCardRow';
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +11,7 @@ import {
   CarouselPrevious,
 } from '@/shared/ui';
 import clsx from 'clsx';
+import ReviewImgCardRow from './ui/ReviewImgCardRow';
 
 export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: ReviewDetailInfo }) {
   const ratingPointsHeartRender = () => {
@@ -19,7 +19,7 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
     for (let i = 1; i <= 5; i += 1) {
       const isChecked = i <= reviewDetailInfo.reviewRating;
       result.push(
-        <div key={'rating' + i} className="w-8 h-8 flex items-center justify-center">
+        <div key={`rating${i}`} className="w-8 h-8 flex items-center justify-center">
           <Image
             src={
               isChecked
@@ -44,13 +44,13 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
       <div className="space-y-2">
         <div className="text-sm font-medium text-gray-800 mt-14">만족스러운 경험이었나요?</div>
         <div className="flex items-center mr-0.5 mt-3">{ratingPointsHeartRender()}</div>
-        <span className="block mb-5"></span>
+        <span className="block mb-5" />
       </div>
 
       <div className="">
         <Label>총평</Label>
         <div className={clsx(divStyle, 'min-h-[153px]')}>{reviewDetailInfo.reviewContent}</div>
-        <span className="block mb-5"></span>
+        <span className="block mb-5" />
       </div>
 
       <ReviewImgCardRow tastingInfo={reviewDetailInfo.tastingList} />
@@ -86,17 +86,17 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
                     <div className="space-y-2">
                       <Label>맛</Label>
                       <div className={clsx(divStyle, 'min-h-[100px]')}>{item.drinkTaste}</div>
-                      <span className="block mb-5"></span>
+                      <span className="block mb-5" />
                     </div>
                     <div className="space-y-2">
                       <Label>향</Label>
                       <div className={clsx(divStyle, 'min-h-[100px]')}>{item.drinkFlavor}</div>
-                      <span className="block mb-5"></span>
+                      <span className="block mb-5" />
                     </div>
                     <div className="space-y-2">
                       <Label>색</Label>
                       <div className={clsx(divStyle, 'min-h-[100px]')}>{item.drinkColor}</div>
-                      <span className="block mb-5"></span>
+                      <span className="block mb-5" />
                     </div>
                   </div>
                 </div>
