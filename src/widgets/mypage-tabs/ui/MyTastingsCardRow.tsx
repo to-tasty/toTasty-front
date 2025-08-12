@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { ReviewContent } from '@/entities/reviews';
 import { formatDateToDotString } from '@/shared/lib';
+import Link from 'next/link';
 
 interface ReviewList {
   reviewCardList: ReviewContent[] | null | undefined;
@@ -14,6 +15,7 @@ function RatingHearts({ rating = 0, size = 16 }: { rating?: number; size?: numbe
   return (
     <div className="flex items-center gap-1" aria-label={`평점 ${r}점 (최대 5점)`}>
       {Array.from({ length: 5 }).map((_, i) => {
+        const key = `heartKey${i};`;
         const isFilled = i < r;
         const src = isFilled
           ? '/assets/icons/heart-point-checked.svg'
@@ -21,7 +23,7 @@ function RatingHearts({ rating = 0, size = 16 }: { rating?: number; size?: numbe
 
         return (
           <Image
-            key={i}
+            key={key}
             src={src}
             alt={isFilled ? '채워진 하트' : '빈 하트'}
             width={size}
@@ -41,29 +43,34 @@ export default function MyTastingsCardRow({ reviewCardList }: ReviewList) {
       <ul className="divide-y divide-dashed">
         {displayList.map((review) => (
           <li key={review.reviewId} className="my-6">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <Image
-                src={review.thumbnailUrl}
-                alt="리뷰 썸네일"
-                width={280}
-                height={156}
-                className="h-[156px] w-[280px] object-cover rounded-2xl border flex-shrink-0"
-              />
-              <div className="flex-1 min-w-0 px-3 flex flex-col h-[156px] gap-3">
-                <div className="flex items-center gap-2 pt-1 text-muted-foreground">
-                  <span className="font-bold text-foreground text-base">{review.meetingTitle}</span>
-                  <span className="text-xs font-medium">
-                    {formatDateToDotString(review.reviewDate)}
-                  </span>
+            <Link href={`/reviews/${review.reviewId}`}>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <Image
+                  src={review.thumbnailUrl}
+                  alt="리뷰 썸네일"
+                  width={280}
+                  height={156}
+                  layout="fixed"
+                  className="h-[156px] w-[280px] object-cover rounded-2xl border flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0 px-3 flex flex-col h-[156px] gap-3">
+                  <div className="flex items-center gap-2 pt-1 text-muted-foreground">
+                    <span className="font-bold text-foreground text-base">
+                      {review.meetingTitle}
+                    </span>
+                    <span className="text-xs font-medium">
+                      {formatDateToDotString(review.reviewDate)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RatingHearts rating={review.reviewRating} size={20} />
+                  </div>
+                  <p className="text-sm font-medium text-gray-070 line-clamp-3">
+                    {review.reviewContent}
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <RatingHearts rating={review.reviewRating} size={20} />
-                </div>
-                <p className="text-sm font-medium text-gray-070 line-clamp-3">
-                  {review.reviewContent}
-                </p>
               </div>
-            </div>
+            </Link>
           </li>
         ))}
       </ul>

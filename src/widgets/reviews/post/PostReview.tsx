@@ -8,9 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui';
-import { useAppForm } from '@/shared/lib';
 import Image from 'next/image';
-import { TastingInfo } from '@/shared';
+import { TastingInfo, useAppForm } from '@/shared';
 import { usePostReviewMutation } from '@/features/reviews';
 import { useRouter } from 'next/navigation';
 import ReviewImgCardRow from '../ui/ReviewImgCardRow';
@@ -87,7 +86,7 @@ export default function PostReview({
               orientation="horizontal"
             >
               <CarouselPrevious
-                className="absolute -left-8 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+                className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
                 style={{ pointerEvents: 'auto' }}
               />
               <CarouselContent className="flex">
@@ -167,7 +166,7 @@ export default function PostReview({
               </CarouselContent>
 
               <CarouselNext
-                className="absolute -right-8 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+                className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
                 style={{ pointerEvents: 'auto' }}
               />
             </Carousel>

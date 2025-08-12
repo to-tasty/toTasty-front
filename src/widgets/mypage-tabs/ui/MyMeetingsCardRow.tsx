@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Button, Dialog, DialogTrigger, formatDate, formatTime } from '@/shared';
 import { UsersRound, Check } from 'lucide-react';
+
 import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
 import MyMeetingsCancelDialog from './MyMeetingsCancelDialog';
@@ -31,28 +32,39 @@ function computeStatusBadges(meeting: MeetingCardInfo) {
 
   return badges;
 }
+interface MeetingActionProps {
+  meeting: MeetingCardInfo;
+  handleCancelMeeting: () => void;
+}
 
-function actionFor(meeting: MeetingCardInfo) {
+function MeetingAction({ meeting, handleCancelMeeting }: MeetingActionProps) {
   if (meeting.status === 'closed') {
-    if (meeting.isReviewed) {
-      return {
-        label: '리뷰 보기',
-        variant: 'default' as const,
-        href: `/reviews/${meeting.meetingId}`,
-      };
+    if (!meeting.isReviewed) {
+      return (
+        <Link href={`/reviews/post/${meeting.meetingId}`}>
+          <Button className="font-semibold" variant="default">
+            리뷰 작성하기
+          </Button>
+        </Link>
+      );
     }
-    return {
-      label: '리뷰 작성하기',
-      variant: 'default' as const,
-      href: `/reviews/post/${meeting.meetingId}`,
-    };
+    return null;
   }
 
-  return {
-    label: '예약 취소하기',
-    variant: 'outlinePrimary' as const,
-    href: null,
-  };
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          className="font-semibold"
+          variant="outlinePrimary"
+          // TODO : 모임 참가 취소 로직 onClick으로 구현할 것
+        >
+          예약 취소하기
+        </Button>
+      </DialogTrigger>
+      <MyMeetingsCancelDialog onConfirm={handleCancelMeeting} />
+    </Dialog>
+  );
 }
 
 function MeetingMeta({ startAt, current, max }: { startAt: string; current: number; max: number }) {
@@ -74,14 +86,11 @@ function MeetingMeta({ startAt, current, max }: { startAt: string; current: numb
 
 function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
   const badges = computeStatusBadges(meeting);
-  const action = actionFor(meeting);
   const max = Number(meeting.maxParticipants || 0);
   const cur = Number(meeting.currentParticipants || 0);
   const handleCancelMeeting = async () => {
     // TODO : 모임 참가 취소 로직 구현
     console.log('모임 참가가 취소되었습니다.');
-    // API 호출 등 비동기 작업 시뮬레이션
-    await new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
   return (
@@ -104,24 +113,28 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
             alt={`${meeting.meetingTitle} 썸네일`}
             width={280}
             height={156}
+            layout="fixed"
             className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
           />
         </Link>
 
         <div className="flex flex-col min-w-0 h-[156px] justify-between">
           <div className="flex items-center gap-2 flex-wrap">
-            {badges.map((b, i) => (
-              <Button
-                key={b.label + i}
-                variant={b.tone}
-                className="rounded-full"
-                size="sm"
-                disabled={b.disabled}
-              >
-                {b.label === '이용 완료' && <Check className="h-4 w-4" />}
-                {b.label}
-              </Button>
-            ))}
+            {badges.map((b, i) => {
+              const buttonKey = `${b.label} + ${i}`;
+              return (
+                <Button
+                  key={buttonKey}
+                  variant={b.tone}
+                  className="rounded-full"
+                  size="sm"
+                  disabled={b.disabled}
+                >
+                  {b.label === '이용 완료' && <Check className="h-4 w-4" />}
+                  {b.label}
+                </Button>
+              );
+            })}
           </div>
           <Link href={`/meetings/${meeting.meetingId}`}>
             <div>
@@ -132,31 +145,7 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
               <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
             </div>
           </Link>
-
-          <div>
-            {action.href ? (
-              <Link href={action.href}>
-                <Button className="font-semibold" variant={action.variant}>
-                  {action.label}
-                </Button>
-              </Link>
-            ) : (
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    className="font-semibold"
-                    variant={action.variant}
-                    onClick={() => {
-                      // TODO : 모임 참가 취소
-                    }}
-                  >
-                    {action.label}
-                  </Button>
-                </DialogTrigger>
-                <MyMeetingsCancelDialog onConfirm={handleCancelMeeting} />
-              </Dialog>
-            )}
-          </div>
+          <MeetingAction meeting={meeting} handleCancelMeeting={handleCancelMeeting} />
         </div>
       </div>
     </div>

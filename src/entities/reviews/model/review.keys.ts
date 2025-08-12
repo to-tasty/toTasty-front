@@ -1,5 +1,5 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import type { QueryFunctionContext } from '@tanstack/react-query';
+import { QueryFunctionContext } from '@tanstack/react-query';
 import { ReviewFilters } from './types';
 import getReviewList from '../api/getReviewList';
 import getReviewDetail from '../api/getReviewDetail';
