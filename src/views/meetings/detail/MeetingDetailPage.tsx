@@ -11,12 +11,14 @@ import type { MeetingDetailInfo } from '@/entities/meetings/model/types';
 import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/detail-meeting';
 import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
+import { useConfirm } from '@/widgets/detail-meeting/model/hook/useConfirm';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
   const { data: meetingData, isLoading, error } = useMeetingDetailQuery(meetingId);
   const isLoggedIn = useUserStore((s) => s.isLoggedIn);
   const user = useUserStore((s) => s.user);
+  const { confirm, ConfirmDialog } = useConfirm();
 
   if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>오류: {(error as Error).message}</div>;
@@ -62,11 +64,16 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
         alert('링크가 복사되었습니다.');
       }
     },
-    onCancelMeeting: () => {
-      // if (confirm('정말로 모임을 취소하시겠습니까?')) {
+    onCancelMeeting: async () => {
+      const ok = await confirm({
+        title: '모임 취소',
+        description: '정말로 모임을 취소하시겠습니까?',
+        confirmText: '네, 취소합니다',
+        cancelText: '아니요',
+        destructive: true,
+      });
+      if (!ok) return;
       // cancelMeetingMutation.mutate({ meetingId });
-      console.log(`[${meetingId}] 모임 취소 클릭됨`);
-      // }
     },
     onNoop: () => {},
   };
@@ -87,6 +94,8 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
           handlers={handlers}
         />
       </div>
+
+      <ConfirmDialog />
     </main>
   );
 }
