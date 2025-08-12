@@ -1,7 +1,9 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
+import type { QueryFunctionContext } from '@tanstack/react-query';
 import { ReviewFilters } from './types';
 import getReviewList from '../api/getReviewList';
 import getReviewDetail from '../api/getReviewDetail';
+import getMeetingReviews from '../api/getMeetingReviews';
 
 const reviewKeys = createQueryKeys('reviews', {
   all: null,
@@ -12,6 +14,13 @@ const reviewKeys = createQueryKeys('reviews', {
   detail: (reviewId: number) => ({
     queryKey: [reviewId],
     queryFn: () => getReviewDetail(reviewId),
+  }),
+  byMeeting: (meetingId: number, size: number) => ({
+    queryKey: ['meeting', { meetingId, size }] as const,
+    queryFn: ({
+      pageParam = 1,
+    }: QueryFunctionContext<[string, { meetingId: number; size: number }], number>) =>
+      getMeetingReviews(meetingId, pageParam, size),
   }),
 });
 
