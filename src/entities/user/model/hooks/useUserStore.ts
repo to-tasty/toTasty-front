@@ -26,7 +26,7 @@ const useUserStore = create<UserState>()(
         set((state) => (state.user ? { user: { ...state.user, ...partial } } : state)),
       setAccessToken: (token: string) => set({ accessToken: token }),
       clearAccessToken: () => set({ accessToken: '' }),
-      setHydrated: (value: boolean) => set({ isHydrated: value }),
+      setHydrated: (state: boolean) => set({ isHydrated: state }),
     }),
     {
       name: 'user-storage',

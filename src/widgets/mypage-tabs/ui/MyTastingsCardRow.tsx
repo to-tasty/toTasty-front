@@ -13,6 +13,7 @@ function RatingHearts({ rating = 0, size = 16 }: { rating?: number; size?: numbe
   return (
     <div className="flex items-center gap-1" aria-label={`평점 ${r}점 (최대 5점)`}>
       {Array.from({ length: 5 }).map((_, i) => {
+        const key = `heartKey${i};`;
         const isFilled = i < r;
         const src = isFilled
           ? '/assets/icons/heart-point-checked.svg'
@@ -20,7 +21,7 @@ function RatingHearts({ rating = 0, size = 16 }: { rating?: number; size?: numbe
 
         return (
           <Image
-            key={i}
+            key={key}
             src={src}
             alt={isFilled ? '채워진 하트' : '빈 하트'}
             width={size}
