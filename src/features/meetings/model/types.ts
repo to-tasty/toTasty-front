@@ -1,14 +1,10 @@
 import { MeetingDetailInfo } from '@/entities/meetings/model/types';
-import { TastingInfo } from '@/shared';
+import { TastingInfo, LocationInfo } from '@/shared';
 import { QueryKey } from '@tanstack/react-query';
 
 export interface PostMeetingRequest {
   meetingTitle: string;
-  location: {
-    sido: string;
-    address: string;
-    detail: string;
-  };
+  location: LocationInfo;
   participationFee: number;
   startAt: string;
   joinEndAt: string;
