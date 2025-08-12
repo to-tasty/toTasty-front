@@ -49,8 +49,7 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       cancelJoinMutation.mutate({ meetingId });
     },
     onWriteReview: () => {
-      // router.push(`/meetings/${meetingId}/review`);
-      console.log(`[${meetingId}] 리뷰 작성 이동`);
+      router.push(`/reviews/post/${meetingId}`);
     },
     onShare: () => {
       if (navigator.share) {
@@ -87,7 +86,7 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
         <MeetingDetailHeader {...meetingData} />
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-15">
         <ContentBox title="모임 상세 설명">{meetingData.content}</ContentBox>
 
         <ContentBox title="이 모임에 대한 리뷰">

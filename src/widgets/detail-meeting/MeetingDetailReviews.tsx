@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import { useMeetingReviewsQuery } from '@/entities/reviews';
 import { Button, getFormattedDate } from '@/shared';
@@ -23,38 +24,40 @@ export default function MeetingDetailReviews({ meetingId }: { meetingId: number 
           key={r.reviewId}
           className="border-b px-2 py-4 last:border-b-0 last:pb-0 first:pt-0 space-y-1"
         >
-          <div className="mt-2 flex items-center gap-1" aria-label={`평점 ${r.reviewRating}점`}>
-            {Array.from({ length: 5 }).map((_, i) => {
-              const isChecked = i < r.reviewRating;
-              const key = `heart-${r.reviewId}-${i}`;
-              return (
-                <Image
-                  key={key}
-                  src={
-                    isChecked
-                      ? '/assets/icons/heart-point-checked.svg'
-                      : '/assets/icons/heart-point-unchecked.svg'
-                  }
-                  alt={isChecked ? '하트 채움' : '하트 비움'}
-                  width={20}
-                  height={20}
-                />
-              );
-            })}
-          </div>
-          <p className="max-h-12 line-clamp-2">{r.reviewContent}</p>
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <Image
-              src={r.memberProfileImageUrl}
-              alt={r.memberNickname}
-              width={24}
-              height={24}
-              className="h-6 w-6 rounded-full"
-            />
-            <span className="font-medium text-foreground pr-2">{r.memberNickname}</span>
-            <span className="border border-muted inline h-4" />
-            <span>{getFormattedDate(r.reviewDate, 'dot')}</span>
-          </div>
+          <Link href={`/reviews/${r.reviewId}`}>
+            <div className="mt-2 flex items-center gap-1" aria-label={`평점 ${r.reviewRating}점`}>
+              {Array.from({ length: 5 }).map((_, i) => {
+                const isChecked = i < r.reviewRating;
+                const key = `heart-${r.reviewId}-${i}`;
+                return (
+                  <Image
+                    key={key}
+                    src={
+                      isChecked
+                        ? '/assets/icons/heart-point-checked.svg'
+                        : '/assets/icons/heart-point-unchecked.svg'
+                    }
+                    alt={isChecked ? '하트 채움' : '하트 비움'}
+                    width={20}
+                    height={20}
+                  />
+                );
+              })}
+            </div>
+            <p className="max-h-12 line-clamp-2">{r.reviewContent}</p>
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <Image
+                src={r.memberProfileImageUrl}
+                alt={r.memberNickname}
+                width={24}
+                height={24}
+                className="h-6 w-6 rounded-full"
+              />
+              <span className="font-medium text-foreground pr-2">{r.memberNickname}</span>
+              <span className="border border-muted inline h-4" />
+              <span>{getFormattedDate(r.reviewDate, 'dot')}</span>
+            </div>
+          </Link>
         </div>
       ))}
 
