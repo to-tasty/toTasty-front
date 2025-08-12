@@ -1,5 +1,4 @@
-import { TastingInfo } from '@/entities/tasting-list';
-import { LocationInfo } from '@/shared';
+import { LocationInfo, TastingInfo } from '@/shared';
 
 export interface PostMeetingRequest {
   meetingTitle: string;

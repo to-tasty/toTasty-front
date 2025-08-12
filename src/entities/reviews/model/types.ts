@@ -1,4 +1,4 @@
-import { TastingInfo } from '@/entities/tasting-list';
+import { TastingInfo } from '@/shared';
 
 interface ReviewContent {
   reviewId: number;

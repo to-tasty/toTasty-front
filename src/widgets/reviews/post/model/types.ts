@@ -1,5 +1,4 @@
-// TastingInfo
-import { TastingInfo } from '@/entities/tasting-list';
+import { TastingInfo } from '@/shared';
 
 export default interface ReviewFormData {
   meetingId: number;
