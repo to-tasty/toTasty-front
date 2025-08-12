@@ -27,6 +27,7 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
       isParticipated: meeting.isParticipated,
       isReviewed: meeting.isReviewed ?? false,
       joinEndAt: meeting.joinEndAt,
+      startAt: meeting.startAt,
     }),
     [
       role,
@@ -36,6 +37,8 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
       meeting.participationFee,
       meeting.isParticipated,
       meeting.isReviewed,
+      meeting.joinEndAt,
+      meeting.startAt,
     ],
   );
 

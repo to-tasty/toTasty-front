@@ -48,6 +48,7 @@ export interface FooterCtx {
   isParticipated: boolean;
   isReviewed?: boolean;
   joinEndAt: string;
+  startAt: string;
 }
 
 export interface Handlers {
