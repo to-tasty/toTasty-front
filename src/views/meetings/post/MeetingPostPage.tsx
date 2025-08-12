@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 export default function MeetingPostPage() {
   const router = useRouter();
-  const { mutateAsync, isPending, isError, error } = usePostMeetingMutation();
+  const { mutateAsync } = usePostMeetingMutation();
   const handleSubmit = async (formData: PostMeetingRequest) => {
     try {
       const result = await mutateAsync(formData);
@@ -23,8 +23,8 @@ export default function MeetingPostPage() {
   return (
     <>
       <h2 className="text-3xl font-bold text-center my-15">모임 생성</h2>
-      {isPending && <div>생성 중...</div>}
-      {isError && <div>에러: {error.message}</div>}
+      {/* {isPending && <div>생성 중...</div>}
+      {isError && <div>에러: {error.message}</div>} */}
 
       <div className="max-w-3xl mx-auto">
         <PostMeetingForm callbackSubmit={handleSubmit} />

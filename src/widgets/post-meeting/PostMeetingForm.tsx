@@ -216,7 +216,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
               label="최소 모임 정원"
               placeholder="모임이 생성될 수 있는 최소 인원을 작성해주세요"
               className="flex-1"
-              min={1}
+              min={2}
               step={1}
             />
           )}
@@ -328,7 +328,7 @@ export default function PostMeetingView({ callbackSubmit }: PostMeetingViewProps
           <field.TextareaField
             label="상세 설명"
             placeholder="모임에 대한 설명을 입력하세요"
-            maxLength={3000}
+            maxLength={2000}
             required
           />
         )}
