@@ -11,6 +11,7 @@ import {
   useJoinMeetingMutation,
   useCancelJoinMutation,
 } from '@/features/meetings';
+import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
@@ -89,6 +90,7 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       <div className="space-y-4">
         <ContentBox title="모임 상세 설명" content={meetingData.content} />
 
+        <MeetingDetailReviews meetingId={meetingId} />
         <MeetingDetailFooter
           meeting={meetingData}
           role={role}
