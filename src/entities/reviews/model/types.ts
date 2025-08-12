@@ -1,4 +1,4 @@
-import { TastingInfo } from '@/entities/tasting-list/model/types';
+import { TastingInfo } from '@/entities/tasting-list';
 
 interface ReviewContent {
   reviewId: number;

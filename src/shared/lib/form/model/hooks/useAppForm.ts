@@ -9,6 +9,7 @@ import {
   DateTimeField,
   AddressField,
   MultiSelectField,
+  RatingField,
 } from '../../../../ui/form';
 
 const { useAppForm } = createFormHook({
@@ -23,6 +24,7 @@ const { useAppForm } = createFormHook({
     DateTimeField,
     AddressField,
     MultiSelectField,
+    RatingField,
   },
   formComponents: {},
 });

@@ -27,6 +27,7 @@ const buttonVariants = cva(
           'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-primary/60 dark:hover:bg-primary/30 border-primary text-primary',
         outlineDanger:
           'border bg-background shadow-xs hover:bg-danger/20 dark:bg-input/30 dark:border-danger/60 dark:hover:bg-danger/30 border-danger text-danger',
+        hidden: '',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -34,6 +35,7 @@ const buttonVariants = cva(
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
         findFilterSize: 'min-w-[57px] h-[40px] rounded-xl px-4 mr-2',
+        hidden: '',
       },
     },
     defaultVariants: {
