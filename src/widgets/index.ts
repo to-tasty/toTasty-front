@@ -9,3 +9,4 @@ export { default as MyPageTabs } from './mypage-tabs/ui/MyPageTabs';
 export { default as MyWishlistCards } from './mypage-tabs/ui/WishlistTab';
 export { default as MyTastingCards } from './mypage-tabs/ui/MyTastingsTab';
 export { default as MyMeetingCards } from './mypage-tabs/ui/MyMeetingsTab';
+export { default as ReviewDetail } from './reviews/ReviewDetail';

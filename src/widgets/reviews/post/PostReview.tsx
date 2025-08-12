@@ -46,7 +46,7 @@ export default function PostReview({
 
   return (
     <div className="mb-10">
-      <div className="flex items-center justify-center min-h-12 text-gray-080 text-3xl font-bold mt-16 border-2 rounded-xl">
+      <div className="flex items-center justify-center min-h-12 text-gray-080 text-3xl font-bold mt-16 rounded-xl">
         참여했던 모임은 어떠셨나요? 후기를 남겨주세요!
       </div>
       <form
@@ -88,7 +88,7 @@ export default function PostReview({
                 orientation="horizontal"
               >
                 <CarouselPrevious
-                  className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+                  className="absolute -left-8 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
                   style={{ pointerEvents: 'auto' }}
                 />
                 <CarouselContent className="flex">
@@ -168,7 +168,7 @@ export default function PostReview({
                 </CarouselContent>
 
                 <CarouselNext
-                  className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+                  className="absolute -right-8 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
                   style={{ pointerEvents: 'auto' }}
                 />
               </Carousel>
