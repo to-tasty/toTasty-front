@@ -5,9 +5,12 @@ export default async function getTastingList(meetingId: number): Promise<Tasting
   const response = getApi<TastingList>(`/api/v1/tasting-list/${meetingId}`);
   response.then((res) => {
     res?.tastingList.map((item) => {
-      item.drinkColor ||= '';
-      item.drinkFlavor ||= '';
-      item.drinkTaste ||= '';
+      return {
+        ...item,
+        drinkColor: item.drinkColor || '',
+        drinkFlavor: item.drinkFlavor || '',
+        drinkTaste: item.drinkTaste || '',
+      };
     });
     return res;
   });
