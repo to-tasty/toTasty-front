@@ -18,7 +18,7 @@ export default function UserProfileCard() {
   };
 
   return (
-    <div className="relative flex flex-col w-full max-w-[992px] h-[148px] rounded-2xl overflow-hidden shadow-xs bg-white outline-2 outline-gray-020">
+    <div className="relative flex flex-col w-full h-[148px] rounded-2xl overflow-hidden shadow-xs bg-white outline-2 outline-gray-020">
       <div className="bg-primary h-[66px] relative flex flex-col justify-between">
         <div className="flex justify-between px-6 mt-4 ">
           <h1 className="text-gray-090 text-lg font-semibold">내 프로필</h1>

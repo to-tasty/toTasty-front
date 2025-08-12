@@ -4,7 +4,7 @@ import { KakaoLoginButton } from '@/features/login-with-kakao';
 
 export default function LoginPage() {
   return (
-    <main className="flex items-center justify-center flex-col min-h-screen bg-background">
+    <main className="flex items-center justify-center flex-col min-h-[calc(100svh-76px)] bg-background">
       <div className="flex gap-6 items-center justify-center flex-col w-120 h-50 bg-secondary shadow-xs rounded-xl">
         <h1 className="text-xl font-semibold">로그인</h1>
         <KakaoLoginButton />

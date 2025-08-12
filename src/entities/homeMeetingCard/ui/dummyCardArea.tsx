@@ -26,7 +26,7 @@ const BASE_DUMMY: MeetingInfo = {
   currentParticipants: 1,
   tastingDrinkCount: 1,
   isWished: false,
-  thumbnailUrl: '/assets/image/card-test-1.jpg',
+  thumbnailUrl: '/assets/image/card-test-1.png',
   status: 'open',
   drinkType: DrinkType.wine,
   isReviewed: false,

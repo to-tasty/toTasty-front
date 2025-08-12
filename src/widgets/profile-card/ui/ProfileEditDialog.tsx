@@ -68,7 +68,10 @@ export default function ProfileEditDialog() {
           className="cursor-pointer"
         />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] w-full">
+      <DialogContent
+        className="sm:max-w-[425px] w-full"
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <form method="post" onSubmit={handleSubmit} className="max-w-full">
           <DialogHeader>
             <DialogTitle>프로필 수정</DialogTitle>

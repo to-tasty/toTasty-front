@@ -8,7 +8,6 @@ export interface ReviewContent {
   meetingId: number;
   meetingTitle: string;
   thumbnailUrl: string;
-  reviewer: string;
   reviewDate: string;
   reviewRating: number;
   reviewContent: string;

@@ -10,8 +10,8 @@ export default function NavigationTabs() {
   const navigationMenuItems = [
     // TODO : href url 변경
     { title: '모임찾기', href: '/meetings' },
-    { title: '찜한모임', href: '/my-page/wishlist' },
     { title: '나의 테이스팅', href: '/my-page/tastings' },
+    { title: '위시리스트', href: '/my-page/wishlist' },
   ];
 
   function getNavTabClass(href: string) {
