@@ -1,7 +1,7 @@
 import MeetingDetailPage from '@/views/meetings/detail/MeetingDetailPage';
 
 type PageProps = {
-  params: { meetingId: string };
+  params: Promise<{ meetingId: string }>;
 };
 
 export default async function MeetingDetailRoute({ params }: PageProps) {

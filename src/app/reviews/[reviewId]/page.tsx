@@ -6,6 +6,5 @@ export default async function ReviewDetailPage({
   params: Promise<{ reviewId: string }>;
 }) {
   const { reviewId } = await params;
-  console.log(reviewId);
   return <ReviewView reviewId={Number(reviewId)} />;
 }

@@ -34,7 +34,6 @@ export default function PostReview({
     },
     validators: {},
     onSubmit: async ({ value }) => {
-      console.log(value);
       const result = await mutateAsync(value);
       if (result && result.reviewId) {
         alert('리뷰 작성을 완료하였습니다.');
