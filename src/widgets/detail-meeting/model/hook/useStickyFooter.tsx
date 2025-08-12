@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export function useStickyFooter() {
+export default function useStickyFooter() {
   const [isMobile, setIsMobile] = useState(false);
   const [isFixed, setIsFixed] = useState(true);
 

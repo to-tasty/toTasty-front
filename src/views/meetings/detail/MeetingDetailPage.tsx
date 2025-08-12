@@ -5,7 +5,7 @@ import { useMeetingDetailQuery } from '@/entities/meetings';
 import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/detail-meeting';
 import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
-import { useConfirm } from '@/widgets/detail-meeting/model/hook/useConfirm';
+import { useConfirm } from '@/widgets/detail-meeting/model/hook';
 import {
   useCancelMeetingMutation,
   useJoinMeetingMutation,

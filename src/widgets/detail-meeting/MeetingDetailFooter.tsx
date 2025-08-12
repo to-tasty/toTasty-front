@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from 'react';
 import { useUserStore } from '@/entities/user';
-import { useStickyFooter } from './model/hook/useStickyFooter';
+import { useStickyFooter, useNowTick } from './model/hook';
 import { ActionButtons, FooterText, ParticipantsText } from './ui';
 import { MeetingFooterProps, FooterCtx, Role, MeetingStatus } from './model/types';
 
@@ -11,11 +11,11 @@ const cx = (...v: (string | false | undefined)[]) => v.filter(Boolean).join(' ')
 export default function MeetingDetailFooter(props: MeetingFooterProps) {
   const { meeting, role: roleProp, isHost, handlers } = props;
   const { isLoggedIn } = useUserStore((s) => s);
-
   const { isMobile, isFixed } = useStickyFooter();
   const containerRef = useRef<HTMLDivElement>(null);
-
   const role: Role = isHost ? Role.host : (roleProp ?? (isLoggedIn ? Role.member : Role.guest));
+
+  useNowTick(30_000);
 
   const ctx: FooterCtx = useMemo(
     () => ({
