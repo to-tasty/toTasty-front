@@ -26,6 +26,7 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
       fee: meeting.participationFee,
       isParticipated: meeting.isParticipated,
       isReviewed: meeting.isReviewed ?? false,
+      joinEndAt: meeting.joinEndAt,
     }),
     [
       role,

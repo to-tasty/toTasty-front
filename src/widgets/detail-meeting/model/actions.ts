@@ -1,3 +1,4 @@
+import { isRecruitmentClosed } from './getVisibleActions';
 import { ActionDef, ActionId, ButtonVariant, FooterCtx, MeetingStatus, Role } from './types';
 
 export const ACTIONS: ActionDef[] = [
@@ -23,7 +24,7 @@ export const ACTIONS: ActionDef[] = [
     id: ActionId.DisabledFull,
     label: '모집 마감',
     visibleIf: (c: FooterCtx) =>
-      c.status === MeetingStatus.open && c.role !== Role.host && c.current >= c.max,
+      c.status === MeetingStatus.open && (c.current >= c.max || isRecruitmentClosed(c)),
     variant: ButtonVariant.Outline,
     handlerKey: 'onNoop',
     disabled: () => true,

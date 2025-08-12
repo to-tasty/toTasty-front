@@ -47,6 +47,7 @@ export interface FooterCtx {
   fee: number;
   isParticipated: boolean;
   isReviewed?: boolean;
+  joinEndAt: string;
 }
 
 export interface Handlers {
