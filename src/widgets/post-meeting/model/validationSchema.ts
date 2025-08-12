@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DrinkType } from '@/entities/meetings/model/types';
+import { DrinkType } from '@/shared';
 
 export const drinkTypeSchema = z.nativeEnum(DrinkType, {
   message: '주류 종류를 선택해주세요',
@@ -71,7 +71,7 @@ export const joinEndAtSchema = dateInFutureSchema('모집 마감일자');
 
 export const minParticipantsSchema = z
   .number()
-  .min(1, '최소 참가자는 1명 이상이어야 합니다')
+  .min(2, '최소 참가자는 2명 이상이어야 합니다')
   .max(99, '최소 참가자는 99명을 초과할 수 없습니다');
 
 export const maxParticipantsSchema = z
@@ -87,7 +87,7 @@ export const participationFeeSchema = z
 export const contentSchema = z
   .string()
   .min(10, '설명은 최소 10글자 이상 작성해주세요')
-  .max(3000, '설명은 3000글자를 초과할 수 없습니다');
+  .max(2000, '설명은 2000글자를 초과할 수 없습니다');
 
 export const tastingListSchema = z
   .array(z.any())

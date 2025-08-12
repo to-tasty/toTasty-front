@@ -12,7 +12,15 @@ import Link from 'next/link';
 export default function PopularMeetingCardArea() {
   const { data, isLoading } = usePopularMeetingsQuery();
 
-  if (isLoading || !data) return null;
+  if (isLoading) return null;
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+        아직 인기 모임이 없어요.
+      </div>
+    );
+  }
 
   return (
     <Carousel

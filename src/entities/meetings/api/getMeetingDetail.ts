@@ -1,8 +1,8 @@
 import { getApi } from '@/shared';
-import { MeetingFilters, MeetingCardInfo } from '../model/types';
+import { MeetingDetailInfo } from '../model/types';
 
-export default async function getMeetingList(
-  filter: MeetingFilters,
-): Promise<MeetingCardInfo[] | null> {
-  return getApi('/api/v1/meetings', { params: filter });
+export default async function getMeetingDetail(
+  meetingId: number,
+): Promise<MeetingDetailInfo | null> {
+  return getApi(`/api/v1/meetings/${meetingId}`);
 }

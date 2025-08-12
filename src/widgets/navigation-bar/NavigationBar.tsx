@@ -26,7 +26,7 @@ export default function NavigationBar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div>
-                  <UserIcon type="navIcon" ImageUrl={profileImgUrl} />
+                  <UserIcon type="navIcon" ImageUrl={profileImgUrl} className="cursor-pointer" />
                 </div>
               </DropdownMenuTrigger>
               <UserDropdown />
