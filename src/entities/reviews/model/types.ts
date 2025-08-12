@@ -6,6 +6,7 @@ interface ReviewContent {
   reviewContent: string;
   reviewer: string;
   reviewerImgUrl: string;
+  thumbnailUrl?: string;
 }
 
 interface PageInfo {
@@ -22,7 +23,7 @@ export interface ReviewDetailInfo {
 }
 
 export interface ReviewList {
-  contents: ReviewContent[];
+  reviews: ReviewContent[];
   pageInfo: PageInfo;
 }
 
