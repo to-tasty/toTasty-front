@@ -7,7 +7,7 @@ import {
   Button,
 } from '@/shared';
 
-export default function MyMeetingsCancelDialog({ onConfirm }: { onConfirm: () => Promise<void> }) {
+export default function MyMeetingsCancelDialog({ onConfirm }: { onConfirm: () => void }) {
   return (
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader className="justify-center pt-10 pb-6 w-full">
