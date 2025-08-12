@@ -1,32 +1,29 @@
 export function formatDate(d: Date) {
-  try {
-    // month/day를 숫자로만 받아서 직접 "월 일" 붙이기
-    const parts = new Intl.DateTimeFormat('ko-KR', { month: 'numeric', day: 'numeric' })
-      .formatToParts(d)
-      .reduce<Record<string, string>>((acc, part) => {
-        if (part.type !== 'literal') acc[part.type] = part.value;
-        return acc;
-      }, {});
+  // month/day를 숫자로만 받아서 직접 "월 일" 붙이기
+  const parts = new Intl.DateTimeFormat('ko-KR', { month: 'numeric', day: 'numeric' })
+    .formatToParts(d)
+    .reduce<Record<string, string>>((acc, part) => {
+      if (part.type !== 'literal') acc[part.type] = part.value;
+      return acc;
+    }, {});
 
-    return `${parts.month}월 ${parts.day}일`;
-  } catch {
-    return '';
-  }
+  return `${parts.month}월 ${parts.day}일`;
 }
 
 export function formatTime(d: Date) {
-  try {
-    return new Intl.DateTimeFormat('ko-KR', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    }).format(d);
-  } catch {
-    return '';
-  }
+  return new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(d);
 }
 
-export function clampRating(r: number) {
-  if (Number.isNaN(r)) return 0;
-  return Math.max(0, Math.min(5, Math.round(r)));
+export function formatDateToDotString(d: string) {
+  const date = new Date(d);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}.${month}.${day}`;
 }

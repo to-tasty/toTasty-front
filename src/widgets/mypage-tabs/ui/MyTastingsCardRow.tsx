@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import type { ReviewContent } from '@/entities/reviews';
-import { formatDate } from '@/shared';
+import { formatDateToDotString } from '@/shared/lib';
 interface ReviewList {
   reviewCardList: ReviewContent[] | null | undefined;
 }
@@ -42,17 +42,17 @@ export default function MyTastingsCardRow({ reviewCardList }: ReviewList) {
           <li key={review.reviewId} className="my-6">
             <div className="flex items-center gap-3 sm:gap-4">
               <Image
-                src={'/placeholder.svg?height=156&width=280&query=space-thumbnail'}
-                alt="리뷰 관련 썸네일"
+                src={review.thumbnailUrl}
+                alt="리뷰 썸네일"
                 width={280}
                 height={156}
-                className="h-[156px] w-[280px] object-cover rounded-xl border flex-shrink-0"
+                className="h-[156px] w-[280px] object-cover rounded-2xl border flex-shrink-0"
               />
               <div className="flex-1 min-w-0 px-3 flex flex-col h-[156px] gap-3">
                 <div className="flex items-center gap-2 pt-1 text-muted-foreground">
                   <span className="font-bold text-foreground text-base">{review.meetingTitle}</span>
                   <span className="text-xs font-medium">
-                    {formatDate(new Date(review.reviewDate))}
+                    {formatDateToDotString(review.reviewDate)}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
