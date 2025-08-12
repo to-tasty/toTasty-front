@@ -1,60 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { Button, Dialog, DialogContent, DialogTrigger } from '@/shared';
+import { Button, Dialog, DialogTrigger } from '@/shared';
 import { UsersRound, Check } from 'lucide-react';
 import { formatDate, formatTime } from '@/shared';
 import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
-import { useState } from 'react';
 import MyMeetingsCancelDialog from './MyMeetingsCancelDialog';
-
-interface MeetingCancelModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  meetingTitle?: string;
-}
-
-export function MeetingCancelModal({ isOpen, onClose, onConfirm }: MeetingCancelModalProps) {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleConfirm = async () => {
-    setIsLoading(true);
-    try {
-      await onConfirm();
-      onClose();
-    } catch (error) {
-      console.error('취소 처리 중 오류가 발생했습니다:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md" onInteractOutside={(e) => e.preventDefault()}>
-        <div className="text-center py-6">
-          <p className="text-lg font-medium text-foreground">모임 참가를 취소하시겠어요?</p>
-        </div>
-
-        <div className="flex gap-3">
-          <Button onClick={onClose} variant="outline" className="flex-1 bg-transparent">
-            돌아가기
-          </Button>
-          <Button
-            onClick={handleConfirm}
-            disabled={isLoading}
-            className="flex-1 bg-red-500 hover:bg-red-600 text-white"
-          >
-            {/* {isLoading ? '처리 중...' : '참가 취소'} */}
-            참가 취소
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
 
 function computeStatusBadges(meeting: MeetingCardInfo) {
   const min = Number(meeting.minParticipants || 0);
