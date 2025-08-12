@@ -4,3 +4,9 @@ export enum DrinkType {
   wine = 'WINE',
   end = 'END',
 }
+
+export interface LocationInfo {
+  sido: string;
+  address: string;
+  detail: string;
+}
