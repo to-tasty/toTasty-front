@@ -6,7 +6,11 @@ import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/
 import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
 import { useConfirm } from '@/widgets/detail-meeting/model/hook/useConfirm';
-import { useCancelMeetingMutation } from '@/features/meetings';
+import {
+  useCancelMeetingMutation,
+  useJoinMeetingMutation,
+  useCancelJoinMutation,
+} from '@/features/meetings';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
@@ -15,6 +19,8 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
   const user = useUserStore((s) => s.user);
   const { confirm, ConfirmDialog } = useConfirm();
 
+  const joinMutation = useJoinMeetingMutation();
+  const cancelJoinMutation = useCancelJoinMutation();
   const cancelMeetingMutation = useCancelMeetingMutation();
 
   if (isLoading) return <div>로딩 중...</div>;
@@ -36,12 +42,10 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
       router.push(`/login?redirect=/meetings/${meetingId}`);
     },
     onJoin: () => {
-      // joinMutation.mutate({ meetingId });
-      console.log(`[${meetingId}] 참여하기 클릭됨`);
+      joinMutation.mutate({ meetingId });
     },
     onCancelJoin: () => {
-      // cancelJoinMutation.mutate({ meetingId });
-      console.log(`[${meetingId}] 참여취소 클릭됨`);
+      cancelJoinMutation.mutate({ meetingId });
     },
     onWriteReview: () => {
       // router.push(`/meetings/${meetingId}/review`);
