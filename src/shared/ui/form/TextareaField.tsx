@@ -12,6 +12,7 @@ export default function TextareaField({
   className,
   rows = 4,
   maxLength,
+  AreaClassName,
 }: TextareaFieldProps) {
   const { displayValue, field } = useFieldValue<string>({ componentName: 'TextareaField' });
   const fieldId = `field-${field.name}`;
@@ -35,7 +36,7 @@ export default function TextareaField({
         disabled={disabled}
         maxLength={maxLength}
         rows={rows}
-        className={className}
+        className={AreaClassName}
       />
     </FormField>
   );

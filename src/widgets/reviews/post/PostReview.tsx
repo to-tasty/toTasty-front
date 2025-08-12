@@ -43,7 +43,7 @@ export default function PostReview({ meetingId }: { meetingId: number }) {
               placeholder="모임에 대한 설명, 음료에 대한 설명을 작성해주세요."
               maxLength={3000}
               required
-              className="text-xl min-h-[153px]"
+              AreaClassName="min-h-[153px]"
             />
           )}
         </form.AppField>

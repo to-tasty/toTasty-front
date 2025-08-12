@@ -57,7 +57,7 @@ export default function RatingField({
       required={required}
       className={className}
     >
-      <div className="text-xl font-bold text-gray-800 mt-14">만족스러운 경험이었나요?</div>
+      <div className="text-gray-800 mt-14">만족스러운 경험이었나요?</div>
       <div className="flex items-center mr-0.5 mt-3">{ratingPointsHeartRender()}</div>
       <Input type="hidden" name={field.name} value={selectedRating} />
     </FormField>

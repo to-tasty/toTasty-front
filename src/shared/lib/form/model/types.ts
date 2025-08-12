@@ -35,6 +35,7 @@ export interface MultiSelectFieldProps extends SelectFieldProps {
 
 export interface TextareaFieldProps extends BaseFormFieldProps {
   rows?: number;
+  AreaClassName?: string;
 }
 export interface NumberFieldProps extends BaseFormFieldProps {
   min?: number;

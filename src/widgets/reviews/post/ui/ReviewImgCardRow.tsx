@@ -19,7 +19,7 @@ export default function ReviewImgCardRow({ meetingId }: { meetingId: number }) {
 
   return (
     <div>
-      <span className="text-xl font-bold text-gray-080">시음 리스트</span>
+      <span className="text-gray-080">시음 리스트</span>
       <div className="flex items-center gap-8"> {tastingListRender()}</div>
     </div>
   );

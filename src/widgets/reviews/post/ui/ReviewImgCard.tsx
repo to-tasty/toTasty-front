@@ -17,7 +17,7 @@ export default function ReviewImgCard({ item }: ReviewImgProps) {
           className="rounded-xl"
         />
       </div>
-      <span className="block text-base font-normal text-gray-070 mt-3 text-left overflow-hidden whitespace-nowrap truncate">
+      <span className="block text-base font-normal text-gray-070 mt-3 text-center overflow-hidden whitespace-nowrap truncate">
         {item.drinkName}
       </span>
     </div>
