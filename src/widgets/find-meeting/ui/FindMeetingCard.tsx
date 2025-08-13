@@ -113,9 +113,13 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
       <span className={clsx(textMuted, 'ml-3', isBig ? 'mt-1.5' : 'mt-1')}>
         {formattedStartAt} 예정
       </span>
-      <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>
-        {meetingInfo.participationFee.toLocaleString('ko-KR')}원
-      </div>
+      {meetingInfo.participationFee === 0 ? (
+        <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>무료</div>
+      ) : (
+        <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>
+          {meetingInfo.participationFee.toLocaleString('ko-KR')}원
+        </div>
+      )}
     </div>
   );
 }
