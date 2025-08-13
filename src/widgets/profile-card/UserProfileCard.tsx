@@ -21,7 +21,7 @@ export default function UserProfileCard() {
     <div className="relative flex flex-col w-full h-[148px] rounded-2xl overflow-hidden shadow-xs bg-secondary outline-2 outline-muted">
       <div className="bg-primary h-[66px] relative flex flex-col justify-between">
         <div className="flex justify-between px-6 mt-4 ">
-          <h1 className="text-gray-090 text-lg font-semibold">내 프로필</h1>
+          <h1 className="text-foreground text-lg font-semibold">내 프로필</h1>
           <ProfileEditDialog />
         </div>
         <div className="left-0 w-full h-[2px] bg-primary-060 mb-1.5" />

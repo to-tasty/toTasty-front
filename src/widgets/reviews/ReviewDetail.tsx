@@ -42,7 +42,7 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
   return (
     <div className="mb-10 space-y-2">
       <div className="space-y-2">
-        <div className="text-sm font-medium text-gray-800 mt-14">만족스러운 경험이었나요?</div>
+        <div className="text-sm font-medium text-foreground mt-14">만족스러운 경험이었나요?</div>
         <div className="flex items-center mr-0.5 mt-3">{ratingPointsHeartRender()}</div>
         <span className="block mb-5" />
       </div>
@@ -69,7 +69,7 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
             const carKey = `carouselItem-${item.drinkId}`;
             return (
               <CarouselItem key={carKey}>
-                <div className="text-xl font-bold text-gray-800 mt-14 ml-4">{item.drinkName}</div>
+                <div className="text-xl font-bold text-foreground mt-14 ml-4">{item.drinkName}</div>
                 <div className="w-full flex justify-center gap-6 mt-4">
                   <div className="relative w-[471px] h-[496px] border-2 rounded-2xl overflow-hidden">
                     <Image
