@@ -18,7 +18,7 @@ export default function ReviewImgCardRow({
 
   return (
     <div>
-      <span className={clsx(className, 'text-sm font-medium text-gray-080')}>시음 리스트</span>
+      <span className={clsx(className, 'text-sm font-medium text-foreground')}>시음 리스트</span>
       <div className="flex items-center gap-8 mt-4"> {tastingListRender()}</div>
     </div>
   );

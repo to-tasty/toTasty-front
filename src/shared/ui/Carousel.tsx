@@ -171,7 +171,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-12 rounded-full cursor-pointer',
+        'absolute size-12 rounded-full cursor-pointer dark:bg-background/50 hover:dark:bg-background/90',
         orientation === 'horizontal'
           ? 'top-1/2 -left-12 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -201,7 +201,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-12 rounded-full cursor-pointer',
+        'absolute size-12 rounded-full cursor-pointer dark:bg-background/50 hover:dark:bg-background/90',
         orientation === 'horizontal'
           ? 'top-1/2 -right-12 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
