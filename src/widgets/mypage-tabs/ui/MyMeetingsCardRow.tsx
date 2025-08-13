@@ -132,8 +132,8 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
           </div>
           <div className="text-lg font-semibold truncate text-foreground flex items-center">
             <Link href={`/meetings/${meeting.meetingId}`}>
-                {meeting.meetingTitle}&ensp;|&ensp;
-                <span className="text-sm font-medium">{meeting.location.sido}</span>
+              {meeting.meetingTitle}&ensp;|&ensp;
+              <span className="text-sm font-medium">{meeting.location.sido}</span>
               <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
             </Link>
           </div>
