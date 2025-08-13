@@ -19,6 +19,7 @@ import {
 } from '@/features/edit-user-profile';
 import Image from 'next/image';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
+import { toast } from 'react-toastify';
 import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [
@@ -44,7 +45,11 @@ export default function ProfileEditDialog() {
     onSubmit: ({ value }: { value: UpdatedUserProfile }) => {
       const interestOrder = ['COFFEE', 'WINE', 'WHISKY'];
       value.interests?.sort((a, b) => interestOrder.indexOf(a) - interestOrder.indexOf(b));
-      updateProfile.mutate(value);
+      updateProfile.mutate(value, {
+        onError: () => {
+          toast.error('프로필 정보 수정에 실패했습니다.');
+        },
+      });
     },
   });
 
@@ -132,6 +137,7 @@ export default function ProfileEditDialog() {
                 <DialogClose asChild>
                   <Button
                     type="submit"
+                    variant="default"
                     className="flex-1"
                     disabled={isDefaultValue || !canSubmit || isSubmitting}
                   >

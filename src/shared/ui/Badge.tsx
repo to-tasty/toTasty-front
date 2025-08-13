@@ -8,14 +8,19 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90',
+        default: 'border-transparent bg-primary text-white [a&]:hover:bg-primary/90',
         secondary:
           'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
         tertiary:
-          'border-transparent bg-foreground text-background dark:bg-foreground/50 [a&]:hover:bg-muted/90',
+          'border-transparent bg-foreground text-background dark:bg-foreground/70 [a&]:hover:bg-muted/90',
         destructive:
           'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
+        outlinePrimary: 'text-primary border-primary [a&]:hover:bg-accent [a&]:hover:text-primary',
+        meetingStatus:
+          'bg-primary-010 text-primary shadow-xs hover:bg-primary-010 cursor-default disabled:bg-gray-020 disabled:text-gray-500 disabled:opacity-100',
+        meetingStatusSecondary:
+          'border bg-background text-primary shadow-xs hover:bg-background cursor-default disabled:text-gray-500 disabled:opacity-100',
       },
     },
     defaultVariants: {

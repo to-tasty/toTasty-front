@@ -1,5 +1,6 @@
 import { useUserStore } from '@/entities/user';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import logout from '../../api/logout';
 
 export default function useLogout() {
@@ -12,7 +13,7 @@ export default function useLogout() {
       setLoggedOut();
       router.push('/');
     } catch (error) {
-      // TODO : 토스트 알림으로 바꿀 것
+      toast.error(`로그아웃에 실패했습니다:${error instanceof Error ? error.message : error} `);
       console.log(`Logout failed: ${error instanceof Error ? error.message : error}`);
     }
   };

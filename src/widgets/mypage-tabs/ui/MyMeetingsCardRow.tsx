@@ -1,12 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { Button, Dialog, DialogTrigger, formatDate, formatTime } from '@/shared';
+import { Badge, Button, formatDate, formatTime } from '@/shared';
 import { UsersRound, Check } from 'lucide-react';
 
 import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
-import MyMeetingsCancelDialog from './MyMeetingsCancelDialog';
 
 function computeStatusBadges(meeting: MeetingCardInfo) {
   const min = Number(meeting.minParticipants || 0);
@@ -14,63 +13,53 @@ function computeStatusBadges(meeting: MeetingCardInfo) {
 
   const badges: {
     label: string;
-    tone: 'meetingStatus' | 'meetingStatusSecondary';
+    tone: 'outline' | 'tertiary' | 'outlinePrimary' | 'default';
     disabled?: boolean;
   }[] = [];
 
   if (meeting.status === 'closed') {
-    badges.push({ label: '이용 완료', tone: 'meetingStatus', disabled: true });
+    badges.push({ label: '이용 완료', tone: 'outlinePrimary', disabled: true });
   } else {
-    badges.push({ label: '이용 예정', tone: 'meetingStatus' });
+    badges.push({ label: '이용 예정', tone: 'outline' });
   }
 
   if (cur >= min) {
-    badges.push({ label: '개설 확정', tone: 'meetingStatusSecondary' });
+    badges.push({ label: '개설 확정', tone: 'default' });
   } else {
-    badges.push({ label: '개설대기', tone: 'meetingStatusSecondary', disabled: true });
+    badges.push({ label: '개설대기', tone: 'tertiary', disabled: true });
   }
 
   return badges;
 }
 interface MeetingActionProps {
   meeting: MeetingCardInfo;
-  handleCancelMeeting: () => void;
 }
 
-function MeetingAction({ meeting, handleCancelMeeting }: MeetingActionProps) {
+function MeetingAction({ meeting }: MeetingActionProps) {
   if (meeting.status === 'closed') {
     if (!meeting.isReviewed) {
       return (
-        <Link href={`/reviews/post/${meeting.meetingId}`}>
-          <Button className="font-semibold" variant="default">
-            리뷰 작성하기
-          </Button>
-        </Link>
+        <Button className="font-semibold" variant="default" size="sm">
+          <Link href={`/reviews/post/${meeting.meetingId}`}>리뷰 작성하기</Link>
+        </Button>
       );
     }
     return null;
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          className="font-semibold"
-          variant="outlinePrimary"
-          // TODO : 모임 참가 취소 로직 onClick으로 구현할 것
-        >
-          예약 취소하기
-        </Button>
-      </DialogTrigger>
-      <MyMeetingsCancelDialog onConfirm={handleCancelMeeting} />
-    </Dialog>
+    <Link href={`/meetings/${meeting.meetingId}`}>
+      <Button className="font-semibold" variant="outlinePrimary">
+        모임 상세보기
+      </Button>
+    </Link>
   );
 }
 
 function MeetingMeta({ startAt, current, max }: { startAt: string; current: number; max: number }) {
   const start = new Date(startAt);
   return (
-    <div className="flex flex-wrap items-center gap-x-4 text-sm font-medium text-gray-070 mt-1.5">
+    <div className="flex flex-wrap items-center gap-x-4 text-sm font-medium text-secondary-foreground mt-1.5">
       <div className="flex items-center gap-1.5">
         <span>{`${formatDate(start)} · ${formatTime(start)}`}</span>
       </div>
@@ -88,10 +77,6 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
   const badges = computeStatusBadges(meeting);
   const max = Number(meeting.maxParticipants || 0);
   const cur = Number(meeting.currentParticipants || 0);
-  const handleCancelMeeting = async () => {
-    // TODO : 모임 참가 취소 로직 구현
-    console.log('모임 참가가 취소되었습니다.');
-  };
 
   return (
     <div key={meeting.meetingId}>
@@ -103,49 +88,43 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
             다음 기회에 만나요 🙏
           </div>
         )}
-        <Link href={`/meetings/${meeting.meetingId}`}>
-          <Image
-            src={
-              meeting.thumbnailUrl
-                ? meeting.thumbnailUrl
-                : '/placeholder.svg?height=156&width=280&query=meeting-thumbnail'
-            }
-            alt={`${meeting.meetingTitle} 썸네일`}
-            width={280}
-            height={156}
-            layout="fixed"
-            className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
-          />
-        </Link>
+        <div className="min-h-[156px]">
+          <Link href={`/meetings/${meeting.meetingId}`}>
+            <Image
+              src={
+                meeting.thumbnailUrl
+                  ? meeting.thumbnailUrl
+                  : '/placeholder.svg?height=156&width=280&query=meeting-thumbnail'
+              }
+              alt={`${meeting.meetingTitle} 썸네일`}
+              width={280}
+              height={156}
+              layout="fixed"
+              className="h-[156px] w-[280px] object-cover rounded-3xl border flex-shrink-0"
+            />
+          </Link>
+        </div>
 
-        <div className="flex flex-col min-w-0 h-[156px] justify-between">
+        <div className="space-y-4">
           <div className="flex items-center gap-2 flex-wrap">
             {badges.map((b, i) => {
               const buttonKey = `${b.label} + ${i}`;
               return (
-                <Button
-                  key={buttonKey}
-                  variant={b.tone}
-                  className="rounded-full"
-                  size="sm"
-                  disabled={b.disabled}
-                >
+                <Badge key={buttonKey} variant={b.tone}>
                   {b.label === '이용 완료' && <Check className="h-4 w-4" />}
                   {b.label}
-                </Button>
+                </Badge>
               );
             })}
           </div>
-          <Link href={`/meetings/${meeting.meetingId}`}>
-            <div>
-              <div className="text-lg font-semibold truncate text-gray-090 flex items-center">
-                {meeting.meetingTitle}&ensp;|&ensp;
-                <span className="text-sm font-medium">{meeting.location.sido}</span>
-              </div>
+          <div className="text-lg font-semibold truncate text-foreground flex items-center">
+            <Link href={`/meetings/${meeting.meetingId}`}>
+              {meeting.meetingTitle}&ensp;|&ensp;
+              <span className="text-sm font-medium">{meeting.location.sido}</span>
               <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
-            </div>
-          </Link>
-          <MeetingAction meeting={meeting} handleCancelMeeting={handleCancelMeeting} />
+            </Link>
+          </div>
+          <MeetingAction meeting={meeting} />
         </div>
       </div>
     </div>

@@ -10,9 +10,45 @@ import {
 import { Button } from '@/shared';
 import Link from 'next/link';
 import { useUserStore } from '@/entities/user';
+import { useEffect, useMemo } from 'react';
+import useWishlistMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useWishlistQuery';
+import useNewMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useNewMeetingsQuery';
+import usePopularMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/usePopularMeetingsQuery';
+import useFavoriteMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useFavoriteMeetingsQuery';
 
 export default function HomePage() {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const rawInterests = useUserStore((state) => state.user?.interests);
+  const interests = useMemo(() => rawInterests || [], [rawInterests]);
+  const { refetch: refetchWishlist } = useWishlistMeetingsQuery();
+  const { refetch: refetchNew } = useNewMeetingsQuery();
+  const { refetch: refetchPopular } = usePopularMeetingsQuery();
+  const { refetch: refetchFavorite } = useFavoriteMeetingsQuery(interests);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      refetchNew();
+      refetchPopular();
+
+      if (isLoggedIn) {
+        refetchWishlist();
+        refetchFavorite();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    refetchNew();
+    refetchPopular();
+    if (isLoggedIn) {
+      refetchWishlist();
+      refetchFavorite();
+    }
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [refetchWishlist, refetchNew, refetchPopular, refetchFavorite, isLoggedIn, interests]);
 
   return (
     <main className="flex items-center justify-center flex-col gap-4 py-[40px]">

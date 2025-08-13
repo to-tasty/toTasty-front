@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { TastingInfo, useAppForm } from '@/shared';
 import { usePostReviewMutation } from '@/features/reviews';
 import { useRouter } from 'next/navigation';
+import { useMeetingDetailQuery } from '@/entities/meetings';
 import ReviewImgCardRow from '../ui/ReviewImgCardRow';
 import { contentSchema, tastingSchema, flavorSchema, colorSchema } from './model/validationSchema';
 
@@ -24,6 +25,7 @@ export default function PostReview({
 }) {
   const router = useRouter();
   const { mutateAsync } = usePostReviewMutation();
+  const { isPending, data } = useMeetingDetailQuery(meetingId);
 
   const form = useAppForm({
     defaultValues: {
@@ -42,10 +44,12 @@ export default function PostReview({
     },
   });
 
+  if (isPending) return <div />;
+
   return (
     <div className="mb-10">
-      <div className="flex items-center justify-center min-h-12 text-gray-080 text-3xl font-bold mt-16 rounded-xl">
-        참여했던 모임은 어떠셨나요? 후기를 남겨주세요!
+      <div className="flex items-center justify-center min-h-12 text-foreground text-3xl font-bold mt-16 rounded-xl">
+        {data?.meetingTitle}
       </div>
       <form
         method="post"
@@ -93,7 +97,7 @@ export default function PostReview({
                   const carKey = `carouselItem-${item.drinkId}`;
                   return (
                     <CarouselItem key={carKey}>
-                      <div className="text-xl font-bold text-gray-800 mt-14 ml-4">
+                      <div className="text-xl font-bold text-foreground mt-14 ml-4">
                         {item.drinkName}
                       </div>
                       <div className="w-full flex justify-center gap-6 mt-4">

@@ -27,10 +27,6 @@ const buttonVariants = cva(
           'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-primary/60 dark:hover:bg-primary/30 border-primary text-primary',
         outlineDanger:
           'border bg-background shadow-xs hover:bg-danger/20 dark:bg-input/30 dark:border-danger/60 dark:hover:bg-danger/30 border-danger text-danger',
-        meetingStatus:
-          'bg-primary-010 text-primary shadow-xs hover:bg-primary-010 cursor-default disabled:bg-gray-020 disabled:text-gray-500 disabled:opacity-100',
-        meetingStatusSecondary:
-          'border bg-background text-primary shadow-xs hover:bg-background cursor-default disabled:text-gray-500 disabled:opacity-100',
         hidden: '',
       },
       size: {
@@ -66,7 +62,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }), {
-        'text-muted-foreground border-muted cursor-not-allowed': disabled,
+        'bg-muted/60 text-muted-foreground border-muted cursor-not-allowed': disabled,
       })}
       disabled={disabled}
       {...props}
