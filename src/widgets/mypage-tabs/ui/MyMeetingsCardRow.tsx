@@ -1,12 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { Badge, Button, Dialog, DialogTrigger, formatDate, formatTime } from '@/shared';
+import { Badge, Button, formatDate, formatTime } from '@/shared';
 import { UsersRound, Check } from 'lucide-react';
 
 import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
-import MyMeetingsCancelDialog from './MyMeetingsCancelDialog';
 
 function computeStatusBadges(meeting: MeetingCardInfo) {
   const min = Number(meeting.minParticipants || 0);
@@ -34,10 +33,9 @@ function computeStatusBadges(meeting: MeetingCardInfo) {
 }
 interface MeetingActionProps {
   meeting: MeetingCardInfo;
-  handleCancelMeeting: () => void;
 }
 
-function MeetingAction({ meeting, handleCancelMeeting }: MeetingActionProps) {
+function MeetingAction({ meeting }: MeetingActionProps) {
   if (meeting.status === 'closed') {
     if (!meeting.isReviewed) {
       return (
@@ -50,18 +48,11 @@ function MeetingAction({ meeting, handleCancelMeeting }: MeetingActionProps) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          className="font-semibold"
-          variant="outlinePrimary"
-          // TODO : 모임 참가 취소 로직 onClick으로 구현할 것
-        >
-          예약 취소하기
-        </Button>
-      </DialogTrigger>
-      <MyMeetingsCancelDialog onConfirm={handleCancelMeeting} />
-    </Dialog>
+    <Link href={`/meetings/${meeting.meetingId}`}>
+      <Button className="font-semibold" variant="outlinePrimary">
+        모임 상세보기
+      </Button>
+    </Link>
   );
 }
 
@@ -86,10 +77,6 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
   const badges = computeStatusBadges(meeting);
   const max = Number(meeting.maxParticipants || 0);
   const cur = Number(meeting.currentParticipants || 0);
-  const handleCancelMeeting = async () => {
-    // TODO : 모임 참가 취소 로직 구현
-    console.log('모임 참가가 취소되었습니다.');
-  };
 
   return (
     <div key={meeting.meetingId}>
@@ -137,7 +124,7 @@ function MyMeetingsItem({ meeting }: { meeting: MeetingCardInfo }) {
               <MeetingMeta startAt={meeting.startAt} current={cur} max={max} />
             </Link>
           </div>
-          <MeetingAction meeting={meeting} handleCancelMeeting={handleCancelMeeting} />
+          <MeetingAction meeting={meeting} />
         </div>
       </div>
     </div>

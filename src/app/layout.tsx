@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import NavigationBar from '@/widgets/navigation-bar/NavigationBar';
+import { ToastContainer } from 'react-toastify';
 import { QueryProvider } from './providers/QueryProvider';
 import { AuthProvider } from './providers/AuthProvider';
 
@@ -44,6 +45,13 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <NavigationBar />
+            <ToastContainer
+              position="top-center"
+              limit={1}
+              closeButton={false}
+              autoClose={3000}
+              hideProgressBar
+            />
             {children}
           </AuthProvider>
         </QueryProvider>

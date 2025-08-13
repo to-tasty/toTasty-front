@@ -8,7 +8,6 @@ import { NavigationMenuList, NavigationMenuLink, NavigationMenuItem } from '@/sh
 export default function NavigationTabs() {
   const pathname = usePathname();
   const navigationMenuItems = [
-    // TODO : href url 변경
     { title: '모임찾기', href: '/meetings' },
     { title: '나의 테이스팅', href: '/my-page/tastings' },
     { title: '위시리스트', href: '/my-page/wishlist' },

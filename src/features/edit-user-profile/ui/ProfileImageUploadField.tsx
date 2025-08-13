@@ -6,6 +6,7 @@ import { Button, UserIcon } from '@/shared/ui';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { compressImage } from '@/shared/lib';
 import type { AnyFieldApi } from '@tanstack/react-form';
+import { toast } from 'react-toastify';
 
 export default function ProfileImageUploadField({ field }: { field: AnyFieldApi }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -18,14 +19,17 @@ export default function ProfileImageUploadField({ field }: { field: AnyFieldApi 
 
     try {
       const compressedFile = await compressImage(file, 100);
-      const result = await uploadMutation.mutateAsync(compressedFile);
+      const result = await uploadMutation.mutateAsync(compressedFile, {
+        onError: () => {
+          toast.error('이미지 업로드 중 문제가 발생했습니다.');
+        },
+      });
       if (result?.imgUrl) {
         setPreviewUrl(result.imgUrl);
         field.handleChange(result.imgUrl);
       }
     } catch (error) {
-      // TODO : 토스트 혹은 모달로 에러 처리할 것
-      alert('이미지 업로드 중 문제가 발생했습니다.');
+      // alert('이미지 업로드 중 문제가 발생했습니다.');
     }
   };
 
