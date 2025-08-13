@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from '@/shared/ui';
 import clsx from 'clsx';
+import { useMeetingDetailQuery } from '@/entities/meetings';
 import ReviewImgCardRow from './ui/ReviewImgCardRow';
 
 export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: ReviewDetailInfo }) {
@@ -36,11 +37,18 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
     return result;
   };
 
+  const { isPending, data } = useMeetingDetailQuery(reviewDetailInfo.meetingId);
+
   const divStyle =
     'flex w-full rounded-md border border-gray-300 bg-secondary px-3 py-2 text-base shadow-xs transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm mt-3';
 
+  if (isPending) return <div />;
+
   return (
     <div className="mb-10 space-y-2">
+      <div className="flex items-center justify-center min-h-12 text-foreground text-3xl font-bold mt-16 rounded-xl">
+        {data?.meetingTitle}
+      </div>
       <div className="space-y-2">
         <div className="text-sm font-medium text-foreground mt-14">만족스러운 경험이었나요?</div>
         <div className="flex items-center mr-0.5 mt-3">{ratingPointsHeartRender()}</div>
