@@ -9,7 +9,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const accessToken = useUserStore((state) => state.accessToken);
   const setAccessToken = useUserStore((state) => state.setAccessToken);
-  const { data } = useAccessTokenQuery(!accessToken && isLoggedIn);
+  const isQueryEnabled = !accessToken && isLoggedIn;
+  const { isPending, data } = useAccessTokenQuery(!accessToken && isLoggedIn);
 
   useEffect(() => {
     if (data) {
@@ -20,6 +21,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       }
     }
   }, [data, isLoggedIn, accessToken, setAccessToken]);
+
+  if (isPending && isQueryEnabled) {
+    return <div />;
+  }
 
   return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
 }
