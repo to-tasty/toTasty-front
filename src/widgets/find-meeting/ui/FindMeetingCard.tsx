@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Progress } from '@/shared/ui';
+import { Badge, Progress } from '@/shared/ui';
 import { MeetingCardInfo } from '@/entities/meetings/index';
 import clsx from 'clsx';
 
@@ -55,14 +55,12 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
           style={{ objectFit: 'cover' }}
           className="col-start-1 row-start-1"
         />
-        <div
-          className={clsx(
-            flexCenter,
-            'absolute bottom-[9px] left-3 w-[50px] h-[20px] bg-foreground rounded-[4px]',
-          )}
+        <Badge
+          variant={meetingInfo.status === 'closed' ? 'tertiary' : 'default'}
+          className="absolute bottom-3 left-3"
         >
-          <span className="text-background text-xs font-bold">개설확정</span>
-        </div>
+          {meetingInfo.status === 'closed' ? '모임 종료' : '모집중'}
+        </Badge>
         <div
           className={clsx(
             flexCenter,

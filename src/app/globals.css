@@ -234,8 +234,15 @@
     text-decoration: none;
   }
 
-  .dark a {
+  /* .dark a {
     color: var(--color-gray-040);
+  } */
+
+  button a {
+    color: inherit;
+  }
+  .dark button a {
+    color: inherit;
   }
 }
 

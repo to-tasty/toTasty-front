@@ -18,10 +18,10 @@ export default function UserProfileCard() {
   };
 
   return (
-    <div className="relative flex flex-col w-full h-[148px] rounded-2xl overflow-hidden shadow-xs bg-white outline-2 outline-gray-020">
+    <div className="relative flex flex-col w-full h-[148px] rounded-2xl overflow-hidden shadow-xs bg-secondary outline-1 outline-muted">
       <div className="bg-primary h-[66px] relative flex flex-col justify-between">
         <div className="flex justify-between px-6 mt-4 ">
-          <h1 className="text-gray-090 text-lg font-semibold">내 프로필</h1>
+          <h1 className="text-foreground text-lg font-semibold">내 프로필</h1>
           <ProfileEditDialog />
         </div>
         <div className="left-0 w-full h-[2px] bg-primary-060 mb-1.5" />
@@ -43,12 +43,10 @@ export default function UserProfileCard() {
       </div>
 
       <div className="px-25 py-3 grow text-gray-600">
-        <h2 className="text-gray-080 font-semibold text-base my-1">{user.nickname}</h2>
-        <div>
-          <span className="font-medium text-sm">관심사. </span>
-          <span className="text-sm">
-            {user.interests.map((interest) => drinkMap[interest]).join(', ')}
-          </span>
+        <h2 className="text-foreground font-semibold text-base my-1">{user.nickname}</h2>
+        <div className="text-secondary-foreground text-sm">
+          <span className="font-medium">관심사. </span>
+          {user.interests.map((interest) => drinkMap[interest]).join(', ')}
         </div>
       </div>
     </div>
