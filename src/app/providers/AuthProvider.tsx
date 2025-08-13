@@ -9,7 +9,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const accessToken = useUserStore((state) => state.accessToken);
   const setAccessToken = useUserStore((state) => state.setAccessToken);
-  const { isPending, data } = useAccessTokenQuery(!accessToken && isLoggedIn);
+  const { isPending, data } = useAccessTokenQuery(!accessToken);
 
   useEffect(() => {
     if (
