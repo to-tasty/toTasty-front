@@ -8,7 +8,7 @@ interface ReviewImgProps {
 export default function ReviewImgCard({ item }: ReviewImgProps) {
   return (
     <div className="w-[114px] h-[184px]">
-      <div className="relative w-[114px] h-[148px] bg-white border-2 border-gray-020 rounded-xl">
+      <div className="relative w-[114px] h-[148px] bg-secondary border-2 border-gray-020 rounded-xl">
         <Image
           src={item.drinkImgUrl ?? item.drinkImageUrl ?? ''}
           alt={item.drinkName ?? ''}

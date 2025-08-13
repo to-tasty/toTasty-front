@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { Theme } from '../types';
 import useThemeStore from './useThemeStore';

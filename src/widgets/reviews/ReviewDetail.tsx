@@ -37,7 +37,7 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
   };
 
   const divStyle =
-    'flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm mt-3';
+    'flex w-full rounded-md border border-gray-300 bg-secondary px-3 py-2 text-base shadow-xs transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm mt-3';
 
   return (
     <div className="mb-10 space-y-2">
