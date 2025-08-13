@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import NavigationBar from '@/widgets/navigation-bar/NavigationBar';
 import { QueryProvider } from './providers/QueryProvider';
+import { AuthProvider } from './providers/AuthProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -41,8 +42,10 @@ export default function RootLayout({
       </head>
       <body className={`${pretendard.variable} font-pretendard antialiased`}>
         <QueryProvider>
-          <NavigationBar />
-          {children}
+          <AuthProvider>
+            <NavigationBar />
+            {children}
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>

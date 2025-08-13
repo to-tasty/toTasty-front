@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { useUserStore } from '@/entities/user/index';
-import { ReissueResponse } from '@/entities/user/model/types';
+// import { ReissueResponse } from '@/entities/user/model/types';
 import { useGlobalErrorStore } from '../lib';
 
 const instances = new Map<string, AxiosInstance>();
@@ -31,45 +31,44 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
           // refresh-token 자체가 만료된 경우에 401을 받으면, 다시 시도해도 계속 만료된 상태이기에
           // 무한루프 방지를 위해서 해당 줄에서 체크 후 error처리
           if (error.config.url === '/api/v1/auth/token/reissue') {
-            // TODO logout 관련 로직 추가 작성 필요 : Authorization 헤더 초기화
             useUserStore.getState().setLoggedOut();
             return Promise.reject(error);
           }
 
-          if (!error.config.isRetried) {
-            // refresh token은 있는데, 새로고침 등으로 AccessToken 없는 경우 재 발급 로직
-            const originRequest = { ...error.config, isRetried: true };
-            const reissueInstance: AxiosInstance = instances.has(apiUrl)
-              ? instances.get(apiUrl)!
-              : axios.create({ baseURL: apiUrl, withCredentials: true });
+          // if (!error.config.isRetried) {
+          //   // refresh token은 있는데, 새로고침 등으로 AccessToken 없는 경우 재 발급 로직
+          //   const originRequest = { ...error.config, isRetried: true };
+          // const reissueInstance: AxiosInstance = instances.has(apiUrl)
+          //   ? instances.get(apiUrl)!
+          //   : axios.create({ baseURL: apiUrl, withCredentials: true });
 
-            try {
-              const response = await reissueInstance.post<ReissueResponse>(
-                '/api/v1/auth/token/reissue',
-              );
+          // //   try {
+          // const response = await reissueInstance.post<ReissueResponse>(
+          //   '/api/v1/auth/token/reissue',
+          // );
 
-              if (response.status === 200) {
-                const { accessToken, memberId, email, profileImgUrl, nickname, interests } =
-                  response.data;
+          //     if (response.status === 200) {
+          //       const { accessToken, memberId, email, profileImgUrl, nickname, interests } =
+          //         response.data;
 
-                useUserStore.getState().setAccessToken(accessToken);
-                useUserStore.getState().setLoggedIn({
-                  memberId,
-                  email,
-                  profileImgUrl,
-                  nickname,
-                  interests,
-                });
+          //       useUserStore.getState().setAccessToken(accessToken);
+          //       useUserStore.getState().setLoggedIn({
+          //         memberId,
+          //         email,
+          //         profileImgUrl,
+          //         nickname,
+          //         interests,
+          //       });
 
-                originRequest.headers.Authorization = `Bearer ${accessToken}`;
-                return await axios(originRequest);
-              }
-            } catch (axiosError) {
-              // TODO logout 관련 로직 추가 작성 필요 : Authorization 헤더 초기화
-              useUserStore.getState().setLoggedOut();
-              return Promise.reject(axiosError);
-            }
-          }
+          //       originRequest.headers.Authorization = `Bearer ${accessToken}`;
+          //       return await axios(originRequest);
+          //     }
+          //   } catch (axiosError) {
+          //     // TODO logout 관련 로직 추가 작성 필요 : Authorization 헤더 초기화
+          //     useUserStore.getState().setLoggedOut();
+          //     return Promise.reject(axiosError);
+          //   }
+          // }
           break;
 
         case 404:
@@ -100,7 +99,9 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
     const { accessToken } = useUserStore.getState();
     const origin = { ...config };
 
-    if (origin.headers.authRequired !== false && (accessToken || accessToken.length > 0)) {
+    if (!accessToken || accessToken.length === 0) {
+      origin.headers.Authorization = '';
+    } else if (origin.headers.authRequired !== false && (accessToken || accessToken.length > 0)) {
       origin.headers.Authorization = `Bearer ${accessToken}`;
     }
     return origin;
