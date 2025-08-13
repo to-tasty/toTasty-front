@@ -5,14 +5,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared';
 import { ReactNode } from 'react';
 
 const tabTriggerClass =
-  'relative px-0 py-2 rounded-none text-lg text-gray-040 hover:text-foreground ' +
+  'relative px-0 py-2 rounded-none text-lg text-gray-040 hover:text-foreground cursor-pointer ' +
   'data-[state=active]:text-foreground data-[state=active]:font-semibold data-[state=active]:shadow-none data-[state=active]:bg-transparent ' +
   'data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 ' +
   'data-[state=active]:after:h-[2px] data-[state=active]:after:w-full data-[state=active]:after:bg-foreground';
 
 const tabs = [
   { value: 'meetings', label: '나의 모임' },
-  { value: 'tastings', label: '나의 테이스팅북' },
+  { value: 'tastings', label: '나의 테이스팅 북' },
   { value: 'wishlist', label: '위시리스트' },
 ];
 
@@ -32,7 +32,7 @@ export default function MyPageTabs({ children }: { children: ReactNode }) {
       <Tabs
         value={currentPathValue}
         onValueChange={onTabChange}
-        className="w-full border-t-2 border-gray-090 pl-6"
+        className="w-full border-t-2 border-gray-090 px-4"
       >
         <TabsList className="relative bg-transparent justify-start overflow-x-auto overflow-y-hidden h-auto p-0 rounded-none py-2 gap-6">
           {tabs.map((tab) => (
@@ -42,9 +42,7 @@ export default function MyPageTabs({ children }: { children: ReactNode }) {
           ))}
         </TabsList>
 
-        <TabsContent value={currentPathValue} className="mt-6">
-          {children}
-        </TabsContent>
+        <TabsContent value={currentPathValue}>{children}</TabsContent>
       </Tabs>
     </div>
   );

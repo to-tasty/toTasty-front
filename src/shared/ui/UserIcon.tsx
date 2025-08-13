@@ -45,6 +45,8 @@ export default function UserIcon({
       alt={`${type} icon`}
       width={size}
       height={size}
+      layout="fixed"
+      quality={100}
       className={cn(userIconStyles({ iconType: type }), className)}
     />
   );

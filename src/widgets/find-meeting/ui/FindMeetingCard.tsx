@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Progress } from '@/shared/ui/Progress';
+import { Progress } from '@/shared/ui';
 import { MeetingCardInfo } from '@/entities/meetings/index';
 import clsx from 'clsx';
 
@@ -13,7 +13,6 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
   const flexCenter = `${flexItemCenter} justify-center`;
   const flexEnd = 'flex justify-end';
   const textMuted = 'text-xs text-muted';
-  const colRow = 'col-start-1 row-start-1';
 
   const isBig = size === 'big';
 
@@ -22,8 +21,6 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
 
   const imageDivWidth = isBig ? 'w-[263px]' : 'w-[228px]';
   const imageDivHeight = isBig ? 'h-[190px]' : 'h-[163px]';
-  const imageWidth = isBig ? 263 : 228;
-  const imageHeight = isBig ? 190 : 163;
   const imageSrc = isBig ? '/assets/icons/heart2.svg' : '/assets/icons/heart.svg';
   const imageHeartWidth = isBig ? 24 : 18.83;
   const imageHeartHeight = isBig ? 24 : 17.13;
@@ -48,19 +45,20 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
       key={meetingInfo.meetingId.toString() || 'card'}
       className={clsx(cardWidth, cardHeight, 'border border-gray-020 rounded-sm overflow-hidden')}
     >
-      <div className={clsx('grid overflow-hidden', imageDivWidth, imageDivHeight)}>
+      <div className={clsx('relative grid overflow-hidden', imageDivWidth, imageDivHeight)}>
         <Image
           src={meetingInfo.thumbnailUrl}
           alt="Meeting Card Test Image"
-          width={imageWidth}
-          height={imageHeight}
-          className={clsx(colRow, 'w-full h-auto')}
+          // width={imageWidth}
+          // height={imageHeight}
+          fill
+          style={{ objectFit: 'cover' }}
+          className="col-start-1 row-start-1"
         />
         <div
           className={clsx(
             flexCenter,
-            colRow,
-            'w-[50px] h-[20px] ml-3 bg-foreground rounded-[4px] self-end mb-[9px]',
+            'absolute bottom-[9px] left-3 w-[50px] h-[20px] bg-foreground rounded-[4px]',
           )}
         >
           <span className="text-background text-xs font-bold">개설확정</span>
@@ -68,9 +66,8 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
         <div
           className={clsx(
             flexCenter,
-            colRow,
             heartIconDivWidthHeight,
-            'justify-self-end mr-1 mt-1',
+            'absolute top right justify-self-end',
           )}
         >
           {meetingInfo.isWished ? (

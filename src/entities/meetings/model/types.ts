@@ -1,4 +1,4 @@
-import { DrinkType, LocationInfo } from '@/shared';
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
 
 export enum SortType {
   latest = 'LATEST',
@@ -36,6 +36,12 @@ export interface MeetingCardInfo {
   tastingDrinkCount?: number;
 }
 
+export interface MeetingDetailInfo extends MeetingCardInfo {
+  tastingList: TastingInfo[];
+  content: string;
+  isParticipated: boolean;
+}
+
 interface SliceInfo {
   currentPage: number;
   size: number;
@@ -51,6 +57,7 @@ export interface MeetingFilters {
   filter?: string;
   sort?: SortType;
   drinkType?: DrinkType;
+  memberId?: number;
   page?: number;
   size?: number;
 }

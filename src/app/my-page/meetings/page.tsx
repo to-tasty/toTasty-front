@@ -1,3 +1,5 @@
+import { MyMeetingCards } from '@/widgets';
+
 export default function MeetingsTab() {
-  return <div>MeetingsTab</div>;
+  return <MyMeetingCards />;
 }

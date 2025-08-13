@@ -9,10 +9,12 @@ export default function UserDropdown() {
   return (
     <DropdownMenuContent className="w-30">
       <DropdownMenuGroup>
-        <DropdownMenuItem asChild>
-          <Link href="/my-page/meetings">마이페이지</Link>
+        <Link href="/my-page/meetings">
+          <DropdownMenuItem className="cursor-pointer">마이페이지</DropdownMenuItem>
+        </Link>
+        <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
+          로그아웃
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout}>로그아웃</DropdownMenuItem>
       </DropdownMenuGroup>
     </DropdownMenuContent>
   );
