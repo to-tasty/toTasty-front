@@ -62,7 +62,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }), {
-        'text-muted-foreground border-muted cursor-not-allowed': disabled,
+        'bg-muted/60 text-muted-foreground border-muted cursor-not-allowed': disabled,
       })}
       disabled={disabled}
       {...props}

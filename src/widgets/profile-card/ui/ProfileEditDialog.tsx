@@ -132,6 +132,7 @@ export default function ProfileEditDialog() {
                 <DialogClose asChild>
                   <Button
                     type="submit"
+                    variant="default"
                     className="flex-1"
                     disabled={isDefaultValue || !canSubmit || isSubmitting}
                   >
