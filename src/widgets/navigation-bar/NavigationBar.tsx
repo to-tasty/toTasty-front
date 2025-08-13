@@ -3,7 +3,7 @@
 import { Logo, NavigationMenu, DropdownMenu, DropdownMenuTrigger, UserIcon } from '@/shared';
 import { useUserStore } from '@/entities/user';
 import { useShallow } from 'zustand/shallow';
-import { NavigationTabs, LoginButton, UserDropdown } from './ui';
+import { NavigationTabs, LoginButton, UserDropdown, ThemeToggleButton } from './ui';
 
 export default function NavigationBar() {
   const { isHydrated, isLoggedIn, profileImgUrl } = useUserStore(
@@ -21,19 +21,22 @@ export default function NavigationBar() {
           <Logo />
           <NavigationTabs />
         </NavigationMenu>
-        {isHydrated &&
-          (isLoggedIn ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div>
-                  <UserIcon type="navIcon" ImageUrl={profileImgUrl} className="cursor-pointer" />
-                </div>
-              </DropdownMenuTrigger>
-              <UserDropdown />
-            </DropdownMenu>
-          ) : (
-            <LoginButton />
-          ))}
+        <div className="flex gap-2">
+          {isHydrated &&
+            (isLoggedIn ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div>
+                    <UserIcon type="navIcon" ImageUrl={profileImgUrl} className="cursor-pointer" />
+                  </div>
+                </DropdownMenuTrigger>
+                <UserDropdown />
+              </DropdownMenu>
+            ) : (
+              <LoginButton />
+            ))}
+          <ThemeToggleButton />
+        </div>
       </div>
     </div>
   );
