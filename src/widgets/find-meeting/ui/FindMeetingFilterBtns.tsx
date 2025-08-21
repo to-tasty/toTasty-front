@@ -55,17 +55,16 @@ export default function FindMeetingFilters() {
         ))}
       </div>
 
-      <Link href="/meetings/post" style={{ textDecoration: 'none' }}>
-        <Button
-          key="postMeetingBtn"
-          id="postMeetingId"
-          variant="outlinePrimary"
-          size="findFilterSize"
-          // onClick={() => handleBtnClick(prop)}
-        >
+      <Button
+        key="postMeetingBtn"
+        id="postMeetingId"
+        variant="outlinePrimary"
+        size="findFilterSize"
+      >
+        <Link href="/meetings/post" style={{ textDecoration: 'none' }}>
           모임 만들기
-        </Button>
-      </Link>
+        </Link>
+      </Button>
     </div>
   );
 }

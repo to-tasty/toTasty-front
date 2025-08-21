@@ -49,8 +49,6 @@ export default function FindMeetingCard({ meetingInfo, size = 'small' }: Meeting
         <Image
           src={meetingInfo.thumbnailUrl}
           alt="Meeting Card Test Image"
-          // width={imageWidth}
-          // height={imageHeight}
           fill
           style={{ objectFit: 'cover' }}
           className="col-start-1 row-start-1"
