@@ -8,11 +8,11 @@ import useFilterBtnStore from '../model/hooks/useFilterBtnStore';
 import useFilterStore from '../model/hooks/useFilterStore';
 
 export default function FindMeetingFilters() {
-  const selectedFilterId = useFilterBtnStore((state) => state.selectedFileterBtnId);
+  const selectedFilterId = useFilterBtnStore((state) => state.selectedFilterBtnId);
   const setSelectedFilterId = useFilterBtnStore((state) => state.setSelectedFilterBtnId);
 
   const filters = useFilterStore((state) => state.filters);
-  const setFileters = useFilterStore((state) => state.setFilters);
+  const setFilters = useFilterStore((state) => state.setFilters);
 
   const filterBtnProps: FindFilterBtn[] = [
     { id: 'filterBtn0', name: '전체' },
@@ -27,12 +27,12 @@ export default function FindMeetingFilters() {
 
     if (prop.drinkType === undefined) {
       const { drinkType, page, ...newFilters } = filters;
-      setFileters({ ...newFilters, page: 1, sort: SortType.latest });
+      setFilters({ ...newFilters, page: 1, sort: SortType.latest });
     } else if (prop.drinkType === DrinkType.end) {
       const { drinkType, page, ...newFilters } = filters;
-      setFileters({ ...newFilters, page: 1, sort: SortType.closedRecent });
+      setFilters({ ...newFilters, page: 1, sort: SortType.closedRecent });
     } else {
-      setFileters({ ...filters, page: 1, sort: SortType.latest, drinkType: prop.drinkType });
+      setFilters({ ...filters, page: 1, sort: SortType.latest, drinkType: prop.drinkType });
     }
   }
 
