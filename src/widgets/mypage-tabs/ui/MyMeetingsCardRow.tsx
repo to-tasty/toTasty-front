@@ -39,9 +39,11 @@ function MeetingAction({ meeting }: MeetingActionProps) {
   if (meeting.status === 'closed') {
     if (!meeting.isReviewed) {
       return (
-        <Button className="font-semibold" variant="default" size="sm">
-          <Link href={`/reviews/post/${meeting.meetingId}`}>리뷰 작성하기</Link>
-        </Button>
+        <Link href={`/reviews/post/${meeting.meetingId}`}>
+          <Button className="font-semibold" variant="default" size="sm">
+            리뷰 작성하기
+          </Button>
+        </Link>
       );
     }
     return null;

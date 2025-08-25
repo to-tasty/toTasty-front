@@ -74,11 +74,11 @@ export default function HomePage() {
         {!isLoggedIn && (
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 bg-opacity-50 text-center">
             <p className="text-foreground text-2xl mb-3">로그인 후에 이용가능 합니다.</p>
-            <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
-              <Link href="/login" className="font-semibold text-background">
+            <Link href="/login" className="font-semibold text-background">
+              <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
                 로그인하기
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         )}
       </div>
