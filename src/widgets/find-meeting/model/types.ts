@@ -1,6 +1,9 @@
 import { DrinkType } from '@/shared';
-import { SortType } from '@/entities/meetings';
+import { MeetingCardInfo, SortType } from '@/entities/meetings';
 
+export interface MeetingCardInfoProps {
+  meetingInfo: MeetingCardInfo;
+}
 export interface FindFilterBtn {
   id: string;
   name: string;
