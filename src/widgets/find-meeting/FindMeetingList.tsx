@@ -9,13 +9,10 @@ import useFilterStore from './model/hooks/useFilterStore';
 
 export default function FindMeetingList() {
   const filters = useFilterStore((state) => state.filters);
-
   const { data, fetchNextPage, isPending } = useMeetingListQuery(filters);
-
   const { ref, inView } = useInView({
     threshold: 1.0,
   });
-
   const flatMeetings = useMemo(() => data?.pages.flatMap((page) => page.content) ?? [], [data]);
 
   useEffect(() => {

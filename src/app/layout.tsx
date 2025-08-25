@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './globals.css';
-import NavigationBar from '@/widgets/navigation-bar/NavigationBar';
 import { ToastContainer } from 'react-toastify';
+import { NavigationBar } from '@/widgets';
 import { QueryProvider } from './providers/QueryProvider';
 import { AuthProvider } from './providers/AuthProvider';
+import './globals.css';
+import Container from './home/Container';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -52,7 +53,7 @@ export default function RootLayout({
               autoClose={3000}
               hideProgressBar
             />
-            {children}
+            <Container>{children}</Container>
           </AuthProvider>
         </QueryProvider>
       </body>

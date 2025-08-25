@@ -10,8 +10,8 @@ export default function FindMeetingHeader({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-[1000px] mx-auto px-0.5">
-      <div className="flex mt-6">
+    <>
+      <div className="flex">
         <FindMeetingPanel />
       </div>
       <div className="flex mt-8 py-4 border-b-1">
@@ -25,6 +25,6 @@ export default function FindMeetingHeader({
         <FindMeetingSorter />
       </div>
       <div className="mt-6">{children}</div>
-    </div>
+    </>
   );
 }

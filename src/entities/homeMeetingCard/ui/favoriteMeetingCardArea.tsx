@@ -21,7 +21,7 @@ export default function FavoriteMeetingCardArea() {
 
   if (!data || data.length === 0) {
     return (
-      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+      <div className="flex justify-center items-center text-center h-[383px] bg-secondary text-secondary-foreground">
         아직 내가 좋아할 모임이 없어요.
       </div>
     );
@@ -29,7 +29,7 @@ export default function FavoriteMeetingCardArea() {
 
   return (
     <Carousel
-      className="relative w-[1142px] overflow-visible"
+      className="relative overflow-visible"
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
@@ -42,7 +42,7 @@ export default function FavoriteMeetingCardArea() {
         {data.map((item) => (
           <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
             <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
-              <FindMeetingCard meetingInfo={item} size="big" />
+              <FindMeetingCard meetingInfo={item} />
             </Link>
           </CarouselItem>
         ))}
