@@ -81,7 +81,7 @@ export default function ReviewDetail({ reviewDetailInfo }: { reviewDetailInfo: R
                 <div className="w-full flex justify-center gap-6 mt-4">
                   <div className="relative w-[471px] h-[496px] border-2 rounded-2xl overflow-hidden">
                     <Image
-                      src={item.drinkImgUrl ?? item.drinkImageUrl ?? ''}
+                      src={item.drinkImgUrl ?? ''}
                       alt="test"
                       style={{
                         objectFit: 'cover',

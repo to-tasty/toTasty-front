@@ -18,6 +18,5 @@ export interface TastingInfo {
   drinkFlavor?: string;
   drinkColor?: string;
   drinkImgUrl?: string;
-  drinkImageUrl?: string;
   drinkType?: DrinkType;
 }
