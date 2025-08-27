@@ -61,9 +61,7 @@ export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
       </div>
       <div className="p-3 space-y-1">
         <div className="flex items-center justify-between gap-1 text-xs">
-          <div className="w-full max-w-[100px] truncate text-ellipsis">
-            {location.address}ㅇㄴㅁㄴㅁㅇㄹㄴㅁㅎㅇㄴㅁㄹㅇㄴㅁㅎㅁㅇㄹㅎ
-          </div>
+          <div className="w-full max-w-[100px] truncate text-ellipsis">{location.address}</div>
           <Badge variant="outline">시음 {tastingDrinkCount}개</Badge>
         </div>
         <div className="text-sm font-bold max-w-[160px] truncate text-ellipsis">{meetingTitle}</div>
