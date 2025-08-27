@@ -41,7 +41,7 @@ const DUMMY_LIST: MeetingInfo[] = Array.from({ length: 4 }, (_, i) => ({
 export default function DummyCardArea() {
   return (
     <Carousel
-      className="relative w-[1142px] overflow-visible"
+      className="relative overflow-visible"
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
@@ -53,7 +53,7 @@ export default function DummyCardArea() {
       <CarouselContent className="flex gap-[30px] pointer-events-none" aria-hidden="true">
         {DUMMY_LIST.map((card) => (
           <CarouselItem key={card.meetingId} className="flex-shrink-0 basis-[263px]">
-            <FindMeetingCard meetingInfo={card} size="big" />
+            <FindMeetingCard meetingInfo={card} />
           </CarouselItem>
         ))}
       </CarouselContent>

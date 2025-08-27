@@ -51,38 +51,37 @@ export default function HomePage() {
   }, [refetchWishlist, refetchNew, refetchPopular, refetchFavorite, isLoggedIn, interests]);
 
   return (
-    <main className="flex items-center justify-center flex-col gap-4 py-[40px]">
-      <div className="w-[1142px]">
-        <h1 className="font-semibold text-xl pb-[20px]">신규모임</h1>
+    <div className="space-y-8 px-6">
+      <div>
+        <h1 className="font-semibold text-xl mb-3">신규모임</h1>
         <NewMeetingCardArea />
       </div>
-      <div className="w-[1142px]">
-        <h1 className="font-semibold text-xl pb-[20px] mt-8">인기모임</h1>
+      <div>
+        <h1 className="font-semibold text-xl mb-3">인기모임</h1>
         <PopularMeetingCardArea />
       </div>
-      <div className="relative w-[1142px]">
+      <div className="relative">
         <div
           className={`flex flex-col gap-4 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
         >
-          <h1 className="font-semibold text-xl ">내가 좋아할 모임</h1>
+          <h1 className="font-semibold text-xl mb-3">내가 좋아할 모임</h1>
           {isLoggedIn ? <FavoriteMeetingCardArea /> : <DummyCardArea />}
           <div>
-            <h1 className="font-semibold text-xl pb-[20px]">위시리스트</h1>
+            <h1 className="font-semibold text-xl mb-3">위시리스트</h1>
             {isLoggedIn ? <WishlistCardArea /> : <DummyCardArea />}
           </div>
         </div>
-      </div>
-      {!isLoggedIn && (
-        <div className="absolute top-330 z-10 bg-opacity-50 flex gap-4 flex-col items-center justify-center w-[1142px]">
-          <span className="text-foreground text-2xl">로그인 후에 이용가능 합니다.</span>
-
-          <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
+        {!isLoggedIn && (
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 bg-opacity-50 text-center">
+            <p className="text-foreground text-2xl mb-3">로그인 후에 이용가능 합니다.</p>
             <Link href="/login" className="font-semibold text-background">
-              로그인하기
+              <Button variant="default" size="lg" className="w-55 h-11 cursor-pointer">
+                로그인하기
+              </Button>
             </Link>
-          </Button>
-        </div>
-      )}
-    </main>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

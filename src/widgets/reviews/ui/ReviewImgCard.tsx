@@ -7,19 +7,19 @@ interface ReviewImgProps {
 
 export default function ReviewImgCard({ item }: ReviewImgProps) {
   return (
-    <div className="w-[114px] h-[184px]">
-      <div className="relative w-[114px] h-[148px] border-1 border-muted rounded-xl">
+    <div className="w-28">
+      <div className="relative w-full h-38 rounded-xl border-1 border-muted">
         <Image
-          src={item.drinkImgUrl ?? item.drinkImageUrl ?? ''}
+          src={item.drinkImgUrl ?? ''}
           alt={item.drinkName ?? ''}
           fill
           style={{ objectFit: 'fill' }}
           className="rounded-xl"
         />
       </div>
-      <span className="block text-sm font-medium text-secondary-foreground mt-3 text-center overflow-hidden whitespace-nowrap truncate">
+      <p className="text-sm font-medium text-secondary-foreground text-center mt-2 truncate text-ellipsis">
         {item.drinkName}
-      </span>
+      </p>
     </div>
   );
 }

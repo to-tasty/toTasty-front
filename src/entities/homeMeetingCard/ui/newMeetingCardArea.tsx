@@ -8,15 +8,18 @@ import {
 import { FindMeetingCard } from '@/widgets/index';
 import useNewMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useNewMeetingsQuery';
 import Link from 'next/link';
+import { clsx } from 'clsx';
 
 export default function NewMeetingCardArea() {
   const { data, isLoading } = useNewMeetingsQuery();
+  const arrowContainerClass =
+    'absolute top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md';
 
   if (isLoading) return null;
 
   if (!data || data.length === 0) {
     return (
-      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+      <div className="flex justify-center items-center text-center h-[383px] bg-secondary text-secondary-foreground">
         아직 새로운 모임이 없어요.
         <br />
         새로운 모임을 생성해 보세요.
@@ -26,27 +29,30 @@ export default function NewMeetingCardArea() {
 
   return (
     <Carousel
-      className="relative w-[1142px] overflow-visible"
+      className="relative overflow-visible"
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
       <CarouselPrevious
-        className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        className={clsx(arrowContainerClass, '-left-6')}
         style={{ pointerEvents: 'auto' }}
       />
 
-      <CarouselContent className="flex gap-[30px] ">
+      <CarouselContent className="flex gap-7">
         {data.map((item) => (
-          <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
+          <CarouselItem
+            key={item.meetingId}
+            className="flex-shrink-0 basis-1/2 md:basis-1/3 lg:basis-[calc((100%-28px*3)/4)]"
+          >
             <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
-              <FindMeetingCard meetingInfo={item} size="big" />
+              <FindMeetingCard meetingInfo={item} />
             </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
 
       <CarouselNext
-        className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 transition-shadow duration-300 hover:shadow-md"
+        className={clsx(arrowContainerClass, '-right-6')}
         style={{ pointerEvents: 'auto' }}
       />
     </Carousel>

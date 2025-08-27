@@ -1,5 +1,4 @@
 export function formatDate(d: Date) {
-  // month/day를 숫자로만 받아서 직접 "월 일" 붙이기
   const parts = new Intl.DateTimeFormat('ko-KR', { month: 'numeric', day: 'numeric' })
     .formatToParts(d)
     .reduce<Record<string, string>>((acc, part) => {

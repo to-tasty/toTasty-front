@@ -24,7 +24,6 @@ export default function MyPageTabs({ children }: { children: ReactNode }) {
     router.push(`/my-page/${value}`);
   };
 
-  // pathname 예: "/my-page/tastings" → 탭 값: "tastings"
   const currentPathValue = pathname.split('/')[2] || 'meetings';
 
   return (

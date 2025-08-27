@@ -16,7 +16,7 @@ export default function WishlistCardArea() {
 
   if (!data || data.length === 0) {
     return (
-      <div className="flex justify-center items-center text-center w-[1142px] h-[383px] bg-secondary text-secondary-foreground">
+      <div className="flex justify-center items-center text-center h-[383px] bg-secondary text-secondary-foreground">
         아직 위시리스트가 없어요.
         <br />
         지금 바로 모임을 찜해보세요.
@@ -26,7 +26,7 @@ export default function WishlistCardArea() {
 
   return (
     <Carousel
-      className="relative w-[1142px] overflow-visible"
+      className="relative overflow-visible"
       opts={{ loop: false, align: 'start', containScroll: 'trimSnaps' }}
       orientation="horizontal"
     >
@@ -39,7 +39,7 @@ export default function WishlistCardArea() {
         {data.map((item) => (
           <CarouselItem key={item.meetingId} className="flex-shrink-0 basis-[263px]">
             <Link href={`/meetings/${item.meetingId}`} key={item.meetingId}>
-              <FindMeetingCard meetingInfo={item} size="big" />
+              <FindMeetingCard meetingInfo={item} />
             </Link>
           </CarouselItem>
         ))}
