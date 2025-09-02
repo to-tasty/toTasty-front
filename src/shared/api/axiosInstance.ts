@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { useUserStore } from '@/entities/user/index';
+import { clearSession, getAccessToken, refreshAccessToken } from '../lib/auth/authSession';
 import { useGlobalErrorStore } from '../lib';
 
 const instances = new Map<string, AxiosInstance>();
@@ -21,7 +21,9 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
   instance.interceptors.response.use(
     (response) => response,
     async (error) => {
-      switch (error.response?.status) {
+      const { response, config: originRequest } = error;
+
+      switch (response?.status) {
         case 400:
           useGlobalErrorStore.getState().setGlobalError(400, error.response?.data);
           break;
@@ -29,26 +31,17 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
         case 401:
           // refresh-token 자체가 만료된 경우에 401을 받으면, 다시 시도해도 계속 만료된 상태이기에
           // 무한루프 방지를 위해서 해당 줄에서 체크 후 error처리
-          const accessToken = useUserStore.getState().accessToken;
-
-          if (error.config.url === '/api/v1/auth/token/reissue') {
-            useUserStore.getState().setLoggedOut();
+          if (originRequest.url === '/api/v1/auth/token/reissue') {
+            clearSession();
             return Promise.reject(error);
           }
 
-          if (!error.config.isRetried) {
-            // refresh token은 있는데, 새로고침 등으로 AccessToken 없는 경우 재 발급 로직
-            const originRequest = { ...error.config, isRetried: true };
-
+          if (!originRequest._retry) {
+            originRequest._retry = true;
             try {
-              if (accessToken || accessToken.length > 0) {
-                originRequest.headers.Authorization = `Bearer ${accessToken}`;
-                return await axios(originRequest);
-              }
-            } catch (axiosError) {
-              // TODO logout 관련 로직 추가 작성 필요 : Authorization 헤더 초기화
-              useUserStore.getState().setLoggedOut();
-              return Promise.reject(axiosError);
+              return await refreshAccessToken(originRequest);
+            } catch (err) {
+              return Promise.reject(err);
             }
           }
           break;
@@ -78,12 +71,13 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
   );
 
   instance.interceptors.request.use((config) => {
-    const { accessToken } = useUserStore.getState();
+    let accessToken = getAccessToken();
+
     const origin = { ...config };
 
     if (!accessToken || accessToken.length === 0) {
       origin.headers.Authorization = '';
-    } else if (origin.headers.authRequired !== false && (accessToken || accessToken.length > 0)) {
+    } else if (origin.headers.authRequired !== false) {
       origin.headers.Authorization = `Bearer ${accessToken}`;
     }
     return origin;

@@ -14,7 +14,6 @@ export default function useLogout() {
       router.push('/');
     } catch (error) {
       toast.error(`로그아웃에 실패했습니다:${error instanceof Error ? error.message : error} `);
-      console.log(`Logout failed: ${error instanceof Error ? error.message : error}`);
     }
   };
 
