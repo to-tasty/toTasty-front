@@ -67,7 +67,7 @@ export interface MeetingListParams {
   pageParam: number;
 }
 
-export interface HomeListInfo {
+export interface HomeListParams {
   page?: number;
   size?: number;
   sort?: SortType;

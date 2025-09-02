@@ -1,8 +1,8 @@
 import getMeetingList from './getMeetingList';
-import { HomeListInfo, MeetingCardInfo } from '../model/types';
+import { HomeListParams, MeetingCardInfo } from '../model/types';
 
 export default async function getHomeMeetings(
-  params: HomeListInfo = {},
+  params: HomeListParams = {},
 ): Promise<MeetingCardInfo[]> {
   const { page = 1, size = 10, sort, drinkType } = params;
 
