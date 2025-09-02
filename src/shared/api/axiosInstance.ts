@@ -2,7 +2,12 @@ import axios, { AxiosInstance } from 'axios';
 import { useUserStore } from '@/entities/user/index';
 import { useGlobalErrorStore } from '../lib';
 
+import { ENABLE_API_METRICS, recordApiMetric } from './apiMetrics';
+
 const instances = new Map<string, AxiosInstance>();
+
+const IGNORE_METRIC_URLS = ['/api/v1/auth/token/reissue'];
+const shouldIgnore = (url?: string) => !!url && IGNORE_METRIC_URLS.some((u) => url.includes(u));
 
 export default function axiosInstance(apiUrl: string | undefined): AxiosInstance {
   if (apiUrl === undefined) {
@@ -19,8 +24,33 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
   });
 
   instance.interceptors.response.use(
-    (response) => response,
+    (response) => {
+      // ⬇️ 응답 성공 시 측정 기록
+      try {
+        if (ENABLE_API_METRICS && !shouldIgnore(response.config?.url)) {
+          const cfg: any = response.config || {};
+          const start = cfg.__startTime ?? 0;
+          const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+          const dur = start ? now - start : 0;
+          const key =
+            cfg.__reqKey ||
+            `${String(response.config.method).toUpperCase()} ${response.config.url}`;
+          recordApiMetric(key, dur, false);
+        }
+      } catch {}
+      return response;
+    },
     async (error) => {
+      try {
+        const cfg: any = error.config || {};
+        if (ENABLE_API_METRICS && !shouldIgnore(cfg?.url)) {
+          const start = cfg.__startTime ?? 0;
+          const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+          const dur = start ? now - start : 0;
+          const key = cfg.__reqKey || `${String(cfg.method).toUpperCase()} ${cfg.url}`;
+          recordApiMetric(key, dur, true);
+        }
+      } catch {}
       switch (error.response?.status) {
         case 400:
           useGlobalErrorStore.getState().setGlobalError(400, error.response?.data);
@@ -29,7 +59,7 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
         case 401:
           // refresh-token 자체가 만료된 경우에 401을 받으면, 다시 시도해도 계속 만료된 상태이기에
           // 무한루프 방지를 위해서 해당 줄에서 체크 후 error처리
-          const accessToken = useUserStore.getState().accessToken;
+          const { accessToken } = useUserStore.getState();
 
           if (error.config.url === '/api/v1/auth/token/reissue') {
             useUserStore.getState().setLoggedOut();
@@ -80,6 +110,12 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
   instance.interceptors.request.use((config) => {
     const { accessToken } = useUserStore.getState();
     const origin = { ...config };
+
+    if (ENABLE_API_METRICS && !shouldIgnore(origin.url)) {
+      origin.__startTime = typeof performance !== 'undefined' ? performance.now() : Date.now();
+      const method = (origin.method || 'GET').toString().toUpperCase();
+      origin.__reqKey = `${method} ${origin.url}`;
+    }
 
     if (!accessToken || accessToken.length === 0) {
       origin.headers.Authorization = '';
