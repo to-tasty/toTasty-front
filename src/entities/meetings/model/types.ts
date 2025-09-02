@@ -62,6 +62,11 @@ export interface MeetingFilters {
   size?: number;
 }
 
+export interface MeetingListParams {
+  filters: MeetingFilters;
+  pageParam: number;
+}
+
 export interface HomeListInfo {
   page?: number;
   size?: number;
