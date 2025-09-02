@@ -67,9 +67,22 @@ export interface MeetingListParams {
   pageParam: number;
 }
 
+export enum HomeListKind {
+  New = 'new',
+  Popular = 'popular',
+  Favorite = 'favorite',
+  Wishlist = 'wishlist',
+}
 export interface HomeListParams {
   page?: number;
   size?: number;
   sort?: SortType;
   drinkType?: DrinkType;
+}
+
+export interface HomeMeetingInfo {
+  kind: HomeListKind;
+  interests?: DrinkType[];
+  userId?: number;
+  enabled?: boolean;
 }
