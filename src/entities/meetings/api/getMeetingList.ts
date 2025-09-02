@@ -8,6 +8,6 @@ export default async function getMeetingList(
   return getApi<MeetingListInfo>('/api/v1/meetings', {
     ...filter,
     page: pageParam,
-    size: 16,
+    size: filter.size ?? 16,
   });
 }

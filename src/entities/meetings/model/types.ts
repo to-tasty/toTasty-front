@@ -61,3 +61,10 @@ export interface MeetingFilters {
   page?: number;
   size?: number;
 }
+
+export interface HomeListInfo {
+  page?: number;
+  size?: number;
+  sort?: SortType;
+  drinkType?: DrinkType;
+}
