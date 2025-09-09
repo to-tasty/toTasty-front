@@ -13,7 +13,7 @@ function emptyCopy(kind: HomeListKind) {
     case HomeListKind.Popular:
       return '아직 인기 모임이 없어요.';
     case HomeListKind.Favorite:
-      return '아직 내가 좋아할 모임이 없어요.';
+      return '아직 내가 좋아할 모집중인 모임이 없어요.';
     case HomeListKind.Wishlist:
       return '아직 위시리스트가 없어요.';
     default:
@@ -29,10 +29,8 @@ export default function HomeMeetingSection(props: {
 }) {
   const { kind, title, interests, userId } = props;
   const isLoggedIn = useUserStore((s) => s.isLoggedIn);
-
   const requiresAuth = kind === HomeListKind.Favorite || kind === HomeListKind.Wishlist;
   const enabled = !requiresAuth || isLoggedIn;
-
   const { data = [], isLoading } = useHomeMeetingsQuery({
     kind,
     interests,

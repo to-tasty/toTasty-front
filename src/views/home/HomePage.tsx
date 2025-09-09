@@ -1,75 +1,31 @@
 'use client';
 
-import {
-  FavoriteMeetingCardArea,
-  NewMeetingCardArea,
-  PopularMeetingCardArea,
-  WishlistCardArea,
-  DummyCardArea,
-} from '@/entities/homeMeetingCard/index';
-import { Button } from '@/shared';
-import Link from 'next/link';
+import { useMemo } from 'react';
+import { Button, DrinkType } from '@/shared';
 import { useUserStore } from '@/entities/user';
-import { useEffect, useMemo } from 'react';
-import useWishlistMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useWishlistQuery';
-import useNewMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useNewMeetingsQuery';
-import usePopularMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/usePopularMeetingsQuery';
-import useFavoriteMeetingsQuery from '@/entities/homeMeetingCard/model/hooks/useFavoriteMeetingsQuery';
+import { HomeListKind } from '@/entities/meetings';
+import { HomeMeetingSection } from '@/widgets/home';
+import Link from 'next/link';
 
 export default function HomePage() {
-  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
-  const rawInterests = useUserStore((state) => state.user?.interests);
-  const interests = useMemo(() => rawInterests || [], [rawInterests]);
-  const { refetch: refetchWishlist } = useWishlistMeetingsQuery();
-  const { refetch: refetchNew } = useNewMeetingsQuery();
-  const { refetch: refetchPopular } = usePopularMeetingsQuery();
-  const { refetch: refetchFavorite } = useFavoriteMeetingsQuery(interests);
-
-  useEffect(() => {
-    const handleFocus = () => {
-      refetchNew();
-      refetchPopular();
-
-      if (isLoggedIn) {
-        refetchWishlist();
-        refetchFavorite();
-      }
-    };
-
-    window.addEventListener('focus', handleFocus);
-
-    refetchNew();
-    refetchPopular();
-    if (isLoggedIn) {
-      refetchWishlist();
-      refetchFavorite();
-    }
-
-    return () => {
-      window.removeEventListener('focus', handleFocus);
-    };
-  }, [refetchWishlist, refetchNew, refetchPopular, refetchFavorite, isLoggedIn, interests]);
+  const rawInterests = useUserStore((s) => s.user?.interests);
+  const interests = useMemo(() => (rawInterests as DrinkType[]) || [], [rawInterests]);
+  const isLoggedIn = useUserStore((s) => s.isLoggedIn);
+  const userId = useUserStore((s) => s.user?.memberId);
 
   return (
     <div className="space-y-8 px-6">
-      <div>
-        <h1 className="font-semibold text-xl mb-3">신규모임</h1>
-        <NewMeetingCardArea />
-      </div>
-      <div>
-        <h1 className="font-semibold text-xl mb-3">인기모임</h1>
-        <PopularMeetingCardArea />
-      </div>
+      <HomeMeetingSection kind={HomeListKind.New} title="신규모임" />
+      <HomeMeetingSection kind={HomeListKind.Popular} title="인기모임" />
       <div className="relative">
-        <div
-          className={`flex flex-col gap-4 mt-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}
-        >
-          <h1 className="font-semibold text-xl mb-3">내가 좋아할 모임</h1>
-          {isLoggedIn ? <FavoriteMeetingCardArea /> : <DummyCardArea />}
-          <div>
-            <h1 className="font-semibold text-xl mb-3">위시리스트</h1>
-            {isLoggedIn ? <WishlistCardArea /> : <DummyCardArea />}
-          </div>
+        <div className={`space-y-8 ${!isLoggedIn ? 'blur-sm pointer-events-none' : ''}`}>
+          <HomeMeetingSection
+            kind={HomeListKind.Favorite}
+            title="내가 좋아할 모임"
+            interests={interests}
+          />
+
+          <HomeMeetingSection kind={HomeListKind.Wishlist} title="위시리스트" userId={userId} />
         </div>
         {!isLoggedIn && (
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 bg-opacity-50 text-center">

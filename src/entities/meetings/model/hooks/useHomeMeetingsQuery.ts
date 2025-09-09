@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import homeMeetingsKeys from '../homeMeetings.keys';
-import { HomeListKind, type HomeMeetingInfo, type MeetingCardInfo } from '../types';
+import { HomeListKind, type HomeMeetingInfo } from '../types';
 
 export default function useHomeMeetingsQuery({
   kind,
@@ -10,7 +10,6 @@ export default function useHomeMeetingsQuery({
 }: HomeMeetingInfo) {
   return useQuery({
     ...homeMeetingsKeys.list(kind, { interests, userId }),
-    placeholderData: [] as MeetingCardInfo[],
     enabled: !!enabled && (kind !== HomeListKind.Favorite || !!interests?.length),
     staleTime: 60_000,
   });
