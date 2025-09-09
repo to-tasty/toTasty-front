@@ -86,3 +86,12 @@ export interface HomeMeetingInfo {
   userId?: number;
   enabled?: boolean;
 }
+
+export interface QueryPolicy {
+  staleTime: number;
+  refetchOnWindowFocus: boolean;
+  refetchOnReconnect: boolean;
+  refetchInterval: number | false;
+  refetchIntervalInBackground: boolean;
+}
+export type PolicyOverrides = Partial<QueryPolicy>;

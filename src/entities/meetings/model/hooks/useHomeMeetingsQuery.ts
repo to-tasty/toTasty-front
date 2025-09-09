@@ -1,16 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
+import { HomeListKind, HomeMeetingInfo, PolicyOverrides } from '../types';
+import QueryPolicies from '../query.policies';
 import homeMeetingsKeys from '../homeMeetings.keys';
-import { HomeListKind, type HomeMeetingInfo } from '../types';
 
-export default function useHomeMeetingsQuery({
-  kind,
-  interests,
-  userId,
-  enabled,
-}: HomeMeetingInfo) {
+export default function useHomeMeetingsQuery(
+  { kind, interests, userId, enabled }: HomeMeetingInfo,
+  overrides?: PolicyOverrides,
+) {
+  const defs = homeMeetingsKeys.list(kind, { interests, userId });
+  const p = QueryPolicies.home(kind, overrides);
+
   return useQuery({
-    ...homeMeetingsKeys.list(kind, { interests, userId }),
+    ...defs,
     enabled: !!enabled && (kind !== HomeListKind.Favorite || !!interests?.length),
-    staleTime: 60_000,
+    staleTime: p.staleTime,
+    refetchOnWindowFocus: p.refetchOnWindowFocus,
+    refetchOnReconnect: p.refetchOnReconnect,
+    refetchInterval: p.refetchInterval,
+    refetchIntervalInBackground: p.refetchIntervalInBackground,
   });
 }
