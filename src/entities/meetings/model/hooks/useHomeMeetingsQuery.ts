@@ -8,7 +8,7 @@ export default function useHomeMeetingsQuery(
   overrides?: PolicyOverrides,
 ) {
   const defs = homeMeetingsKeys.list(kind, { interests, userId });
-  const p = QueryPolicies.home(kind, overrides);
+  const p = QueryPolicies.home(overrides);
 
   return useQuery({
     ...defs,

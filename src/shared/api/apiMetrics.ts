@@ -1,3 +1,4 @@
+// src/shared/api/apiMetrics.ts
 type Metric = {
   count: number;
   totalMs: number;
@@ -32,8 +33,10 @@ export function getApiRequestCount() {
 
 export function getApiMetrics() {
   const obj: Record<string, Metric & { avgMs: number }> = {};
-  /** eslint-disable-next-line */
-  for (const [k, v] of metrics) obj[k] = { ...v, avgMs: v.count ? v.totalMs / v.count : 0 };
+  // no-restricted-syntax 대응: for..of 대신 forEach 사용
+  metrics.forEach((v, k) => {
+    obj[k] = { ...v, avgMs: v.count ? v.totalMs / v.count : 0 };
+  });
   return obj;
 }
 
@@ -59,9 +62,14 @@ export function printApiMetrics() {
   console.log('TOTAL_REQ:', getApiRequestCount());
 }
 
-// 브라우저 콘솔에서 바로 쓰기: __apiMetrics.print()
+// 브라우저 콘솔에서 바로 쓰기: window.apiMetrics.print()
 declare global {
   interface Window {
+    apiMetrics?: {
+      get: typeof getApiMetrics;
+      reset: typeof resetApiMetrics;
+      print: typeof printApiMetrics;
+    };
     __apiMetrics?: {
       get: typeof getApiMetrics;
       reset: typeof resetApiMetrics;
@@ -70,9 +78,9 @@ declare global {
   }
 }
 if (typeof window !== 'undefined') {
-  window.__apiMetrics = {
-    get: getApiMetrics,
-    reset: resetApiMetrics,
-    print: printApiMetrics,
-  };
+  const api = { get: getApiMetrics, reset: resetApiMetrics, print: printApiMetrics };
+  window.apiMetrics = api;
+  // 기존 사용 호환을 위해 alias 제공 (한 줄만 예외 허용)
+  // eslint-disable-next-line no-underscore-dangle
+  window.__apiMetrics = api;
 }

@@ -1,14 +1,10 @@
-import { HomeListKind, MeetingDetailInfo, PolicyOverrides, QueryPolicy } from './types';
+import { MeetingDetailInfo, PolicyOverrides, QueryPolicy } from './types';
 
 const MS = 1_000;
 const MIN = 60 * MS;
 
 const QUERY_DEFAULTS = {
-  New: { staleTime: 2 * MIN },
-  Popular: { staleTime: 3 * MIN },
-  Favorite: { staleTime: 2 * MIN },
-  Wishlist: { staleTime: 2 * MIN },
-
+  home: { staleTime: 2 * MIN },
   list: { staleTime: 2 * MIN },
   detail: { staleTime: 15 * MS },
 } as const;
@@ -22,16 +18,8 @@ const QUERY_BASE: Omit<QueryPolicy, 'staleTime'> = {
 
 const QueryPolicies = {
   /** 홈 섹션 전용 정책 */
-  home(kind: HomeListKind, overrides?: PolicyOverrides): QueryPolicy {
-    const map = {
-      [HomeListKind.New]: QUERY_DEFAULTS.New.staleTime,
-      [HomeListKind.Popular]: QUERY_DEFAULTS.Popular.staleTime,
-      [HomeListKind.Favorite]: QUERY_DEFAULTS.Favorite.staleTime,
-      [HomeListKind.Wishlist]: QUERY_DEFAULTS.Wishlist.staleTime,
-    } as const;
-
-    const staleTime = map[kind];
-    const policy: QueryPolicy = { staleTime, ...QUERY_BASE };
+  home(overrides?: PolicyOverrides): QueryPolicy {
+    const policy: QueryPolicy = { staleTime: QUERY_DEFAULTS.home.staleTime, ...QUERY_BASE };
     return { ...policy, ...(overrides ?? {}) };
   },
 
