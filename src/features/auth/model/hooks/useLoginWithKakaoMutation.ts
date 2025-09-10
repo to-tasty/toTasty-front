@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { User, useUserStore } from '@/entities/user';
 import { loginWithKakao } from '../../api/loginWithKakao';
+import { setAccessToken } from '@/shared';
 
 export function useLoginWithKakaoMutation() {
-  const { setLoggedIn, setAccessToken } = useUserStore((state) => state);
+  const { setLoggedIn } = useUserStore((state) => state);
 
   return useMutation({
     mutationFn: loginWithKakao,

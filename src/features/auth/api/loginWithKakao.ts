@@ -1,5 +1,5 @@
 import { getApi } from '@/shared/api/axiosApis';
-import { LoginResponse } from './types';
+import { LoginResponse } from '../model/types';
 
 export async function loginWithKakao(code: string): Promise<LoginResponse | null> {
   const headers = {
