@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍷 ToTasty!  
+**모두 함께 To tasty! 한 모금으로 이어지는 취향 모임**
+**커피, 와인, 위스키 시음회 기반 모임 서비스**  
 
-## Getting Started
+[배포 페이지](https://to-tasty-front-khaki.vercel.app/) | [GitHub Repository](https://github.com/to-tasty/toTasty-front)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 프로젝트 소개
+**커피, 와인, 위스키 등 다양한 시음회를 기반으로 한 취향 공유 모임 서비스**  
+사용자는 시음 모임 정보를 등록, 조회, 참가 신청 및 후기를 공유할 수 있으며, 새로운 사람들과 취향을 나누는 경험을 제공합니다.  
+    <br/>
+
+
+## 주요 기능
+-  **소셜 로그인 (카카오)**  
+-  **시음 모임 등록 / 조회 / 상세 확인**  
+-  **참가 신청 및 후기 작성**  
+-  **모임 필터링 및 무한 스크롤** (TanStack Query 기반)  
+-  **마이페이지** (내가 신청한 모임, 작성한 후기, 위시리스트, 프로필 관리)  
+-  **권한 관리** (로그인 사용자만 접근 가능한 페이지 보호)  
+    <br/>
+
+
+## 기술 스택
+| 구분 | 기술 |
+|------|------|
+| **Framework** | Next.js (TypeScript) |
+| **UI** | Tailwind CSS, Shadcn/UI |
+| **State Management** | Zustand (persist) |
+| **Data Fetching** | TanStack Query, Axios |
+| **Form** | TanStack Form + Zod |
+| **Auth** | JWT (Access / Refresh Token), Route Guard |
+| **Deploy** | Vercel |
+| **Collaboration** | GitHub, Notion, Swagger, GitHub Actions |
+| **Code Quality** | ESLint, Prettier |
+| **Test** | Jest |
+
+
+## 프로젝트 구조 (FSD 기반)
+```plaintext
+src/
+├── app/              # 라우팅 및 전역 설정
+├── shared/           # 공용 컴포넌트, 유틸, 훅, 타입
+├── features/         # 독립적인 기능 단위 (예: 로그인, 모임 생성)
+├── entities/         # 도메인 단위 엔티티 (user, meeting 등)
+├── widgets/          # 페이지 내 조합 가능한 UI 블록
+└── pages/            # Next.js 라우팅 페이지
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 설치 및 실행 방법
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 저장소 클론
+git clone https://github.com/to-tasty/toTasty-front.git
+cd to-tasty-front
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 패키지 설치
+npm install
 
-## Learn More
+# 개발 서버 실행
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 브라우저 접속
+http://localhost:3000
+```
