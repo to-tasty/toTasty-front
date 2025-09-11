@@ -8,7 +8,7 @@
 ## 프로젝트 소개
 **커피, 와인, 위스키 등 다양한 시음회를 기반으로 한 취향 공유 모임 서비스**  
 사용자는 시음 모임 정보를 등록, 조회, 참가 신청 및 후기를 공유할 수 있으며, 새로운 사람들과 취향을 나누는 경험을 제공합니다.  
-    <br/>
+<br/>
 
 
 ## 주요 기능
@@ -17,24 +17,23 @@
 -  **참가 신청 및 후기 작성**  
 -  **모임 필터링 및 무한 스크롤** (TanStack Query 기반)  
 -  **마이페이지** (내가 신청한 모임, 작성한 후기, 위시리스트, 프로필 관리)  
--  **권한 관리** (로그인 사용자만 접근 가능한 페이지 보호)  
-    <br/>
+-  **권한 관리** (로그인 사용자만 접근 가능한 페이지 보호)
+-  <br/>
 
 
 ## 기술 스택
-| 구분 | 기술 |
-|------|------|
-| **Framework** | Next.js (TypeScript) |
-| **UI** | Tailwind CSS, Shadcn/UI |
-| **State Management** | Zustand (persist) |
-| **Data Fetching** | TanStack Query, Axios |
-| **Form** | TanStack Form + Zod |
-| **Auth** | JWT (Access / Refresh Token), Route Guard |
-| **Deploy** | Vercel |
-| **Collaboration** | GitHub, Notion, Swagger, GitHub Actions |
-| **Code Quality** | ESLint, Prettier |
-| **Test** | Jest |
+### Frontend
+- **Next.js**
+- **TypeScript**
+- **Zustand** (상태 관리)
+- **Tailwind + Shadcn** (UI/스타일)
+- **TanStack - Query / Form** (데이터 패칭, 폼 관리)
 
+### 배포 및 저장소 관리
+- **Vercel**
+- **GitHub & GitHub Actions**
+- **Swagger**
+<br/>
 
 ## 프로젝트 구조 (FSD 기반)
 ```plaintext
@@ -56,6 +55,12 @@ cd to-tasty-front
 
 # 패키지 설치
 npm install
+
+# .env 파일 설정 (환경 변수 세팅)
+NEXT_PUBLIC_API_URL=YOUR API URL HERE
+NEXT_PUBLIC_KAKAO_CLIENT_ID=YOUR KAKAO CLIENT ID HERE
+NEXT_PUBLIC_KAKAO_LOGIN_URI=YOUR KAKAO LOGIN URI HERE
+NEXT_PUBLIC_KAKAO_REDIRECT_URI=YOUR KAKAO REDIRECT URI HERE
 
 # 개발 서버 실행
 npm run dev
