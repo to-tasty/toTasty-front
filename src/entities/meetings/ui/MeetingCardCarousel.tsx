@@ -8,6 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  Skeleton,
 } from '@/shared/ui';
 import { FindMeetingCard } from '@/widgets';
 import { MeetingCardInfo } from '../model/types';
@@ -29,16 +30,10 @@ export default function MeetingCardCarousel({
   hrefBuilder = (id) => `/meetings/${id}`,
   itemClassName = 'flex-shrink-0 basis-1/2 md:basis-1/3 lg:basis-[calc((100%-28px*3)/4)]',
   gapClassName = 'gap-7',
-  height = 383,
+  height = 310,
 }: MeetingCardCarouselProps) {
   if (isLoading) {
-    return (
-      <div
-        className="w-full animate-pulse rounded-xl bg-secondary"
-        style={{ height }}
-        aria-label="로딩 중"
-      />
-    );
+    return <Skeleton className="w-full rounded-xl bg-gray-020" style={{ height }} />;
   }
 
   if (!items || items.length === 0) {
