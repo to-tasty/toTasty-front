@@ -61,3 +61,37 @@ export interface MeetingFilters {
   page?: number;
   size?: number;
 }
+
+export interface MeetingListParams {
+  filters: MeetingFilters;
+  pageParam: number;
+}
+
+export enum HomeListKind {
+  New = 'new',
+  Popular = 'popular',
+  Favorite = 'favorite',
+  Wishlist = 'wishlist',
+}
+export interface HomeListParams {
+  page?: number;
+  size?: number;
+  sort?: SortType;
+  drinkType?: DrinkType;
+}
+
+export interface HomeMeetingInfo {
+  kind: HomeListKind;
+  interests?: DrinkType[];
+  userId?: number;
+  enabled?: boolean;
+}
+
+export interface QueryPolicy {
+  staleTime: number;
+  refetchOnWindowFocus: boolean;
+  refetchOnReconnect: boolean;
+  refetchInterval: number | false;
+  refetchIntervalInBackground: boolean;
+}
+export type PolicyOverrides = Partial<QueryPolicy>;

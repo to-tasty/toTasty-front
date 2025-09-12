@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <script
+          // eslint-disable-next-line
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

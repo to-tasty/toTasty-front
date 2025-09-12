@@ -24,7 +24,7 @@ function AuthGuard({ children, redirectTo = '/login' }: AuthGuardProps) {
     }
 
     prevIsLoggedIn.current = isLoggedIn;
-  }, [isHydrated, isLoggedIn, redirectTo]);
+  }, [isHydrated, isLoggedIn, redirectTo, router]);
 
   if (!isHydrated || !isLoggedIn) {
     return <div />;

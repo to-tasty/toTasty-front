@@ -17,7 +17,6 @@ export default function WishlistCardRow({ wishlistCardList }: MeetingInfoList) {
             <FindMeetingCard
               key={meetingInfo.meetingId?.toString() || index}
               meetingInfo={meetingInfo}
-              size="small"
             />
           </Link>
         ))}

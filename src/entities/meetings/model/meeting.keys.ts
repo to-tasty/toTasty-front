@@ -1,18 +1,16 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { QueryFunctionContext } from '@tanstack/react-query';
-import { MeetingFilters } from './types';
+import { MeetingFilters, MeetingListParams } from './types';
 import getMeetingList from '../api/getMeetingList';
 import getMeetingDetail from '../api/getMeetingDetail';
 
 const meetingKeys = createQueryKeys('meetings', {
   all: null,
   list: (filter: MeetingFilters) => ({
-    queryKey: [filter],
-    queryFn: ({ pageParam = 1 }: QueryFunctionContext<[MeetingFilters], number>) =>
-      getMeetingList(filter, pageParam),
+    queryKey: ['list', filter] as const,
+    queryFn: ({ pageParam = 1 }: MeetingListParams) => getMeetingList(filter, pageParam),
   }),
   detail: (meetingId: number) => ({
-    queryKey: [meetingId],
+    queryKey: ['detail', meetingId] as const,
     queryFn: () => getMeetingDetail(meetingId),
   }),
 });
