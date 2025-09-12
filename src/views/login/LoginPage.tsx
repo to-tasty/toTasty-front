@@ -1,6 +1,6 @@
 'use client';
 
-import { KakaoLoginButton } from '@/features/login-with-kakao';
+import { KakaoLoginButton } from '@/features/auth';
 
 export default function LoginPage() {
   return (
