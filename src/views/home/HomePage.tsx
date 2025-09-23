@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { DrinkType } from '@/shared';
 import { useUserStore } from '@/entities/user';
-import { HomeListKind } from '@/entities/meetings';
+import { HomeListKind } from '@/entities/meetings/types';
 import { HomeMeetingSection, HomeLoginOverlay } from '@/widgets/home';
 
 export default function HomePage() {

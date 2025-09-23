@@ -1,5 +1,5 @@
 import { getApi } from '@/shared';
-import { MeetingDetailInfo } from '../model/types';
+import { MeetingDetailInfo } from '../types';
 
 export default async function getMeetingDetail(
   meetingId: number,

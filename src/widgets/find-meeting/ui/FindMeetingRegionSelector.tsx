@@ -4,8 +4,8 @@ import { DropdownMenu, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu
 
 import { Button } from '@/shared';
 import Image from 'next/image';
+import { useFilterRegionStore } from '@/entities/meetings';
 import FindRegionDropdown from './FindRegionDropdown';
-import useFilterRegionStore from '../model/hooks/useFilterRegionStore';
 
 export default function FindMeetingRegionSelector() {
   const isOpen = useFilterRegionStore((state) => state.isOpen);

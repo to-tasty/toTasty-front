@@ -1,5 +1,5 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { MeetingFilters, MeetingListParams } from './types';
+import { MeetingFilters, MeetingListParams } from '../types';
 import getMeetingList from '../api/getMeetingList';
 import getMeetingDetail from '../api/getMeetingDetail';
 

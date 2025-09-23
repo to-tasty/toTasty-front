@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { CheckCircle, ClockAlert } from 'lucide-react';
 import { Badge, Progress } from '@/shared/ui';
 import { getDeadlineText, getFormattedDate, getFormattedTime } from '@/shared/lib/date';
-import { MeetingDetailInfo } from '@/entities/meetings/model/types';
+import { MeetingDetailInfo } from '@/entities/meetings/types';
 import { WithIcon, WishButton } from './ui';
 
 export default function MeetingDetailHeader(data: MeetingDetailInfo) {

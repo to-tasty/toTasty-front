@@ -1,4 +1,4 @@
-import { MeetingDetailInfo } from '@/entities/meetings/model/types';
+import { MeetingDetailInfo } from '@/entities/meetings/types';
 
 export interface WishButtonProps {
   isWished: boolean;
