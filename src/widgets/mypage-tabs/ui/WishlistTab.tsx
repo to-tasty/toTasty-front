@@ -5,7 +5,7 @@ import { useWishlistQuery } from '@/entities/wishlist';
 import { Skeleton } from '@/shared';
 import { useInView } from 'react-intersection-observer';
 import { useUserStore } from '@/entities/user';
-import WishlistCardRow from './WishlistCardRow';
+import { MeetingCardList } from '@/widgets';
 
 export default function WishlistTab() {
   const memberId = useUserStore((state) => state.user?.memberId);
@@ -29,7 +29,12 @@ export default function WishlistTab() {
 
   return (
     <div className="flex flex-col my-6">
-      <WishlistCardRow wishlistCardList={flatWishlist} />
+      <MeetingCardList
+        meetingList={flatWishlist}
+        emptyMessage="위시리스트가 비어 있어요."
+        cardGap="gap-4"
+        minHeight=""
+      />
       <div ref={ref} />
     </div>
   );
