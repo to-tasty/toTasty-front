@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { HomeListKind, HomeMeetingInfo, PolicyOverrides } from '../types';
+import { HomeListKind, HomeMeetingInfo, PolicyOverrides } from '../../types';
 import QueryPolicies from '../query.policies';
 import homeMeetingsKeys from '../homeMeetings.keys';
 

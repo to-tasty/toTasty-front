@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { MeetingDetailInfo, PolicyOverrides } from '../types';
+import { MeetingDetailInfo, PolicyOverrides } from '../../types';
 import meetingKeys from '../meeting.keys';
 import QueryPolicies from '../query.policies';
 
