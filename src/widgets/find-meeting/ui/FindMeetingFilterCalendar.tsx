@@ -6,7 +6,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/shared/ui/Popover';
 import { Calendar } from '@/shared/ui/Calendar';
 import { enUS } from 'date-fns/locale';
 import { format } from 'date-fns';
-import useFilterCalendarStore from '../model/hooks/useFilterCalendarStore';
+import { useFilterCalendarStore } from '@/entities/meetings/model';
 
 export default function FindMeetingFilterCalendar() {
   const selectedCalendar = useFilterCalendarStore((state) => state.selectedCalendar);

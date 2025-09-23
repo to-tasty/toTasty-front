@@ -3,10 +3,9 @@
 import { Button, DrinkType } from '@/shared';
 import { useFilterStore, useFilterBtnStore } from '@/entities/meetings';
 import { SortType } from '@/entities/meetings/types';
-import Link from 'next/link';
 import { FindFilterBtn } from '../model/types';
 
-export default function FindMeetingFilters() {
+export default function FindMeetingFilterBtns() {
   const selectedFilterId = useFilterBtnStore((state) => state.selectedFilterBtnId);
   const setSelectedFilterId = useFilterBtnStore((state) => state.setSelectedFilterBtnId);
 
@@ -36,34 +35,21 @@ export default function FindMeetingFilters() {
   }
 
   return (
-    <div className="flex w-full justify-between mb-1">
-      <div className="flex">
-        {filterBtnProps.map((prop) => (
-          <Button
-            key={prop.id}
-            id={prop.id}
-            variant={selectedFilterId === prop.id ? 'findFilterClicked' : 'outline'}
-            className={
-              selectedFilterId === prop.id ? 'text-secondary' : 'text-foreground outline-background'
-            }
-            size="findFilterSize"
-            onClick={() => handleBtnClick(prop)}
-          >
-            {prop.name}
-          </Button>
-        ))}
-      </div>
-
-      <Link href="/meetings/post" style={{ textDecoration: 'none' }}>
+    <div className="flex">
+      {filterBtnProps.map((prop) => (
         <Button
-          key="postMeetingBtn"
-          id="postMeetingId"
-          variant="outlinePrimary"
+          key={prop.id}
+          id={prop.id}
+          variant={selectedFilterId === prop.id ? 'findFilterClicked' : 'outline'}
+          className={
+            selectedFilterId === prop.id ? 'text-secondary' : 'text-foreground outline-background'
+          }
           size="findFilterSize"
+          onClick={() => handleBtnClick(prop)}
         >
-          모임 만들기
+          {prop.name}
         </Button>
-      </Link>
+      ))}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
-import { Region } from '@/widgets/find-meeting/model/types';
+import { Region } from '@/widgets/find-meeting/types';
 import { useFilterStore, useFilterRegionStore } from '@/entities/meetings';
 
 export default function FindRegionDropdown() {
