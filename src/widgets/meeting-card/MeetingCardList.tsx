@@ -5,7 +5,7 @@ import MeetingCard from './MeetingCard';
 export default function MeetingCardList({
   meetingList,
   emptyMessage = '아직 모임이 없어요.',
-  className = 'flex flex-wrap w-full gap-7',
+  className = 'flex flex-wrap w-full',
   cardGap = 'gap-7',
   minHeight = 'min-h-96',
 }: MeetingCardListProps) {

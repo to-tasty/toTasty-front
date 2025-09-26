@@ -28,14 +28,14 @@ export default function WishlistTab() {
   }
 
   return (
-    <div className="flex flex-col my-6">
+    <>
       <MeetingCardList
         meetingList={flatWishlist}
         emptyMessage="위시리스트가 비어 있어요."
-        cardGap="gap-4"
+        cardGap="gap-6"
         minHeight=""
       />
       <div ref={ref} />
-    </div>
+    </>
   );
 }
