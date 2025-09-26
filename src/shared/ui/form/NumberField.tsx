@@ -1,3 +1,5 @@
+'use client';
+
 import Input from '../Input';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import useCommaInput from '../../lib/form/model/hooks/useCommaInput';

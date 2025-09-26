@@ -1,7 +1,6 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
-import { Region } from '../model/types';
-import useFilterRegionStore from '../model/hooks/useFilterRegionStore';
-import useFilterStore from '../model/hooks/useFilterStore';
+import { Region } from '@/widgets/find-meeting/types';
+import { useFilterStore, useFilterRegionStore } from '@/entities/meetings';
 
 export default function FindRegionDropdown() {
   const setSelectedRegion = useFilterRegionStore((state) => state.setSelectedRegion);

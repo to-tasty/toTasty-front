@@ -4,8 +4,8 @@ import { DropdownMenu, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu
 
 import { Button } from '@/shared';
 import Image from 'next/image';
+import { useSorterStore } from '@/entities/meetings';
 import FindSorterDropdown from './FindSorterDropdown';
-import useSorterStore from '../model/hooks/useSorterStore';
 
 export default function FindMeetingSorter() {
   const selectedSorter = useSorterStore((state) => state.selectedSorter);

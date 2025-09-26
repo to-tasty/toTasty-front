@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Badge, Progress } from '@/shared/ui';
-import { MeetingCardInfoProps } from '../model/types';
+import { MeetingCardProps } from './types';
 
-export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
+export default function MeetingCard({ meetingInfo }: MeetingCardProps) {
   const {
     meetingId,
     thumbnailUrl,

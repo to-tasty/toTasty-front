@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import meetingKeys from '@/entities/meetings/model/meeting.keys';
-import type { MeetingDetailInfo } from '@/entities/meetings/model/types';
+import { MeetingDetailInfo, meetingKeys } from '@/entities/meetings';
 import cancelJoin from '../../api/cancelJoin';
 import type { CancelJoinRequest, CancelJoinResponse, MutationCtx } from '../types';
 

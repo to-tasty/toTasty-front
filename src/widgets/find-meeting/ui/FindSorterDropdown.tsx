@@ -1,8 +1,6 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
-import { SortType } from '@/entities/meetings';
-import { SorterState } from '../model/types';
-import useSorterStore from '../model/hooks/useSorterStore';
-import useFilterStore from '../model/hooks/useFilterStore';
+import { useSorterStore, useFilterStore, SortType } from '@/entities/meetings';
+import { SorterState } from '../types';
 
 export default function FindSorterDropdown() {
   const setSelectedSorter = useSorterStore((state) => state.setSelectedSorter);

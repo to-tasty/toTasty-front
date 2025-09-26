@@ -27,13 +27,13 @@ export default function MyPageTabs({ children }: { children: ReactNode }) {
   const currentPathValue = pathname.split('/')[2] || 'meetings';
 
   return (
-    <div className="max-w-[992px] bg-secondary mt-6">
+    <div className="bg-secondary mt-6">
       <Tabs
         value={currentPathValue}
         onValueChange={onTabChange}
         className="w-full border-t-2 border-muted px-4"
       >
-        <TabsList className="relative bg-transparent justify-start overflow-x-auto overflow-y-hidden h-auto p-0 rounded-none py-2 gap-6">
+        <TabsList className="relative bg-transparent justify-start overflow-x-auto overflow-y-hidden h-auto p-0 rounded-none py-2 gap-6 mb-6">
           {tabs.map((tab) => (
             <TabsTrigger className={tabTriggerClass} key={tab.value} value={tab.value}>
               {tab.label}

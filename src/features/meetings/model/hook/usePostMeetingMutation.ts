@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import meetingKeys from '@/entities/meetings/model/meeting.keys';
+import { meetingKeys } from '@/entities/meetings';
 import postMeeting from '../../api/postMeeting';
 import { PostMeetingRequest, PostMeetingSucceed } from '../types';
 

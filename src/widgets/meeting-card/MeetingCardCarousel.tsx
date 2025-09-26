@@ -10,18 +10,8 @@ import {
   CarouselPrevious,
   Skeleton,
 } from '@/shared/ui';
-import { FindMeetingCard } from '@/widgets';
-import { MeetingCardInfo } from '../model/types';
-
-interface MeetingCardCarouselProps {
-  items: MeetingCardInfo[];
-  isLoading?: boolean;
-  emptyMessage?: string;
-  hrefBuilder?: (id: number) => string;
-  itemClassName?: string;
-  gapClassName?: string;
-  height?: number;
-}
+import MeetingCard from './MeetingCard';
+import { MeetingCardCarouselProps } from './types';
 
 export default function MeetingCardCarousel({
   items,
@@ -62,7 +52,7 @@ export default function MeetingCardCarousel({
         {items.map((item) => (
           <CarouselItem key={item.meetingId} className={itemClassName}>
             <Link href={hrefBuilder(item.meetingId)}>
-              <FindMeetingCard meetingInfo={item} />
+              <MeetingCard meetingInfo={item} />
             </Link>
           </CarouselItem>
         ))}

@@ -1,12 +1,10 @@
 'use client';
 
-import { Button } from '@/shared';
 import Image from 'next/image';
-import { Popover, PopoverTrigger, PopoverContent } from '@/shared/ui/Popover';
-import { Calendar } from '@/shared/ui/Calendar';
-import { enUS } from 'date-fns/locale';
 import { format } from 'date-fns';
-import useFilterCalendarStore from '../model/hooks/useFilterCalendarStore';
+import { enUS } from 'date-fns/locale';
+import { Button, Popover, PopoverTrigger, PopoverContent, Calendar } from '@/shared/ui';
+import { useFilterCalendarStore } from '@/entities/meetings';
 
 export default function FindMeetingFilterCalendar() {
   const selectedCalendar = useFilterCalendarStore((state) => state.selectedCalendar);
