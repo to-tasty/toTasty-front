@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
-import { useMeetingListQuery } from '@/entities/meetings/index';
+import { useMeetingListQuery } from '@/entities/meetings';
 import { Skeleton } from '@/shared';
 import { useInView } from 'react-intersection-observer';
 import { useUserStore } from '@/entities/user';

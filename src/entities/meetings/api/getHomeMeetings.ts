@@ -1,5 +1,5 @@
 import getMeetingList from './getMeetingList';
-import { HomeListParams, MeetingCardInfo } from '../types';
+import { HomeListParams, MeetingCardInfo } from '../model/types';
 
 export default async function getHomeMeetings(
   params: HomeListParams = {},

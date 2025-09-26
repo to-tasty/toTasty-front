@@ -1,5 +1,5 @@
 import { useInfiniteQuery, InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
-import { MeetingFilters, MeetingListInfo, PolicyOverrides } from '../../types';
+import { MeetingFilters, MeetingListInfo, PolicyOverrides } from '../types';
 import meetingKeys from '../meeting.keys';
 import QueryPolicies from '../query.policies';
 

@@ -1,5 +1,5 @@
 import { getApi } from '@/shared';
-import { MeetingCardInfo } from '../types';
+import { MeetingCardInfo } from '../model/types';
 
 export default async function getWishlistMeetings(): Promise<MeetingCardInfo[]> {
   const res = await getApi<{ content: MeetingCardInfo[] }>('/api/v1/wishlist', {

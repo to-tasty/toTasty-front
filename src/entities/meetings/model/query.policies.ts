@@ -1,4 +1,4 @@
-import { MeetingDetailInfo, PolicyOverrides, QueryPolicy } from '../types';
+import { MeetingDetailInfo, PolicyOverrides, QueryPolicy } from './types';
 
 const MS = 1_000;
 const MIN = 60 * MS;

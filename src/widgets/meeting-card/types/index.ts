@@ -1,4 +1,4 @@
-import { MeetingCardInfo } from '@/entities/meetings/types';
+import { MeetingCardInfo } from '@/entities/meetings';
 
 export interface MeetingCardProps {
   meetingInfo: MeetingCardInfo;

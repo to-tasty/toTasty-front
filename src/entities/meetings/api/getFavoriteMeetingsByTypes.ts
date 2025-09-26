@@ -1,6 +1,6 @@
 import { DrinkType } from '@/shared';
 import getMeetingList from './getMeetingList';
-import { MeetingCardInfo } from '../types';
+import { MeetingCardInfo } from '../model/types';
 
 async function fetchByDrink(drinkType: DrinkType): Promise<MeetingCardInfo[]> {
   const res = await getMeetingList({ drinkType, size: 10 }, 1);
