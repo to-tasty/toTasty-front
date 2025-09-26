@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { MeetingFilters, SortType } from '../../types';
+import { MeetingFilters, SortType } from '../types';
 
 interface Filters {
   filters: MeetingFilters;
