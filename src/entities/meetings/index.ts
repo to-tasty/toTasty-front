@@ -15,3 +15,8 @@ export { default as useHomeMeetingsQuery } from './model/hooks/useHomeMeetingsQu
 // Keys
 export { default as meetingKeys } from './model/meeting.keys';
 export { default as homeMeetingsKeys } from './model/homeMeetings.keys';
+
+// UI
+export { default as MeetingCard } from './ui/MeetingCard';
+export { default as MeetingCardCarousel } from './ui/MeetingCardCarousel';
+export { default as MeetingCardList } from './ui/MeetingCardList';

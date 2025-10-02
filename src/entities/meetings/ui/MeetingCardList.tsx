@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { MeetingCardListProps } from './types';
 import MeetingCard from './MeetingCard';
+import { MeetingCardListProps } from '../model/types';
 
 export default function MeetingCardList({
   meetingList,
@@ -16,10 +16,7 @@ export default function MeetingCardList({
       <div className={`${className} ${cardGap} ${minHeight}`}>
         {displayList.map((meetingInfo, index) => (
           <Link href={`/meetings/${meetingInfo.meetingId}`} key={meetingInfo.meetingId}>
-            <MeetingCard
-              key={meetingInfo.meetingId?.toString() || index}
-              meetingInfo={meetingInfo}
-            />
+            <MeetingCard key={meetingInfo.meetingId?.toString() || index} {...meetingInfo} />
           </Link>
         ))}
       </div>

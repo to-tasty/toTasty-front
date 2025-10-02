@@ -1,25 +1,22 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Badge, Progress } from '@/shared/ui';
-import { MeetingCardProps } from './types';
+import { MeetingCardInfo } from '../model/types';
 
-export default function MeetingCard({ meetingInfo }: MeetingCardProps) {
-  const {
-    meetingId,
-    thumbnailUrl,
-    isWished,
-    location,
-    tastingDrinkCount,
-    meetingTitle,
-    currentParticipants,
-    maxParticipants,
-    participationFee,
-    startAt,
-    status,
-  } = meetingInfo;
-
+export default function MeetingCard({
+  meetingId,
+  thumbnailUrl,
+  isWished,
+  location,
+  tastingDrinkCount,
+  meetingTitle,
+  currentParticipants,
+  maxParticipants,
+  participationFee,
+  startAt,
+  status,
+}: MeetingCardInfo) {
   const textMuted = 'text-xs text-muted';
-
   const dateObj = new Date(startAt);
   const year = dateObj.getFullYear();
   const month = dateObj.getMonth() + 1;

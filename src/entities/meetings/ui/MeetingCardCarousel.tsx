@@ -11,7 +11,7 @@ import {
   Skeleton,
 } from '@/shared/ui';
 import MeetingCard from './MeetingCard';
-import { MeetingCardCarouselProps } from './types';
+import { MeetingCardCarouselProps } from '../model/types';
 
 export default function MeetingCardCarousel({
   items,
@@ -52,7 +52,7 @@ export default function MeetingCardCarousel({
         {items.map((item) => (
           <CarouselItem key={item.meetingId} className={itemClassName}>
             <Link href={hrefBuilder(item.meetingId)}>
-              <MeetingCard meetingInfo={item} />
+              <MeetingCard {...item} />
             </Link>
           </CarouselItem>
         ))}
