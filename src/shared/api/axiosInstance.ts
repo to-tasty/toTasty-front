@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { useUserStore } from '@/entities/user/index';
-import { useGlobalErrorStore } from '../lib';
+import { useGlobalErrorStore } from '../store';
 import { ENABLE_API_METRICS, recordApiMetric } from './apiMetrics';
 
 const instances = new Map<string, AxiosInstance>();

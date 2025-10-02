@@ -1,4 +1,5 @@
-import { ActionDef, ActionId, ButtonVariant, FooterCtx, MeetingStatus, Role } from './types';
+import { UserRole } from '@/shared/constants/user';
+import { ActionDef, ActionId, ButtonVariant, FooterCtx, MeetingStatus } from './types';
 
 function toMs(s: string): number {
   const t = new Date(s).getTime();
@@ -26,7 +27,9 @@ export const ACTIONS: ActionDef[] = [
     id: ActionId.Login,
     label: '로그인하기',
     visibleIf: (c) =>
-      deriveUiStatus(c) === MeetingStatus.open && !isRecruitmentClosed(c) && c.role === Role.guest,
+      deriveUiStatus(c) === MeetingStatus.open &&
+      !isRecruitmentClosed(c) &&
+      c.role === UserRole.guest,
     variant: ButtonVariant.Default,
     handlerKey: 'onLogin',
     order: 12,
@@ -59,7 +62,7 @@ export const ACTIONS: ActionDef[] = [
     visibleIf: (c) =>
       deriveUiStatus(c) === MeetingStatus.open &&
       !isRecruitmentClosed(c) &&
-      c.role === Role.member &&
+      c.role === UserRole.member &&
       !c.isParticipated,
     variant: ButtonVariant.Default,
     handlerKey: 'onJoin',
@@ -71,7 +74,7 @@ export const ACTIONS: ActionDef[] = [
     visibleIf: (c) =>
       deriveUiStatus(c) === MeetingStatus.open &&
       !isRecruitmentClosed(c) &&
-      c.role === Role.member &&
+      c.role === UserRole.member &&
       c.isParticipated,
     variant: ButtonVariant.Outline,
     handlerKey: 'onCancelJoin',
@@ -84,7 +87,7 @@ export const ACTIONS: ActionDef[] = [
       const ui = deriveUiStatus(c);
       const ended =
         ui === MeetingStatus.closed || ui === MeetingStatus.cancelled || isMeetingStarted(c);
-      const canWrite = c.role === Role.host || c.isParticipated;
+      const canWrite = c.role === UserRole.host || c.isParticipated;
       return ended && canWrite && !c.isReviewed;
     },
     variant: ButtonVariant.Default,
@@ -98,7 +101,7 @@ export const ACTIONS: ActionDef[] = [
       const ui = deriveUiStatus(c);
       const ended =
         ui === MeetingStatus.closed || ui === MeetingStatus.cancelled || isMeetingStarted(c);
-      return ended && !!c.isReviewed && c.role !== Role.guest;
+      return ended && !!c.isReviewed && c.role !== UserRole.guest;
     },
     variant: ButtonVariant.Outline,
     handlerKey: 'onShare',
@@ -108,7 +111,7 @@ export const ACTIONS: ActionDef[] = [
     id: ActionId.CancelMeeting,
     label: '모임 취소하기',
     visibleIf: (c) =>
-      c.role === Role.host &&
+      c.role === UserRole.host &&
       deriveUiStatus(c) === MeetingStatus.open &&
       !isRecruitmentClosed(c) &&
       !isMeetingStarted(c),

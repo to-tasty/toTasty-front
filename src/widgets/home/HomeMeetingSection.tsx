@@ -2,8 +2,12 @@
 
 import { DrinkType } from '@/shared';
 import { useUserStore } from '@/entities/user';
-import { MeetingCardCarousel } from '@/widgets';
-import { HomeListKind, MeetingCardInfo, useHomeMeetingsQuery } from '@/entities/meetings';
+import {
+  MeetingCardCarousel,
+  HomeListKind,
+  MeetingCardInfo,
+  useHomeMeetingsQuery,
+} from '@/entities/meetings';
 
 function emptyCopy(kind: HomeListKind) {
   switch (kind) {
