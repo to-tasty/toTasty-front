@@ -70,3 +70,5 @@ export { Progress } from './Progress';
 export { Badge } from './Badge';
 
 export * from './AlertDialog';
+
+export { default as ContentBox } from './ContentBox';

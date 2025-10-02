@@ -1,6 +1,10 @@
-import { ContentBoxProps } from './model/types';
-
-export default function ContentBox({ title, children }: ContentBoxProps) {
+export default function ContentBox({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}): React.JSX.Element {
   return (
     <div className="space-y-2">
       <h3 className="text-lg font-semibold mb-2">{title}</h3>

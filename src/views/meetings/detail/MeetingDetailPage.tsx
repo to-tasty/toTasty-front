@@ -13,6 +13,7 @@ import {
 } from '@/features/meetings';
 import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews';
 import ReviewImgCardRow from '@/widgets/reviews/ui/ReviewImgCardRow';
+import { ContentBox } from '@/shared/ui';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
