@@ -14,6 +14,7 @@ import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews'
 import ReviewImgCardRow from '@/widgets/reviews/ui/ReviewImgCardRow';
 import { useConfirm } from '@/shared/hooks';
 import { ContentBox } from '@/shared/ui';
+import { UserRole } from '@/shared/constants';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
   const router = useRouter();
@@ -33,10 +34,10 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
   const displayName = user?.nickname ?? '';
   const isHost = Boolean(isLoggedIn && displayName && displayName === meetingData.meetingAuthor);
 
-  let role: Role;
-  if (isHost) role = Role.host;
-  else if (isLoggedIn) role = Role.member;
-  else role = Role.guest;
+  let role: UserRole;
+  if (isHost) role = UserRole.host;
+  else if (isLoggedIn) role = UserRole.member;
+  else role = UserRole.guest;
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
