@@ -1,4 +1,4 @@
-import { getApi } from '@/shared';
+import { getApi } from '@/shared/api';
 import { WishlistInfo } from '../model/types';
 
 export default async function getWishlist(pageParam: number): Promise<WishlistInfo | null> {

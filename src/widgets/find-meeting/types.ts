@@ -1,4 +1,4 @@
-import { DrinkType } from '@/shared';
+import { DrinkType } from '@/shared/constants';
 import { SortType } from '@/entities/meetings';
 
 export interface FindFilterBtn {

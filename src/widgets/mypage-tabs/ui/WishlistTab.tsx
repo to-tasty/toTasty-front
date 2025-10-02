@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react';
 import { useWishlistQuery } from '@/entities/wishlist';
-import { Skeleton } from '@/shared';
+import { Skeleton } from '@/shared/ui';
 import { useInView } from 'react-intersection-observer';
 import { useUserStore } from '@/entities/user';
 import { MeetingCardList } from '@/entities/meetings';

@@ -1,4 +1,4 @@
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 import { useThemeEffect, useThemeStore } from '@/shared/theme';
 import { Theme } from '@/shared/theme/model/types';
 import { Moon, Sun } from 'lucide-react';

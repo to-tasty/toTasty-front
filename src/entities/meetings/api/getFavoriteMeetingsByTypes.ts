@@ -1,4 +1,4 @@
-import { DrinkType } from '@/shared';
+import { DrinkType } from '@/shared/constants';
 import getMeetingList from './getMeetingList';
 import { MeetingCardInfo } from '../model/types';
 

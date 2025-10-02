@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import { toast } from 'react-toastify';
 import {
   Button,
   Dialog,
@@ -10,16 +12,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/ui';
-import { useUserStore } from '@/entities/user';
-import { useAppForm, DrinkType } from '@/shared';
 import {
   ProfileImageUploadField,
   UpdatedUserProfile,
   usePatchUserProfileMutation,
 } from '@/features/edit-user-profile';
-import Image from 'next/image';
+import { useUserStore } from '@/entities/user';
+import { DrinkType } from '@/shared/constants';
+import { useAppForm } from '@/shared/hooks';
 import EditIcon from 'public/assets/icons/edit-icon.svg';
-import { toast } from 'react-toastify';
 import { nicknameSchema, interestsSchema, profileImgUrlSchema } from '../model/validationSchema';
 
 const INTEREST_OPTIONS: Array<{ value: string; label: string }> = [

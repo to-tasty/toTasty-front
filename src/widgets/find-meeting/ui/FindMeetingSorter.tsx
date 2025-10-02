@@ -2,7 +2,7 @@
 
 import { DropdownMenu, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 import Image from 'next/image';
 import { useSorterStore } from '@/entities/meetings';
 import FindSorterDropdown from './FindSorterDropdown';

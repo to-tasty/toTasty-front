@@ -1,4 +1,4 @@
-import { deleteApi } from '@/shared';
+import { deleteApi } from '@/shared/api';
 import { ReviewSucceedInfo } from '../model/types';
 
 export default async function deleteReview(reviewId: number): Promise<ReviewSucceedInfo | null> {

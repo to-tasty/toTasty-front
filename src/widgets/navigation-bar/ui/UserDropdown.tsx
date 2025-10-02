@@ -1,6 +1,6 @@
 'use client';
 
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
+import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared/ui';
 import Link from 'next/link';
 import { useLogout } from '@/features/logout';
 

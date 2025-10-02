@@ -7,7 +7,7 @@ import { ChangeEvent } from 'react';
 
 import { useUploadImageMutation } from '@/features/upload-image';
 import Image from 'next/image';
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 
 interface TestFile {
   selectedFile: File | null;

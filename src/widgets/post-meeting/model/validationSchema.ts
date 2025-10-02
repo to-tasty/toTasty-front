@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DrinkType } from '@/shared';
+import { DrinkType } from '@/shared/constants';
 
 export const drinkTypeSchema = z.nativeEnum(DrinkType, {
   message: '주류 종류를 선택해주세요',

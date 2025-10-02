@@ -1,4 +1,4 @@
-import { TastingInfo } from '@/shared';
+import { TastingInfo } from '@/shared/constants';
 
 export interface TastingList {
   tastingList: TastingInfo[];

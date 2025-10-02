@@ -1,4 +1,4 @@
-import { TastingInfo, LocationInfo } from '@/shared';
+import { TastingInfo, LocationInfo } from '@/shared/constants';
 import { QueryKey } from '@tanstack/react-query';
 import { MeetingDetailInfo } from '@/entities/meetings';
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 
 export default function HomeLoginOverlay() {
   return (

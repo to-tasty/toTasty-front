@@ -1,4 +1,4 @@
-import { postApi } from '@/shared';
+import { postApi } from '@/shared/api';
 import { ReissueResponse } from '../../user/model/types';
 
 export default async function getAccessToken() {

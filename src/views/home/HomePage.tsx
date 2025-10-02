@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { DrinkType } from '@/shared';
+import { DrinkType } from '@/shared/constants';
 import { useUserStore } from '@/entities/user';
 import { HomeMeetingSection, HomeLoginOverlay } from '@/widgets/home';
 import { HomeListKind } from '@/entities/meetings';

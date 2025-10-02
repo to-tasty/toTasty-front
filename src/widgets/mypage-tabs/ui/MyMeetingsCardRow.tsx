@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import { Badge, Button, formatDate, formatTime } from '@/shared';
-import { UsersRound, Check } from 'lucide-react';
-
-import { MeetingCardInfo } from '@/entities/meetings';
 import Link from 'next/link';
+import Image from 'next/image';
+import { UsersRound, Check } from 'lucide-react';
+import { Badge, Button } from '@/shared/ui';
+import { formatDate, formatTime } from '@/shared/lib';
+import { MeetingCardInfo } from '@/entities/meetings';
 
 function computeStatusBadges(meeting: MeetingCardInfo) {
   const min = Number(meeting.minParticipants || 0);

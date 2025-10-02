@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { TastingInfo } from '@/shared';
+import { TastingInfo } from '@/shared/constants';
 
 interface ReviewImgProps {
   item: TastingInfo;

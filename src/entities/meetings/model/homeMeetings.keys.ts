@@ -1,5 +1,5 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { DrinkType } from '@/shared';
+import { DrinkType } from '@/shared/constants';
 import { HomeListKind, MeetingCardInfo, SortType } from './types';
 import getHomeMeetings from '../api/getHomeMeetings';
 import getWishlistMeetings from '../api/getWishlistMeetings';

@@ -1,8 +1,8 @@
 'use client';
 
-import { useUserStore } from '@/entities/user';
-import { UserIcon } from '@/shared';
 import Image from 'next/image';
+import { UserIcon } from '@/shared/ui';
+import { useUserStore } from '@/entities/user';
 import ProfileEditDialog from './ui/ProfileEditDialog';
 
 const PROFILE_CARD_IMAGE = '/assets/image/profile-card-image.svg' as const;

@@ -1,15 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { Label } from '@/shared';
-import { ReviewDetailInfo } from '@/entities/reviews';
 import {
+  Label,
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui';
+import { ReviewDetailInfo } from '@/entities/reviews';
 import clsx from 'clsx';
 import { useMeetingDetailQuery } from '@/entities/meetings';
 import ReviewImgCardRow from './ui/ReviewImgCardRow';

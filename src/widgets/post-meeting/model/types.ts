@@ -1,4 +1,4 @@
-import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared/constants';
 
 export default interface PostMeetingFormData {
   meetingTitle: string;

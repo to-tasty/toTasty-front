@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared';
 import { ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui';
 
 const tabTriggerClass =
   'relative px-0 py-2 rounded-none text-lg text-secondary-foreground hover:text-foreground cursor-pointer border-none dark:border-none data-[state=active]:border-none dark:data-[state=active]:border-none dark:data-[state=active]:bg-transparent data-[state=active]:bg-transparent' +

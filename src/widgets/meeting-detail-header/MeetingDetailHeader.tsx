@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { CheckCircle, ClockAlert } from 'lucide-react';
 import { Badge, Progress } from '@/shared/ui';
-import { getDeadlineText, getFormattedDate, getFormattedTime } from '@/shared/lib/date';
 import { MeetingDetailInfo } from '@/entities/meetings';
+import { getDeadlineText, getFormattedDate, getFormattedTime } from '@/shared/lib';
 import WithIcon from './ui/WithIcon';
 import WishButton from './ui/WishButton';
 

@@ -1,5 +1,5 @@
-import { TastingInfo } from '@/shared';
 import clsx from 'clsx';
+import { TastingInfo } from '@/shared/constants';
 import ReviewImgCard from './ReviewImgCard';
 
 export default function ReviewImgCardRow({

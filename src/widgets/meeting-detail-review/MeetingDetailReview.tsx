@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMeetingReviewsQuery } from '@/entities/reviews';
-import { Button, getFormattedDate } from '@/shared';
+import { Button } from '@/shared/ui';
+import { getFormattedDate } from '@/shared/lib';
 
 export default function MeetingDetailReview({ meetingId }: { meetingId: number }) {
   const { data, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage } =

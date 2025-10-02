@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogClose,
   Button,
-} from '@/shared';
+} from '@/shared/ui';
 
 export default function MyMeetingsCancelDialog({ onConfirm }: { onConfirm: () => void }) {
   return (

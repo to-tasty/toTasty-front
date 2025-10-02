@@ -1,4 +1,4 @@
-import { deleteApi } from '@/shared';
+import { deleteApi } from '@/shared/api';
 
 export default async function deleteWishlist(meetingId: number): Promise<void | null> {
   return deleteApi<void>(`/api/v1/wishlist/${meetingId}`);

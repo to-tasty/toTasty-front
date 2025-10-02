@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
-import { useMeetingListQuery, useFilterStore } from '@/entities/meetings';
-import { Skeleton } from '@/shared';
+import { useMeetingListQuery, useFilterStore, MeetingCardList } from '@/entities/meetings';
+import { Skeleton } from '@/shared/ui';
 import { useInView } from 'react-intersection-observer';
-import { MeetingCardList, FindMeetingHeader } from '@/widgets';
+import { FindMeetingHeader } from '@/widgets';
 
 export default function MeetingListPage() {
   const filters = useFilterStore((state) => state.filters);

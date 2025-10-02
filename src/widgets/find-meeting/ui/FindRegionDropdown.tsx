@@ -1,4 +1,4 @@
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
+import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared/ui';
 import { Region } from '@/widgets/find-meeting/types';
 import { useFilterStore, useFilterRegionStore } from '@/entities/meetings';
 

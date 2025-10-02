@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   Button,
   Carousel,
@@ -8,10 +10,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/shared/ui';
-import Image from 'next/image';
-import { TastingInfo, useAppForm } from '@/shared';
+import { TastingInfo } from '@/shared/constants';
+import { useAppForm } from '@/shared/hooks';
 import { usePostReviewMutation } from '@/features/reviews';
-import { useRouter } from 'next/navigation';
 import { useMeetingDetailQuery } from '@/entities/meetings';
 import ReviewImgCardRow from '../ui/ReviewImgCardRow';
 import { contentSchema, tastingSchema, flavorSchema, colorSchema } from './model/validationSchema';

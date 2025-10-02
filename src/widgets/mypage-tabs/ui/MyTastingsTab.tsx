@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
-import { Skeleton } from '@/shared';
 import { useInView } from 'react-intersection-observer';
+import { Skeleton } from '@/shared/ui';
 import { useUserStore } from '@/entities/user';
 import { useMyReviewListQuery } from '@/entities/reviews';
 import MyTastingsCardRow from './MyTastingsCardRow';

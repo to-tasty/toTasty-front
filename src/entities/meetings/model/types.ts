@@ -1,4 +1,4 @@
-import { DrinkType, LocationInfo, TastingInfo } from '@/shared';
+import { DrinkType, LocationInfo, TastingInfo } from '@/shared/constants';
 
 export enum SortType {
   latest = 'LATEST',

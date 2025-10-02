@@ -1,4 +1,4 @@
-import { getApi } from '@/shared';
+import { getApi } from '@/shared/api';
 import { MeetingDetailInfo } from '../model/types';
 
 export default async function getMeetingDetail(

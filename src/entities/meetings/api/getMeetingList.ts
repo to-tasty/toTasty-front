@@ -1,4 +1,4 @@
-import { getApi } from '@/shared';
+import { getApi } from '@/shared/api';
 import { MeetingFilters, MeetingListInfo } from '../model/types';
 
 export default async function getMeetingList(

@@ -1,4 +1,4 @@
-import { getApi } from '@/shared';
+import { getApi } from '@/shared/api';
 import { ReviewList } from '../model/types';
 
 export default async function getMyReviewList(pageParam: number): Promise<ReviewList | null> {

@@ -1,4 +1,4 @@
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
+import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared/ui';
 import { useSorterStore, useFilterStore, SortType } from '@/entities/meetings';
 import { SorterState } from '../types';
 

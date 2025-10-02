@@ -1,5 +1,5 @@
-import { Button } from '@/shared';
 import Link from 'next/link';
+import { Button } from '@/shared/ui';
 
 export default function LoginButton() {
   return (

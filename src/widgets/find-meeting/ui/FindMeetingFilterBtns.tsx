@@ -1,6 +1,7 @@
 'use client';
 
-import { Button, DrinkType } from '@/shared';
+import { Button } from '@/shared/ui';
+import { DrinkType } from '@/shared/constants';
 import { useFilterStore, useFilterBtnStore, SortType } from '@/entities/meetings';
 import { FindFilterBtn } from '../types';
 

@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Button } from '@/shared';
 import Image from 'next/image';
+import { Button } from '@/shared/ui';
 import FindMeetingFilterBtns from './ui/FindMeetingFilterBtns';
 // import FindMeetingFilterCalendar from './ui/FindMeetingFilterCalendar';
 import FindMeetingRegionSelector from './ui/FindMeetingRegionSelector';
