@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { Button } from '../Button';
 import Input from '../Input';
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
-import { FileUploadFieldProps } from '../../lib/form/model/types';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
+import { FileUploadFieldProps } from '../../hooks/use-app-form/model/types';
 import FormField from './FormField';
 
 export default function FileUploadField({

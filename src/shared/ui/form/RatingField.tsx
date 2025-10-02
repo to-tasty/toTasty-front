@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Button } from '@/shared/ui';
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
 import FormField from './FormField';
 import Input from '../Input';
-import useRatingStore from '../../lib/form/model/hooks/useRatingStore';
-import { BaseFormFieldProps } from '../../lib/form/model/types';
+import useRatingStore from '../../hooks/use-app-form/useRatingStore';
+import { BaseFormFieldProps } from '../../hooks/use-app-form/model/types';
 
 export default function RatingField({
   label,

@@ -10,7 +10,7 @@ import {
   AddressField,
   MultiSelectField,
   RatingField,
-} from '../../../../ui/form';
+} from '../../ui/form';
 
 const { useAppForm } = createFormHook({
   fieldContext,

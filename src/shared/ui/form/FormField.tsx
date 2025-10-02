@@ -1,6 +1,6 @@
 import Label from '../Label';
 import ErrorField from './ErrorField';
-import { FormFieldProps } from '../../lib/form/model/types';
+import { FormFieldProps } from '../../hooks/use-app-form/model/types';
 
 export default function FormField({
   field,

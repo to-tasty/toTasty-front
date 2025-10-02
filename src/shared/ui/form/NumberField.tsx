@@ -1,10 +1,10 @@
 'use client';
 
 import Input from '../Input';
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
-import useCommaInput from '../../lib/form/model/hooks/useCommaInput';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
+import useCommaInput from '../../hooks/use-app-form/useCommaInput';
 import FormField from './FormField';
-import { NumberFieldProps } from '../../lib/form/model/types';
+import { NumberFieldProps } from '../../hooks/use-app-form/model/types';
 
 export default function NumberField({
   label,

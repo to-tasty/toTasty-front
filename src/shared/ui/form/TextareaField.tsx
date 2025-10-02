@@ -1,6 +1,6 @@
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
 import FormField from './FormField';
-import { TextareaFieldProps } from '../../lib/form/model/types';
+import { TextareaFieldProps } from '../../hooks/use-app-form/model/types';
 import { Textarea } from '../Textarea';
 
 export default function TextareaField({

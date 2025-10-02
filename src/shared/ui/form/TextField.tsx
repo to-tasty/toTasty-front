@@ -1,7 +1,7 @@
 import { Input } from '@/shared/ui';
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
 import FormField from './FormField';
-import { TextFieldProps } from '../../lib/form/model/types';
+import { TextFieldProps } from '../../hooks/use-app-form/model/types';
 
 export default function TextField({
   label,

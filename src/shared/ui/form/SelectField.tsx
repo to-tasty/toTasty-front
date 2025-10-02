@@ -1,7 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
-import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
+import useFieldValue from '../../hooks/use-app-form/useFieldValue';
 import FormField from './FormField';
-import { SelectFieldProps } from '../../lib/form/model/types';
+import { SelectFieldProps } from '../../hooks/use-app-form/model/types';
 
 export default function SelectField({
   label,

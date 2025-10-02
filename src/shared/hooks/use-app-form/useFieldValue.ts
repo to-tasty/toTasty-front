@@ -1,4 +1,4 @@
-import { UseFieldValueOptions } from '../types';
+import { UseFieldValueOptions } from './model/types';
 import { useFieldContext } from './useFormContext';
 
 export default function useFieldValue<
