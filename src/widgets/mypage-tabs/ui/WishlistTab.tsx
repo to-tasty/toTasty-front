@@ -5,7 +5,7 @@ import { useWishlistQuery } from '@/entities/wishlist';
 import { Skeleton } from '@/shared';
 import { useInView } from 'react-intersection-observer';
 import { useUserStore } from '@/entities/user';
-import { MeetingCardList } from '../../meeting-card';
+import { MeetingCardList } from '../../../entities/meetings/ui/MeetingCardList';
 
 export default function WishlistTab() {
   const memberId = useUserStore((state) => state.user?.memberId);

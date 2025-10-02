@@ -3,7 +3,8 @@ import { CheckCircle, ClockAlert } from 'lucide-react';
 import { Badge, Progress } from '@/shared/ui';
 import { getDeadlineText, getFormattedDate, getFormattedTime } from '@/shared/lib/date';
 import { MeetingDetailInfo } from '@/entities/meetings';
-import { WithIcon, WishButton } from './ui';
+import WithIcon from './ui/WithIcon';
+import WishButton from './ui/WishButton';
 
 export default function MeetingDetailHeader(data: MeetingDetailInfo) {
   const {

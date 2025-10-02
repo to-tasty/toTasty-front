@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/ui';
-import { useAppForm } from '@/shared/lib';
+import { useAppForm } from '@/shared/hooks';
 import { DrinkType, TastingInfo } from '@/shared';
 import { useUploadImageMutation } from '@/features/upload-image';
 import { PostMeetingRequest } from '@/features/meetings/model/types';

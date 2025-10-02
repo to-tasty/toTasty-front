@@ -24,7 +24,7 @@ widgets/
 ## ✍️ 작성 규칙
 
 - **조합과 배치**: `features`와 `entities`의 컴포넌트를 가져와 의미에 맞게 조합하고 배치하는 역할을 합니다.
-  - **예시**: `Header` 위젯은 `Logo`(entity), `Navigation`(entity), `LoginButton`(feature), `SearchForm`(feature) 등을 조합하여 만들어집니다.
+- **예시**: `Header` 위젯은 `Logo`(entity), `Navigation`(entity), `LoginButton`(feature), `SearchForm`(feature) 등을 조합하여 만들어집니다.
 - **의존성**: `features`, `entities`, `shared` 레이어에 의존할 수 있습니다.
 - **독립성**: 위젯은 어느 페이지에 갖다 놓아도 스스로 동작할 수 있어야 합니다.
 

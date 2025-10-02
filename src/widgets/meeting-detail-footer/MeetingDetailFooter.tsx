@@ -2,8 +2,11 @@
 
 import { useMemo, useRef } from 'react';
 import { useUserStore } from '@/entities/user';
-import { useStickyFooter, useNowTick } from './model/hook';
-import { ActionButtons, FooterText, ParticipantsText } from './ui';
+import useStickyFooter from './model/hook/useStickyFooter';
+import useNowTick from './model/hook/useNowTick';
+import ActionButtons from './ui/ActionButtons';
+import FooterText from './ui/FooterText';
+import ParticipantsText from './ui/ParticipantsText';
 import { MeetingFooterProps, FooterCtx, Role, MeetingStatus } from './model/types';
 
 const cx = (...v: (string | false | undefined)[]) => v.filter(Boolean).join(' ');
@@ -29,17 +32,7 @@ export default function MeetingDetailFooter(props: MeetingFooterProps) {
       joinEndAt: meeting.joinEndAt,
       startAt: meeting.startAt,
     }),
-    [
-      role,
-      meeting.status,
-      meeting.currentParticipants,
-      meeting.maxParticipants,
-      meeting.participationFee,
-      meeting.isParticipated,
-      meeting.isReviewed,
-      meeting.joinEndAt,
-      meeting.startAt,
-    ],
+    [role, meeting],
   );
 
   let containerClass = 'relative mt-20';

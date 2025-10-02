@@ -2,18 +2,16 @@
 
 import { useRouter } from 'next/navigation';
 import { useMeetingDetailQuery } from '@/entities/meetings';
-import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/detail-meeting';
-import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
 import {
   useCancelMeetingMutation,
   useJoinMeetingMutation,
   useCancelJoinMutation,
 } from '@/features/meetings';
-import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews';
 import ReviewImgCardRow from '@/widgets/reviews/ui/ReviewImgCardRow';
 import { useConfirm } from '@/shared/hooks';
 import { ContentBox } from '@/shared/ui';
+import { MeetingDetailHeader, MeetingDetailFooter, MeetingDetailReview } from '@/widgets';
 import { UserRole } from '@/shared/constants';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
@@ -98,7 +96,7 @@ export default function MeetingDetailPage({ meetingId }: { meetingId: number }) 
         <ContentBox title="모임 상세 설명">{meetingData.content}</ContentBox>
 
         <ContentBox title="이 모임에 대한 리뷰">
-          <MeetingDetailReviews meetingId={meetingId} />
+          <MeetingDetailReview meetingId={meetingId} />
         </ContentBox>
 
         <MeetingDetailFooter

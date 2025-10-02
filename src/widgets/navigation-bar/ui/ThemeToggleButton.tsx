@@ -1,6 +1,6 @@
 import { Button } from '@/shared';
-import { useThemeEffect, useThemeStore } from '@/shared/lib/theme';
-import { Theme } from '@/shared/lib/theme/model/types';
+import { useThemeEffect, useThemeStore } from '@/shared/theme';
+import { Theme } from '@/shared/theme/model/types';
 import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggleButton() {

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useMeetingReviewsQuery } from '@/entities/reviews';
 import { Button, getFormattedDate } from '@/shared';
 
-export default function MeetingDetailReviews({ meetingId }: { meetingId: number }) {
+export default function MeetingDetailReview({ meetingId }: { meetingId: number }) {
   const { data, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMeetingReviewsQuery(meetingId, 10);
 
