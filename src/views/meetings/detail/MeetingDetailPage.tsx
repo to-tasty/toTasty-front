@@ -5,7 +5,6 @@ import { useMeetingDetailQuery } from '@/entities/meetings';
 import { MeetingDetailHeader, MeetingDetailFooter, ContentBox } from '@/widgets/detail-meeting';
 import { Role } from '@/widgets/detail-meeting/model/types';
 import { useUserStore } from '@/entities/user';
-import { useConfirm } from '@/widgets/detail-meeting/model/hook';
 import {
   useCancelMeetingMutation,
   useJoinMeetingMutation,
@@ -13,6 +12,7 @@ import {
 } from '@/features/meetings';
 import MeetingDetailReviews from '@/widgets/detail-meeting/MeetingDetailReviews';
 import ReviewImgCardRow from '@/widgets/reviews/ui/ReviewImgCardRow';
+import { useConfirm } from '@/shared/hooks';
 import { ContentBox } from '@/shared/ui';
 
 export default function MeetingDetailPage({ meetingId }: { meetingId: number }) {
