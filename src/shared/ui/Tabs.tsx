@@ -2,7 +2,7 @@
 
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 
-import { cn } from '@/shared/lib/shadcnUtils';
+import { cn } from '@/shared/lib/shadcn/utils';
 
 function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
   return (

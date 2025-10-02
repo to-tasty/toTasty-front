@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/shadcnUtils';
+import { cn } from '../lib/shadcn/utils';
 
 const DEFAULT_PROFILE_IMG = '/assets/icons/default-profile-icon.svg' as const;
 

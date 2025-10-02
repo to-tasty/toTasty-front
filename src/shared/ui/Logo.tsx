@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import useThemeStore from '../lib/theme/model/hooks/useThemeStore';
-import { Theme } from '../lib/theme';
+import useThemeStore from '../theme/model/hooks/useThemeStore';
+import { Theme } from '../theme';
 
 export default function Logo() {
   const { theme } = useThemeStore();

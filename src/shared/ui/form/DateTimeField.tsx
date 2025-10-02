@@ -6,7 +6,7 @@ import { Calendar as CalendarIcon } from 'lucide-react';
 import { Button, Calendar, Popover, PopoverContent, PopoverTrigger } from '../index';
 import useFieldValue from '../../lib/form/model/hooks/useFieldValue';
 import { DateTimeFieldProps } from '../../lib/form/model/types';
-import { cn } from '../../lib/shadcnUtils';
+import { cn } from '../../lib/shadcn/utils';
 import FormField from './FormField';
 
 export default function DateTimeField({

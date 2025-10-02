@@ -2,7 +2,7 @@
 
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 
-import { cn } from '@/shared/lib/shadcnUtils';
+import { cn } from '@/shared/lib/shadcn/utils';
 
 function Progress({
   className,

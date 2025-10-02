@@ -2,7 +2,7 @@
 
 import * as LabelPrimitive from '@radix-ui/react-label';
 
-import { cn } from '@/shared/lib/shadcnUtils';
+import { cn } from '@/shared/lib/shadcn/utils';
 
 interface LabelProps extends React.ComponentProps<'label'> {}
 

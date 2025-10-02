@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/shadcnUtils';
+import { cn } from '@/shared/lib/shadcn/utils';
 
 function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
   return (
